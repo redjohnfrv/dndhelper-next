@@ -13,5 +13,5 @@ export const Header = () => {
 }
 
 const Wrapper = styled.div`
-  margin-bottom: 48px;
+  height: 96px;
 `

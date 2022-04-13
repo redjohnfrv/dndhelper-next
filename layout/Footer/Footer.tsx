@@ -9,4 +9,6 @@ export const Footer = () => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  height: 96px;
+`

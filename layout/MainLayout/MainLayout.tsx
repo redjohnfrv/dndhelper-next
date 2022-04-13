@@ -4,6 +4,7 @@ import React, {ReactNode} from 'react'
 import Head from 'next/head'
 import {Container} from '../ui'
 import {Header, Footer} from '..'
+import styled from 'styled-components'
 
 interface Props {
   children: ReactNode
@@ -24,12 +25,16 @@ export const MainLayout = (
       <header>
         <Header />
       </header>
-      <main>
+      <MAIN>
         {children}
-      </main>
+      </MAIN>
       <footer>
         <Footer />
       </footer>
     </Container>
   )
 }
+
+const MAIN = styled.main`
+  min-height: calc(100vh - 240px); //footer + header + container's padding
+`
