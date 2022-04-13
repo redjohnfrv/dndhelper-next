@@ -1,7 +1,5 @@
-import styled from 'styled-components'
-
 //** components
-import {MainLayout} from '../layout'
+import {MainContent, MainLayout} from '../layout'
 
 interface Props {
   title: string
@@ -11,9 +9,7 @@ const Home = ({title}: Props) => {
 
   return (
     <MainLayout title={title} >
-      <Wrapper>
-          HOME PAGE
-      </Wrapper>
+      <MainContent />
     </MainLayout>
   )
 }
@@ -27,5 +23,3 @@ export async function getStaticProps() {
     },
   }
 }
-
-const Wrapper = styled.div``

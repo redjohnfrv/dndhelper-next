@@ -36,5 +36,6 @@ export const MainLayout = (
 }
 
 const MAIN = styled.main`
+  position: relative;
   min-height: calc(100vh - 240px); //footer + header + container's padding
 `
