@@ -2,14 +2,17 @@ import {useRouter} from 'next/router'
 import {NextPageContext} from 'next/types'
 
 //** components
-import {MainContent, MainLayout} from '../../layout'
+import {
+  MainContent,
+  MainLayout,
+  AdvContent
+} from '../../layout'
 
 interface Props {
-  adv: any
   title: string
 }
 
-const Adventure = ({adv, title}: Props) => {
+const Adventure = ({title}: Props) => {
   const router = useRouter()
   const {id} = router.query
 
@@ -17,7 +20,7 @@ const Adventure = ({adv, title}: Props) => {
     <MainLayout title={title} >
       <MainContent
         content={
-          <div>Adventure {id}</div>
+          <AdvContent id={id as string} />
         }
       />
     </MainLayout>
@@ -32,13 +35,12 @@ interface NextPageContextExt extends NextPageContext {
   }
 }
 
-export async function getServerSideProps({query}: NextPageContextExt) {
+export async function getStaticProps({query}: NextPageContextExt) {
   const {id} = query
 
   return {
     props: {
-      adv: 'adventure xxx',
-      title: `adventure ${id}`
+      title: `Adventure ${id}`
     },
   }
 }

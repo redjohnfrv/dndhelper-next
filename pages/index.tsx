@@ -1,5 +1,9 @@
 //** components
-import {MainContent, MainLayout} from '../layout'
+import {
+  AdvContent,
+  MainContent,
+  MainLayout
+} from '../layout'
 
 interface Props {
   title: string
@@ -11,7 +15,7 @@ const Home = ({title}: Props) => {
     <MainLayout title={title} >
       <MainContent
         content={
-          <div>Home page content</div>
+          <AdvContent />
         }
       />
     </MainLayout>

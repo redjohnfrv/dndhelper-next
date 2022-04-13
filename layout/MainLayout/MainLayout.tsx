@@ -1,10 +1,10 @@
 import React, {ReactNode} from 'react'
+import styled from 'styled-components'
 
 //** components
 import Head from 'next/head'
 import {Container} from '../ui'
 import {Header, Footer} from '..'
-import styled from 'styled-components'
 
 interface Props {
   children: ReactNode
