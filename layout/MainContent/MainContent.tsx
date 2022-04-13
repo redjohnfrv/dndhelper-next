@@ -1,15 +1,19 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import styled from 'styled-components'
 
 //** components
 import {SideBar, ContentBlock} from '..'
 
-export const MainContent = () => {
+interface Props {
+  content: ReactNode
+}
+
+export const MainContent = ({content}: Props) => {
   return (
     <Wrapper>
       <SideBar />
       <ContentBlock>
-        Content
+        {content}
       </ContentBlock>
     </Wrapper>
   )
