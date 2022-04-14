@@ -3,15 +3,18 @@ import styled from 'styled-components'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
+
+//** components
 import {TitleH1} from '../ui'
 import {ErrorLoad} from '../ErrorLoad/ErrorLoad'
+import {AdventuresList} from '..'
 
 interface Props {
   adventures: IAdventure[] | string
   id?: string
 }
 
-export const AdvContent = ({adventures, id = ''}: Props) => {
+export const AdvsContent = ({adventures, id = ''}: Props) => {
   return (
     <Wrapper>
       <TitleH1
@@ -23,7 +26,7 @@ export const AdvContent = ({adventures, id = ''}: Props) => {
       />
       {Array.isArray(adventures)
         ? adventures.map((item: IAdventure) => {
-          return <div key={item.id}>{JSON.stringify(item)}</div>
+          return <AdventuresList key={item.id} adventure={item} />
         })
         : (
           <ErrorLoad>{adventures}</ErrorLoad>

@@ -6,7 +6,7 @@ import {getAdventures} from '../../api/adventures'
 
 //** components
 import {
-  AdvContent,
+  AdvsContent,
   MainContent,
   MainLayout
 } from '../../layout'
@@ -31,7 +31,7 @@ const Adventures = ({title, adventures}: Props) => {
     <MainLayout title={title} >
       <MainContent
         content={
-          <AdvContent adventures={advs} />
+          <AdvsContent adventures={advs} />
         }
       />
     </MainLayout>
