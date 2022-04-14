@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
+import {TitleH1} from '../ui'
+import {ErrorLoad} from '../ErrorLoad/ErrorLoad'
 
 interface Props {
   adventures: IAdventure[] | string
@@ -12,18 +14,19 @@ interface Props {
 export const AdvContent = ({adventures, id = ''}: Props) => {
   return (
     <Wrapper>
-      <h1>
-        {id
+      <TitleH1
+        text={id
           ? `Adventure ${id}`
           : 'Adventures'
         }
-      </h1>
+        align="right"
+      />
       {Array.isArray(adventures)
         ? adventures.map((item: IAdventure) => {
           return <div key={item.id}>{JSON.stringify(item)}</div>
         })
         : (
-          <div>{adventures}</div>
+          <ErrorLoad>{adventures}</ErrorLoad>
         )
       }
 
@@ -31,4 +34,10 @@ export const AdvContent = ({adventures, id = ''}: Props) => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  padding-bottom: 24px;
+`

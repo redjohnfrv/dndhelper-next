@@ -3,18 +3,39 @@ import styled from 'styled-components'
 
 interface Props {
   children: ReactNode
-  size: string
+  size?: string
+  color?: string
 }
 
-export const Text = ({children: text, size}: Props) => {
+interface IStyles {
+  size?: string
+  color?: string
+}
+
+export const Text = ({
+  children: text,
+  size = '24px',
+  color = '#0c0c0c'
+}: Props) => {
+
+  const styles: IStyles = {
+    size,
+    color,
+  }
+
   return (
-    <Wrapper size={size}>
+    <Wrapper styles={styles}>
       {text}
     </Wrapper>
   )
 }
 
-const Wrapper = styled.span<{size: string}>`
+const Wrapper = styled.span<{styles: IStyles}>`
+  ${styles => styles.styles &&
+    {
+      fontSize: `${styles.styles.size};`, 
+      color: `${styles.styles.color}`,
+    }
+  }
   display: inline-block;
-  font-size: ${size => size.size};
 `

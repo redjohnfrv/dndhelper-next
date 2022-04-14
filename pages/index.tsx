@@ -58,11 +58,12 @@ const Wrapper = styled.div`
 const ImageBlock = styled.div`
   position: relative;
   width: 100%;
-  height: auto;
+  min-height: 272px;
   padding: 24px 0;
   
   & span {
     width: 100% !important;
+    height: 100% !important;
   }
   
   & img {
