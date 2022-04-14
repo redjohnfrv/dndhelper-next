@@ -1,9 +1,13 @@
+import styled from 'styled-components'
+
+//** utils
+import {images} from '../assets/images/images'
+import {size} from '../constants'
+
 //** components
-import {
-  AdvContent,
-  MainContent,
-  MainLayout
-} from '../layout'
+import {MainContent, MainLayout} from '../layout'
+import {Text, TitleH1} from '../layout/ui'
+import Image from 'next/image'
 
 interface Props {
   title: string
@@ -15,7 +19,19 @@ const Home = ({title}: Props) => {
     <MainLayout title={title} >
       <MainContent
         content={
-          <AdvContent />
+          <Wrapper>
+            <TitleH1 text={title} align="right" />
+            <ImageBlock>
+              <Image src={images.mainpage} alt="journey" />
+              <HelloText>
+                <Text size={size.normalText}>
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </Text>
+              </HelloText>
+            </ImageBlock>
+          </Wrapper>
         }
       />
     </MainLayout>
@@ -31,3 +47,37 @@ export async function getStaticProps() {
     },
   }
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+`
+const ImageBlock = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 24px 0;
+  
+  & span {
+    width: 100% !important;
+  }
+  
+  & img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 374px); // 100vh - header - footer
+  }
+`
+const HelloText = styled.div`
+  position: absolute;
+  right: 48px;
+  top: 72px;
+  height: max-content;
+  max-width: 50%;
+  padding: 24px;
+  background: rgba(224, 224, 224, 0.52);
+`
