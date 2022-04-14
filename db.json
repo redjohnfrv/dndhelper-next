@@ -1,0 +1,18 @@
+{
+  "adventures": [
+    {
+      "id": 1,
+      "name": "First adventure",
+      "desc": "Its about my first adventure with json-server db",
+      "avatar": null,
+      "modules": []
+    },
+    {
+      "id": 2,
+      "name": "Second adventure",
+      "desc": "Its about my dynamics troubles with getStaticPath",
+      "avatar": null,
+      "modules": []
+    }
+  ]
+}

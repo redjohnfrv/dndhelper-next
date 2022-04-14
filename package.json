@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "moq": "json-server -w db.json -p 4000 -d 1500",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.25",
+    "axios": "^0.26.1",
     "babel-plugin-styled-components": "^2.0.7",
     "next": "12.1.5",
     "nextjs-progressbar": "^0.0.14",

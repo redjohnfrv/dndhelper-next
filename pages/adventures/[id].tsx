@@ -1,5 +1,8 @@
-import {useRouter} from 'next/router'
-import {NextPageContext} from 'next/types'
+import {GetStaticPropsContext} from 'next/types'
+
+//** utils
+import {IAdventure} from '../../dto/adventure'
+import {getAdventures} from '../../api/adventures'
 
 //** components
 import {
@@ -9,18 +12,17 @@ import {
 } from '../../layout'
 
 interface Props {
-  title: string
+  advId: string
+  adventure: IAdventure[]
 }
 
-const Adventure = ({title}: Props) => {
-  const router = useRouter()
-  const {id} = router.query
+const Adventure = ({advId, adventure}: Props) => {
 
   return (
-    <MainLayout title={title} >
+    <MainLayout title={`Adventure ${advId}`}>
       <MainContent
         content={
-          <AdvContent id={id as string} />
+          <AdvContent adventures={adventure} id={advId} />
         }
       />
     </MainLayout>
@@ -29,18 +31,42 @@ const Adventure = ({title}: Props) => {
 
 export default Adventure
 
-interface NextPageContextExt extends NextPageContext {
-  query: {
+interface Ids {
+  params: {
     id: string
   }
 }
 
-export async function getStaticProps({query}: NextPageContextExt) {
-  const {id} = query
+export async function getStaticPaths() {
+
+  const IdsArray: Ids[] = []
+
+  const adventures: IAdventure[] = await getAdventures()
+  adventures.forEach((item: IAdventure) => IdsArray.push({params: {id: String(item.id)}}))
 
   return {
-    props: {
-      title: `Adventure ${id}`
-    },
+    paths: IdsArray,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({params}: GetStaticPropsContext) {
+
+  const adventures: IAdventure[] = await getAdventures()
+
+  if (params) {
+    const id = params.id
+    const adventure = adventures.filter(item => String(item.id) === id)
+
+    return {
+      props: {
+        advId: id,
+        adventure,
+      },
+    }
+  }
+
+  return {
+    notFound: true,
   }
 }
