@@ -20,7 +20,7 @@ export const AdventuresList = ({adventure}: Props) => {
     <Wrapper>
       <TitleH2 text={name} />
       <Content>
-        <Avatar image={avatar} />
+        <Avatar image={avatar} alt="Adventure avatar" />
         <Description>
           <Text size={size.normalText}>
             {desc}

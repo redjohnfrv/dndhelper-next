@@ -8,28 +8,32 @@ import {getAdventures} from '../../api/adventures'
 import {
   MainContent,
   MainLayout,
-  AdvsContent
+  Adventure
 } from '../../layout'
 
 interface Props {
   advId: string
-  adventure: IAdventure[]
+  adventure: IAdventure[] | string
 }
 
-const Adventure = ({advId, adventure}: Props) => {
+const AdventureId = ({advId, adventure}: Props) => {
 
   return (
     <MainLayout title={`Adventure ${advId}`}>
       <MainContent
         content={
-          <AdvsContent adventures={adventure} id={advId} />
+          <Adventure adventures={
+            Array.isArray(adventure) /** adventures can be as an error string instead of array **/
+              ? adventure[0]
+              : adventure
+          } />
         }
       />
     </MainLayout>
   )
 }
 
-export default Adventure
+export default AdventureId
 
 interface Ids {
   params: {
@@ -40,8 +44,10 @@ interface Ids {
 export async function getStaticPaths() {
   const IdsArray: Ids[] = []
 
-  const adventures: IAdventure[] = await getAdventures()
-  adventures.forEach((item: IAdventure) => IdsArray.push({params: {id: String(item.id)}}))
+  const adventures: IAdventure[] | string = await getAdventures()
+
+  if (Array.isArray(adventures))
+    adventures.forEach((item: IAdventure) => IdsArray.push({params: {id: String(item.id)}}))
 
   return {
     paths: IdsArray,
@@ -54,7 +60,7 @@ export async function getStaticProps({params}: GetStaticPropsContext) {
 
   if (params) {
     const id = params.id
-    const adventure = adventures.filter(item => String(item.id) === id)
+    const adventure: IAdventure[] = adventures.filter(item => String(item.id) === id)
 
     return {
       props: {

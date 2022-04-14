@@ -9,19 +9,29 @@ import Image from 'next/image'
 
 interface Props {
   image: string | null
+  alt: string
+  size?: 'normal' | 'large'
 }
 
-export const Avatar = ({image = ''}: Props) => {
+export const Avatar = ({image = '', alt, size = 'normal'}: Props) => {
   return (
-    <Wrapper>
-      <Image src={image || images.nophoto} alt="avatar adventure" />
+    <Wrapper size={size}>
+      <Image src={image || images.nophoto} alt={alt} />
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
-  width: 120px;
-  height: 140px;
+const Wrapper = styled.div<{size: 'normal' | 'large' | undefined}>`
+  ${size => size.size === 'normal'
+    ? {
+        width: '120px',
+        height: '140px',
+      }
+    : {
+        width: '240px',
+        height: '280px',
+      }  
+  }
   
   & img {
     width: 100%;
