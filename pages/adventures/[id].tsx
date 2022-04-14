@@ -38,7 +38,6 @@ interface Ids {
 }
 
 export async function getStaticPaths() {
-
   const IdsArray: Ids[] = []
 
   const adventures: IAdventure[] = await getAdventures()
@@ -51,7 +50,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}: GetStaticPropsContext) {
-
   const adventures: IAdventure[] = await getAdventures()
 
   if (params) {

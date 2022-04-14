@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const AdvContent = ({adventures, id = ''}: Props) => {
-
   return (
     <Wrapper>
       <h1>
@@ -20,11 +19,11 @@ export const AdvContent = ({adventures, id = ''}: Props) => {
         }
       </h1>
       {Array.isArray(adventures)
-        ? (adventures as IAdventure[]).map((item: IAdventure) => {
+        ? adventures.map((item: IAdventure) => {
           return <div key={item.id}>{JSON.stringify(item)}</div>
         })
         : (
-          <div>{adventures as string}</div>
+          <div>{adventures}</div>
         )
       }
 

@@ -12,4 +12,5 @@ export const SideBar = () => {
 const Wrapper = styled.aside`
   display: flex;
   flex-grow: 1;
+  min-width: 20%;
 `

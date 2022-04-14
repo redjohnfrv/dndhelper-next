@@ -17,7 +17,6 @@ interface Props {
 }
 
 const Adventures = ({title, adventures}: Props) => {
-
   const [advs, setAdvs] = useState<IAdventure[] | string>(adventures)
 
   /** if getStaticProps request hadn't executed **/
@@ -42,7 +41,6 @@ const Adventures = ({title, adventures}: Props) => {
 export default Adventures
 
 export async function getStaticProps() {
-
   const advs: IAdventure[] | string = []
   let error = ''
 
