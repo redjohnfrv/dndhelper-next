@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 //** utils
 import {fileReaderResolver} from '../../../helpers'
+import {setAdventureAvatar} from '../../../api/adventures'
 
 //** components
 import {Avatar, TitleH1, UploadInput} from '../../ui'
@@ -37,6 +38,7 @@ export const Preview = ({props}: Props) => {
         .then((files) => {
           files.forEach((item: string) => {
             setStateAvatar(item)
+            setAdventureAvatar(String(id), item)
           })
         })
     }

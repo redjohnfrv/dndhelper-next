@@ -31,7 +31,8 @@ const Wrapper = styled.div`
   flex-shrink: 0;
   
   & img {
+    object-fit: cover;
     width: 100%;
-    height: auto;
+    height: auto !important;
   }
 `

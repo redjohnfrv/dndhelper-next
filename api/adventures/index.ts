@@ -22,11 +22,9 @@ export const createAdventure = async (adv: Partial<Omit<IAdventure, 'id'>>) => {
       headers: {
         'Content-type': 'application/json'
       }
-    }
-
-    )
-    .then(() => console.log('Creating success!'))
-    .catch(err => error = err.message)
+    })
+      .then(() => console.log('Creating success!'))
+      .catch(err => error = err.message)
 
   if (error) return error
   return request
@@ -42,6 +40,24 @@ export const deleteAdventure = async (id: string) => {
   })
     .then(() => console.log('Removing success!'))
     .catch(err => error = err.message)
+
+  if (error) return error
+  return request
+}
+
+export const setAdventureAvatar = async (id: string, avatar: string) => {
+  let error = ''
+
+  const request = axios.patch(API_URL + `/adventures/${id}`,{
+    avatar: avatar
+  },
+    {
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+      .then(() => console.log('Uploading success!'))
+      .catch(err => error = err.message)
 
   if (error) return error
   return request

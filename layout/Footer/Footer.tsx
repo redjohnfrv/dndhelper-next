@@ -9,7 +9,7 @@ export const Footer = () => {
   return (
     <Wrapper>
       <Signature>
-        Design by <span>R</span>
+        Developed by <span>R</span>
       </Signature>
       <Icons>
         <Vkontakte />
