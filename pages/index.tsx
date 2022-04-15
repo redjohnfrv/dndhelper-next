@@ -70,7 +70,7 @@ const ImageBlock = styled.div`
     object-fit: cover;
     width: 100%;
     height: 100%;
-    max-height: calc(100vh - 374px); // 100vh - header - footer
+    max-height: calc(100vh - 422px); // 100vh - header - footer
   }
 `
 const HelloText = styled.div`

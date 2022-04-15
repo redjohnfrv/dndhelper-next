@@ -1,5 +1,6 @@
 export const size = {
-  normalText: '24px'
+  normalText: '24px',
+  largeText: '36px',
 }
 
 export const color = {
