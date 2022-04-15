@@ -23,7 +23,7 @@ export const Preview = ({props}: Props) => {
         <Avatar image={avatar} alt="adventure avatar" size="large" />
       </AvatarWrapper>
       <TitleH1 text={name} />
-      <Text>
+      <Text display="inline">
         {desc}
       </Text>
     </Wrapper>

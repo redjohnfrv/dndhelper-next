@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 96px;
-  padding: 48px 24px 0 24px;
+  padding: 48px 0 0 0;
 `
 const Signature = styled.span`
   display: flex;

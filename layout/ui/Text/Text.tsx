@@ -5,22 +5,26 @@ interface Props {
   children: ReactNode
   size?: string
   color?: string
+  display?: string
 }
 
 interface IStyles {
   size?: string
   color?: string
+  display?: string
 }
 
 export const Text = ({
   children: text,
   size = '24px',
-  color = '#0c0c0c'
+  color = '#0c0c0c',
+  display = 'inline-block',
 }: Props) => {
 
   const styles: IStyles = {
     size,
     color,
+    display,
   }
 
   return (
@@ -34,8 +38,8 @@ const Wrapper = styled.span<{styles: IStyles}>`
   ${styles => styles.styles &&
     {
       fontSize: `${styles.styles.size};`, 
-      color: `${styles.styles.color}`,
+      color: `${styles.styles.color};`,
+      display: `${styles.styles.display};`
     }
   }
-  display: inline-block;
 `

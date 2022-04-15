@@ -33,6 +33,8 @@ const Wrapper = styled.div<{size: 'normal' | 'large' | undefined}>`
       }  
   }
   
+  flex-shrink: 0;
+  
   & img {
     width: 100%;
     height: auto;
