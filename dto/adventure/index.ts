@@ -5,3 +5,9 @@ export interface IAdventure {
   avatar: string | null
   modules: Array<unknown>
 }
+
+export interface INewAdventure {
+  adventure: string
+  description: string
+  avatar: string | null
+}
