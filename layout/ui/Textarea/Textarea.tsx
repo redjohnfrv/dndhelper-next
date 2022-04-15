@@ -11,7 +11,7 @@ interface Props extends FieldRenderProps<string> {
 export const Textarea = ({input, placeholder, label, disabled}: Props) => {
   return (
     <Wrapper>
-      {label && <span>{label}</span>}
+      {label && <label>{label}</label>}
       <textarea
         {...input}
         disabled={disabled}
