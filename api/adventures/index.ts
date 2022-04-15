@@ -31,3 +31,18 @@ export const createAdventure = async (adv: Partial<Omit<IAdventure, 'id'>>) => {
   if (error) return error
   return request
 }
+
+export const deleteAdventure = async (id: string) => {
+  let error = ''
+
+  const request = axios.delete(API_URL + `/adventures/${id}`,{
+    headers: {
+      'Content-type': 'application/json'
+    },
+  })
+    .then(() => console.log('Removing success!'))
+    .catch(err => error = err.message)
+
+  if (error) return error
+  return request
+}

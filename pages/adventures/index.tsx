@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
-import {getAdventures} from '../../api/adventures'
+import {deleteAdventure, getAdventures} from '../../api/adventures'
 
 //** components
 import {
@@ -27,25 +27,20 @@ const Adventures = ({title, adventures}: Props) => {
     }
   }, [advs])
 
-  /** create new adventure
-  const createAdventureHandler = () => {
-    createAdventure({
-      name: 'Third adventure',
-      avatar: null,
-      desc: 'Its about my 3rd adventure when Im trying to create new one',
-      modules: []
-    }).then(() => {
-      getAdventures()
-        .then((res: IAdventure[] | string) => setAdvs(res))
+  /** removing the adventure by id **/
+  const removeAdventureHandler = (id: string) => {
+    deleteAdventure(id)
+      .then(() => {
+        getAdventures()
+          .then((res: IAdventure[] | string) => setAdvs(res))
     })
   }
-  **/
 
   return (
     <MainLayout title={title} >
       <MainContent
         content={
-          <AdvsContent adventures={advs} />
+          <AdvsContent adventures={advs} onDelete={removeAdventureHandler} />
         }
       />
     </MainLayout>

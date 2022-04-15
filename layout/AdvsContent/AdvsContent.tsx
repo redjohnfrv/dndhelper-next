@@ -12,9 +12,10 @@ import {AdventuresList} from '..'
 interface Props {
   adventures: IAdventure[] | string
   id?: string
+  onDelete: (id: string) => void
 }
 
-export const AdvsContent = ({adventures, id = ''}: Props) => {
+export const AdvsContent = ({adventures, id = '', onDelete}: Props) => {
 
   return (
     <Wrapper>
@@ -27,7 +28,7 @@ export const AdvsContent = ({adventures, id = ''}: Props) => {
       />
       {Array.isArray(adventures)
         ? adventures.map((item: IAdventure) => {
-          return <AdventuresList key={item.id} adventure={item} />
+          return <AdventuresList key={item.id} adventure={item} onDelete={onDelete} />
         })
         : (
           <ErrorLoad>{adventures}</ErrorLoad>

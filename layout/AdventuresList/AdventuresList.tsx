@@ -11,9 +11,10 @@ import Link from 'next/link'
 
 interface Props {
   adventure: IAdventure
+  onDelete: (id: string) => void
 }
 
-export const AdventuresList = ({adventure}: Props) => {
+export const AdventuresList = ({adventure, onDelete}: Props) => {
   const {name, avatar, desc, id} = adventure
 
   return (
@@ -25,9 +26,12 @@ export const AdventuresList = ({adventure}: Props) => {
           <Text size={size.normalText}>
             {desc}
           </Text>
-          <Link href={`${routes.adventures}/${id}`}>
-            <a>Go to the Adventure</a>
-          </Link>
+          <AdvNavigation>
+            <Link href={`${routes.adventures}/${id}`}>
+              <a>Go to the Adventure</a>
+            </Link>
+            <Remove onClick={() => onDelete(String(id))}>Delete this one</Remove>
+          </AdvNavigation>
         </Description>
       </Content>
     </Wrapper>
@@ -49,4 +53,11 @@ const Description = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+`
+const AdvNavigation = styled.div`
+  display: flex;
+  gap: 48px;
+`
+const Remove = styled.div`
+  cursor: pointer;
 `

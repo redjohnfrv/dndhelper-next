@@ -13,20 +13,6 @@
       "desc": "Its about my dynamics troubles with getStaticPath",
       "avatar": null,
       "modules": []
-    },
-    {
-      "name": "Third adventure",
-      "avatar": null,
-      "desc": "Its about my 3rd adventure when Im trying to create new one",
-      "modules": [],
-      "id": 3
-    },
-    {
-      "name": "New adventure: Form Revenge",
-      "desc": "This adventure about my trying to create new one with Final Form",
-      "avatar": null,
-      "modules": [],
-      "id": 4
     }
   ]
 }
