@@ -1,4 +1,5 @@
 export const size = {
+  smallText: '18px',
   normalText: '24px',
   largeText: '36px',
 }
