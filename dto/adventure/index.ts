@@ -3,5 +3,5 @@ export interface IAdventure {
   name: string
   desc: string
   avatar: string | null
-  modules: []
+  modules: Array<unknown>
 }

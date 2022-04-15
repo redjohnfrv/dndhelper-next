@@ -15,6 +15,7 @@ interface Props {
 }
 
 export const AdvsContent = ({adventures, id = ''}: Props) => {
+
   return (
     <Wrapper>
       <TitleH1
@@ -32,7 +33,6 @@ export const AdvsContent = ({adventures, id = ''}: Props) => {
           <ErrorLoad>{adventures}</ErrorLoad>
         )
       }
-
     </Wrapper>
   )
 }

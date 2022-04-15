@@ -27,6 +27,20 @@ const Adventures = ({title, adventures}: Props) => {
     }
   }, [advs])
 
+  /** create new adventure
+  const createAdventureHandler = () => {
+    createAdventure({
+      name: 'Third adventure',
+      avatar: null,
+      desc: 'Its about my 3rd adventure when Im trying to create new one',
+      modules: []
+    }).then(() => {
+      getAdventures()
+        .then((res: IAdventure[] | string) => setAdvs(res))
+    })
+  }
+  **/
+
   return (
     <MainLayout title={title} >
       <MainContent
