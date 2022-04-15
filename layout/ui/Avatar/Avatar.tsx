@@ -14,25 +14,20 @@ interface Props {
 }
 
 export const Avatar = ({image = '', alt, size = 'normal'}: Props) => {
+
   return (
-    <Wrapper size={size}>
-      <Image src={image || images.nophoto} alt={alt} />
+    <Wrapper>
+      <Image
+        src={image || images.nophoto}
+        alt={alt}
+        width={size === 'normal' ? '140px' : '240px'}
+        height={size === 'normal' ? '140px' : '240px'}
+      />
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div<{size: 'normal' | 'large' | undefined}>`
-  ${size => size.size === 'normal'
-    ? {
-        width: '120px',
-        height: '140px',
-      }
-    : {
-        width: '240px',
-        height: '280px',
-      }  
-  }
-  
+const Wrapper = styled.div`
   flex-shrink: 0;
   
   & img {
