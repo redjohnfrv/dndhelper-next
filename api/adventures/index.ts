@@ -23,7 +23,10 @@ export const createAdventure = async (adv: Partial<Omit<IAdventure, 'id'>>) => {
         'Content-type': 'application/json'
       }
     })
-      .then(() => console.log('Creating success!'))
+      .then(res => {
+        console.log('Creating success!')
+        return res.data.id
+      })
       .catch(err => error = err.message)
 
   if (error) return error

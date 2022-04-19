@@ -1,6 +1,3 @@
-//** utils
-import {useSwitcher} from '../../hooks/useSwitcher'
-
 //** components
 import {
   CreateAdventure,
@@ -13,8 +10,6 @@ interface Props {
 }
 
 const NewAdventure = ({title}: Props) => {
-
-  const isCreating = useSwitcher(true)
 
   return (
     <MainLayout title={title} >

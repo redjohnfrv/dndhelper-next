@@ -4,14 +4,18 @@ import styled from 'styled-components'
 //** utils
 import {createAdventure} from '../../api/adventures'
 import {INewAdventure} from '../../dto/adventure'
-import {size} from '../../constants'
+import {routes, size} from '../../constants'
 import {composeValidators, validators} from '../../helpers'
 
 //** components
 import {Field, Form } from 'react-final-form'
 import {Button, Input, Textarea, TitleH1} from '../ui'
+import {useRouter} from 'next/router'
 
 export const CreateAdventure = () => {
+
+  const router = useRouter()
+  const {push} = router
 
   const onSubmit = (values: INewAdventure) => {
     const {adventure, description} = values
@@ -22,6 +26,7 @@ export const CreateAdventure = () => {
       avatar: null,
       modules: [],
     })
+      .then(advId => push(routes.adventures + `/${advId}`))
   }
 
   return (
