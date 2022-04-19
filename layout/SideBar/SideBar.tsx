@@ -47,8 +47,8 @@ export const SideBar = () => {
 const Wrapper = styled.aside`
   box-sizing: border-box;
   display: flex;
-  flex-grow: 1;
-  min-width: 20%;
+  width: 20%;
+  min-width: 180px;
   padding: 24px 0 0 24px;
 `
 const List = styled.nav`

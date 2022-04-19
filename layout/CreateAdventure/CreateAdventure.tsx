@@ -3,12 +3,13 @@ import styled from 'styled-components'
 
 //** utils
 import {createAdventure} from '../../api/adventures'
+import {INewAdventure} from '../../dto/adventure'
+import {size} from '../../constants'
+import {composeValidators, validators} from '../../helpers'
 
 //** components
 import {Field, Form } from 'react-final-form'
 import {Button, Input, Textarea, TitleH1} from '../ui'
-import {INewAdventure} from '../../dto/adventure'
-import {size} from '../../constants'
 
 export const CreateAdventure = () => {
 
@@ -25,27 +26,29 @@ export const CreateAdventure = () => {
 
   return (
     <Wrapper>
-      <TitleH1 text="Start a new Adventure" align="right" />
+      <TitleH1 text="Start new Adventure" align="right" />
       <Adding>
         <Form
           onSubmit={onSubmit}
-          render={({handleSubmit}) => (
+          render={({handleSubmit, invalid}) => (
             <form onSubmit={handleSubmit}>
+              <Button
+                type="submit"
+                title="Start Adventure"
+                disable={invalid}
+              />
               <Field
                 name="adventure"
                 placeholder="Name your Adventure"
                 component={Input}
                 label="ADVENTURE: "
+                validate={composeValidators(validators.required)}
               />
               <Field
                 name="description"
                 placeholder="Add description"
                 component={Textarea}
                 label="DESCRIPTION: "
-              />
-              <Button
-                type="submit"
-                title="Start Adventure"
               />
             </form>
           )}
@@ -59,12 +62,22 @@ const Wrapper = styled.div`
   width: 100%;
 `
 const Adding = styled.div`
+  position: relative;
   padding: 48px 0 0 0;
   
   & label {
     display: inline-block;
     font-size: ${size.normalText};
     text-align: right;
-    //min-width: 200px;
+  }
+  
+  & input {
+    margin-bottom: 48px;
+  }
+  
+  & button {
+    position: absolute;
+    top: 48px;
+    left: 51%;
   }
 `

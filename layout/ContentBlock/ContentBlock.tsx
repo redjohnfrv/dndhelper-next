@@ -15,5 +15,5 @@ export const ContentBlock = ({children}: Props) => {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-grow: 5;
+  width: 80%;
 `

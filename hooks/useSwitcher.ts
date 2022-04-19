@@ -7,8 +7,8 @@ export type UseSwitcherType = {
     toggle: () => void
 }
 
-export const useSwitcher = () => {
-    const [isOn, setIsOn] = useState(false)
+export const useSwitcher = (init = false) => {
+    const [isOn, setIsOn] = useState(init)
     const on = useCallback(() => setIsOn(true), [])
     const off = useCallback(() => setIsOn(false), [])
     const toggle = useCallback(() => setIsOn(prev => !prev), [])
