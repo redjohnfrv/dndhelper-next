@@ -6,7 +6,7 @@ import {IAdventure} from '../../dto/adventure'
 import {routes, size} from '../../constants'
 
 //** components
-import {Avatar, Text, TitleH2} from '../ui'
+import {Avatar, Button, Text, TitleH2} from '../ui'
 import Link from 'next/link'
 
 interface Props {
@@ -30,7 +30,11 @@ export const AdventuresList = ({adventure, onDelete}: Props) => {
             <Link href={`${routes.adventures}/${id}`}>
               <a>Go to the Adventure</a>
             </Link>
-            <Remove onClick={() => onDelete(String(id))}>Delete this one</Remove>
+            <Button
+              onClick={() => onDelete(String(id))}
+              title="Delete"
+              small={true}
+            />
           </AdvNavigation>
         </Description>
       </Content>
@@ -42,6 +46,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 `
 const Content = styled.div`
   display: flex;
@@ -53,11 +58,10 @@ const Description = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  width: 100%;
 `
 const AdvNavigation = styled.div`
   display: flex;
-  gap: 48px;
-`
-const Remove = styled.div`
-  cursor: pointer;
+  justify-content: space-between;
+  width: 100%;
 `
