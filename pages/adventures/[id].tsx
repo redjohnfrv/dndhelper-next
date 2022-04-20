@@ -1,8 +1,11 @@
+import {useEffect} from 'react'
 import {GetStaticPropsContext} from 'next/types'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
 import {getAdventures} from '../../api/adventures'
+import {useAppDispatch} from '../../hooks/useAppDispatch'
+import {setAdventureInStore} from '../../redux/adventure/slice'
 
 //** components
 import {
@@ -17,13 +20,19 @@ interface Props {
 }
 
 const AdventureId = ({advId, adventure}: Props) => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (Array.isArray(adventure))
+      dispatch(setAdventureInStore({...adventure[0], id: advId,}))
+  }, [])
 
   return (
     <MainLayout title={`Adventure ${advId}`}>
       <MainContent
         content={
           <Adventure adventures={
-            Array.isArray(adventure) /** adventures can be as an error string instead of array **/
+            Array.isArray(adventure) /** 'adventures' can be implement as an error string instead of array **/
               ? adventure[0]
               : adventure
           } />
@@ -47,7 +56,8 @@ export async function getStaticPaths() {
   const adventures: IAdventure[] | string = await getAdventures()
 
   if (Array.isArray(adventures))
-    adventures.forEach((item: IAdventure) => IdsArray.push({params: {id: String(item.id)}}))
+    adventures.forEach((item: IAdventure) =>
+      IdsArray.push({params: {id: String(item.id)}}))
 
   return {
     paths: IdsArray,

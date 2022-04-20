@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
+import {useRouter} from 'next/router'
 import {createAdventure} from '../../api/adventures'
 import {INewAdventure} from '../../dto/adventure'
 import {routes, size} from '../../constants'
@@ -10,10 +11,8 @@ import {composeValidators, validators} from '../../helpers'
 //** components
 import {Field, Form } from 'react-final-form'
 import {Button, Input, Textarea, TitleH1} from '../ui'
-import {useRouter} from 'next/router'
 
 export const CreateAdventure = () => {
-
   const router = useRouter()
   const {push} = router
 
@@ -25,6 +24,9 @@ export const CreateAdventure = () => {
       desc: description,
       avatar: null,
       modules: [],
+      quests: [],
+      npc: [],
+      players: [],
     })
       .then(advId => push(routes.adventures + `/${advId}`))
   }
