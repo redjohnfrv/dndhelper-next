@@ -59,6 +59,7 @@ export const Preview = ({props}: Props) => {
 }
 
 const Wrapper = styled.div`
+  min-height: 288px;
   width: 100%;
   
   & h1 {

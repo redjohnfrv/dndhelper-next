@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {IAdventure} from '../../dto/adventure'
 
 //** components
-import {Preview} from './index'
+import {Preview, Tabs} from './index'
 
 interface Props {
   adventures: IAdventure | string
@@ -17,6 +17,7 @@ export const Adventure = ({adventures: adventure}: Props) => {
   return (
     <Wrapper>
       <Preview props={{name, avatar, desc, id}} />
+      <Tabs />
     </Wrapper>
   )
 }
