@@ -6,8 +6,7 @@ import {IAdventure} from '../../dto/adventure'
 
 //** components
 import {TitleH1} from '../ui'
-import {ErrorLoad} from '../ErrorLoad/ErrorLoad'
-import {AdventuresList} from '..'
+import {AdventuresList, ErrorLoad} from '..'
 
 interface Props {
   adventures: IAdventure[] | string

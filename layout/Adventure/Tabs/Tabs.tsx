@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {size, tabs} from '../../../constants'
 
 export const Tabs = () => {
-  const [activeTab, setActiveTab] = useState('modules')
+  const [activeTab, setActiveTab] = useState(tabs[0])
 
   return (
     <Wrapper>

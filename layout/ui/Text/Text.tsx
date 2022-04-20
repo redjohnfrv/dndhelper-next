@@ -35,11 +35,11 @@ export const Text = ({
 }
 
 const Wrapper = styled.span<{styles: IStyles}>`
-  ${styles => styles.styles &&
+  ${props => props.styles &&
     {
-      fontSize: `${styles.styles.size};`, 
-      color: `${styles.styles.color};`,
-      display: `${styles.styles.display};`
+      fontSize: `${props.styles.size};`, 
+      color: `${props.styles.color};`,
+      display: `${props.styles.display};`
     }
   }
 `

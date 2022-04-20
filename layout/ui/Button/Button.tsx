@@ -45,14 +45,14 @@ const Btn = styled.button<{
   pointer-events: all;
   opacity: 1;
   
-  ${small => small.small && {
+  ${props => props.small && {
     width: '120px',
     fontSize: size.smallText,
     lineHeight: size.smallText,
     padding: '12px 0',
   }}
   
-  ${disable => disable.disable && {
+  ${props => props.disable && {
     opacity: '.5',
     pointerEvents: 'none',
   }}

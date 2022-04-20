@@ -29,7 +29,7 @@ export const Popup = ({items, toggle}: Props) => {
 }
 
 const Wrapper = styled.div<{show: boolean}>`
-  display: ${show => show.show ? 'flex' : 'none'};
+  display: ${props => props.show ? 'flex' : 'none'};
   flex-direction: column;
   gap: 8px;
   padding-top: 12px;

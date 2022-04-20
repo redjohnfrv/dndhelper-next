@@ -17,7 +17,7 @@ export const TitleH1 = ({text, align}: Props) => {
 const WrapperH1 = styled.h1<{align: 'center' | 'right' | undefined}>`
   width: 100%;
   font-size: 48px;
-  text-align: ${align => align.align || 'left'};
+  text-align: ${props => props.align || 'left'};
 `
 
 export const TitleH2 = ({text, align}: Props) => {
@@ -31,5 +31,5 @@ export const TitleH2 = ({text, align}: Props) => {
 const WrapperH2 = styled.h1<{align: 'center' | 'right' | undefined}>`
   width: 100%;
   font-size: 32px;
-  text-align: ${align => align.align || 'left'};
+  text-align: ${props => props.align || 'left'};
 `
