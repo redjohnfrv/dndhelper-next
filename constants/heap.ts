@@ -1,1 +1,6 @@
-export const tabs = ['Modules', 'Quest', 'Npc', 'Players']
+export const tabs = [
+  ['Modules'],
+  ['Quest'],
+  ['Npc'],
+  ['Players',]
+]

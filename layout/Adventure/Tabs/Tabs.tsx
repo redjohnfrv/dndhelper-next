@@ -4,23 +4,38 @@ import styled from 'styled-components'
 //** utils
 import {size, tabs} from '../../../constants'
 
+//** components
+import {TabList} from './TabList'
+
 export const Tabs = () => {
-  const [activeTab, setActiveTab] = useState(tabs[0])
+  const [activeTab, setActiveTab] = useState<string[]>(tabs[0])
 
   return (
     <Wrapper>
-      {tabs.map((tab: string) =>
-        <Tab
-          key={tab}
-          onClick={() => setActiveTab(tab)}
-          active={tab === activeTab}
-        >{tab}</Tab>
-      )}
+      {/** tabs menu **/}
+      <TabMenu>
+        {tabs.map((tab: string[]) =>
+          <Tab
+            key={tab[0]}
+            onClick={() => setActiveTab(tab)}
+            active={tab === activeTab}
+          >
+            {tab}
+          </Tab>
+        )}
+      </TabMenu>
+
+      {/** tabs content **/}
+      <TabList tabs={activeTab} />
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const TabMenu = styled.nav`
   display: flex;
   gap: 48px;
 `
