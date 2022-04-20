@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+
+//** utils
 import {size} from '../../../constants'
 
 interface Props {
-  tabs: string[]
+  tabs: unknown[]
 }
 
 export const TabList = ({tabs}: Props) => {
+
   return (
     <Wrapper>
-      {tabs.map(item => <li key={item}>{item}</li>)}
+      {tabs.map((item: any) => <li key={item}>{item}</li>)}
     </Wrapper>
   )
 }

@@ -14,10 +14,10 @@
       "name": "test 2",
       "desc": "test test 2",
       "avatar": null,
-      "modules": [],
-      "quests": [],
-      "npc": [],
-      "players": [],
+      "modules": ["modules"],
+      "quests": ["quests"],
+      "npc": ["npc"],
+      "players": ["players"],
       "id": 2
     }
   ]
