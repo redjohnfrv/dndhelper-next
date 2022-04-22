@@ -1,25 +1,27 @@
 import React, {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 
 //** utils
 import {size, tabs} from '../../../constants'
+import {selectAdventure} from '../../../redux/adventure/selector'
+import {getTabList} from '../../../helpers'
 
 //** components
 import {TabList} from './TabList'
-import {useSelector} from 'react-redux'
-import {selectAdventure} from '../../../redux/adventure/selector'
 
 export const Tabs = () => {
   const adventure = useSelector(selectAdventure)
   const {modules, quests, npc, players} = adventure
+
   const [activeTab, setActiveTab] = useState<string>(tabs[0])
-  const [contentTab, setContentTab] = useState<unknown[]>(modules)
+  const [tabList, setTabList] = useState(getTabList(modules))
 
   useEffect(() => {
-    if (activeTab === tabs[0]) setContentTab(modules)
-    if (activeTab === tabs[1]) setContentTab(quests)
-    if (activeTab === tabs[2]) setContentTab(npc)
-    if (activeTab === tabs[3]) setContentTab(players)
+    if (activeTab === tabs[0]) setTabList(getTabList(modules))
+    if (activeTab === tabs[1]) setTabList(getTabList(quests))
+    if (activeTab === tabs[2]) setTabList(getTabList(npc))
+    if (activeTab === tabs[3]) setTabList(getTabList(players))
   }, [activeTab])
 
   return (
@@ -38,7 +40,7 @@ export const Tabs = () => {
       </TabMenu>
 
       {/** tabs content **/}
-      <TabList tabs={contentTab} />
+      <TabList tabs={tabList.length > 0 ? tabList : getTabList(modules)} />
     </Wrapper>
   )
 }

@@ -1,5 +1,7 @@
 export const routes = {
   home: '/',
   adventures: '/adventures',
-  new: '/new'
+  new: '/new',
+  modules: 'modules',
+
 }

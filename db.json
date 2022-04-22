@@ -14,11 +14,58 @@
       "name": "test 2",
       "desc": "test test 2",
       "avatar": null,
-      "modules": ["modules"],
-      "quests": ["quests"],
-      "npc": ["npc"],
-      "players": ["players"],
+      "modules": [
+        {
+          "id": 1,
+          "name": "The beginning",
+          "link": "/modules",
+          "overview": "empty overview",
+          "preview": "empty preview",
+          "scenario": "empty scenario",
+          "note": "empty note"
+        },
+        {
+          "id": 2,
+          "name": "Second module",
+          "link": "/modules",
+          "overview": "empty overview",
+          "preview": "empty preview",
+          "scenario": "empty scenario",
+          "note": "empty note"
+        }
+      ],
+      "quests": [
+        {
+          "id": 1,
+          "name": "some quest",
+          "link": "/quests"
+        }
+      ],
+      "npc": [
+        {
+          "id": 1,
+          "name": "some NPC",
+          "link": "/npc"
+        }
+      ],
+      "players": [
+        {
+          "id": 1,
+          "name": "some player",
+          "link": "/players"
+        }
+      ],
       "id": 2
+    },
+    {
+      "name": "test 3",
+      "desc": "another new adventure",
+      "avatar": null,
+      "modules": [],
+      "quests": [],
+      "npc": [],
+      "players": [],
+      "id": 3
     }
   ]
 }
