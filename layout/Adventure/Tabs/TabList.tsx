@@ -1,18 +1,29 @@
+import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 
 //** utils
 import {size} from '../../../constants'
+import {IContentTab} from '../../../dto/adventure'
 
 interface Props {
-  tabs: unknown[]
+  tabs: IContentTab[]
 }
 
 export const TabList = ({tabs}: Props) => {
 
   return (
     <Wrapper>
-      {tabs.map((item: any) => <li key={item}>{item}</li>)}
+      {tabs.length > 0
+        ? tabs.map((item: any) =>
+          <ListItem key={item.id}>
+            <Link href={item.link + '/' + item.id}>
+              <a>{item.name}</a>
+            </Link>
+          </ListItem>
+        )
+        : <ListItem>No any items</ListItem>
+      }
     </Wrapper>
   )
 }
@@ -23,8 +34,9 @@ const Wrapper = styled.ul`
   gap: 24px;
   padding: 24px 0 0 0;
   list-style: none;
-  
-  & li {
-    font-size: ${size.normalText};
-  }
+`
+const ListItem = styled.li`
+  padding-left: 12px;
+  font-size: ${size.normalText};
+  text-decoration: underline;
 `
