@@ -6,10 +6,6 @@ const initialState: IAdventure = {
   name: '',
   desc: '',
   avatar: null,
-  modules: [],
-  quests: [],
-  npc: [],
-  players: [],
 }
 
 const adventureSlice = createSlice({

@@ -23,10 +23,6 @@ export const CreateAdventure = () => {
       name: adventure,
       desc: description,
       avatar: null,
-      modules: [],
-      quests: [],
-      npc: [],
-      players: [],
     })
       .then(advId => push(routes.adventures + `/${advId}`))
   }

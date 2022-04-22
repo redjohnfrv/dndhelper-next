@@ -12,21 +12,20 @@ import {TabList} from './TabList'
 
 export const Tabs = () => {
   const adventure = useSelector(selectAdventure)
-  const {modules, quests, npc, players} = adventure
 
   const [activeTab, setActiveTab] = useState<string>(tabs[0])
-  const [tabList, setTabList] = useState(getTabList(modules))
+  // const [tabList, setTabList] = useState(getTabList(modules))
 
-  useEffect(() => {
-    setTabList(getTabList(modules))
-  }, [modules.length])
-
-  useEffect(() => {
-    if (activeTab === tabs[0]) setTabList(getTabList(modules))
-    if (activeTab === tabs[1]) setTabList(getTabList(quests))
-    if (activeTab === tabs[2]) setTabList(getTabList(npc))
-    if (activeTab === tabs[3]) setTabList(getTabList(players))
-  }, [activeTab])
+  // useEffect(() => {
+  //   setTabList(getTabList(modules))
+  // }, [modules.length])
+  //
+  // useEffect(() => {
+  //   if (activeTab === tabs[0]) setTabList(getTabList(modules))
+  //   if (activeTab === tabs[1]) setTabList(getTabList(quests))
+  //   if (activeTab === tabs[2]) setTabList(getTabList(npc))
+  //   if (activeTab === tabs[3]) setTabList(getTabList(players))
+  // }, [activeTab])
 
   return (
     <Wrapper>
@@ -44,7 +43,7 @@ export const Tabs = () => {
       </TabMenu>
 
       {/** tabs content **/}
-      <TabList tabs={getTabList(tabList) || []} />
+      <TabList tabs={getTabList([]) || []} />
     </Wrapper>
   )
 }

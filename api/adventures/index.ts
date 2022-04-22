@@ -52,7 +52,7 @@ export const setAdventureAvatar = async (id: string, avatar: string) => {
   let error = ''
 
   const request = axios.patch(API_URL + `/adventures/${id}`,{
-    avatar: avatar
+    avatar,
   },
     {
       headers: {

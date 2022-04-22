@@ -5,10 +5,12 @@ import {IContentTab} from '../dto/adventure'
 export const getTabList = (adventureOptions: IModule[] | any[]) => {
   const content: IContentTab[] = []
 
-  adventureOptions.forEach((item: IModule | any) =>
-    content.push(
-      {id: item.id, name: item.name, link: item.link}
-    ))
+  if (adventureOptions.length > 0) {
+    adventureOptions.forEach((item: IModule | any) =>
+      content.push(
+        {id: item.id, name: item.name, link: item.link}
+      ))
+  }
 
   return content
 }
