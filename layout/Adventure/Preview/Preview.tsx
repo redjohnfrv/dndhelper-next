@@ -2,7 +2,6 @@ import React, {ChangeEvent, useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {fileReaderResolver} from '../../../helpers'
 import {setAdventureAvatar} from '../../../api/adventures'
 
 //** components
@@ -28,19 +27,25 @@ export const Preview = ({props}: Props) => {
     const loadedFiles = e.target.files
 
     if (loadedFiles) {
-      let fileList = []
-
       for (let i = 0; i < loadedFiles.length; i++) {
-        fileList.push(fileReaderResolver(loadedFiles[i]))
+        console.log(loadedFiles[i])
+        setStateAvatar(`/images/${loadedFiles[i].name}`)
+        setAdventureAvatar(String(id), `/images/${loadedFiles[i].name}`)
       }
 
-      Promise.all(fileList)
-        .then((files) => {
-          files.forEach((item: string) => {
-            setStateAvatar(item)
-            setAdventureAvatar(String(id), item)
-          })
-        })
+      /** if you need read image as a urlData **/
+      // for (let i = 0; i < loadedFiles.length; i++) {
+      //   fileList.push(fileReaderResolver(loadedFiles[i]))
+      // }
+      //
+      // Promise.all(fileList)
+      //   .then((files) => {
+      //     files.forEach((item: string) => {
+      //       setStateAvatar(item)
+      //       setAdventureAvatar(String(id), item)
+      //     })
+      //   })
+      /** ----------------------------------- **/
     }
   }
 

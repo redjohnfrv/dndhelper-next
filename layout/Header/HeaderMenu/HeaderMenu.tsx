@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 //** utils
-import {routes} from '../../constants'
+import {routes} from '../../../constants'
 
 export const HeaderMenu = () => {
 

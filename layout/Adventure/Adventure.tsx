@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {IAdventure} from '../../dto/adventure'
 
 //** components
-import {Preview, Tabs} from './index'
+import {Preview, Tabs} from '.'
 
 interface Props {
   adventures: IAdventure | string

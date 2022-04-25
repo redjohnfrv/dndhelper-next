@@ -1,3 +1,4 @@
+/** if you need read image as a urlData **/
 export const fileReaderResolver = (file: File): Promise<string> => new Promise((resolve) => {
   const fileReader = new FileReader()
 

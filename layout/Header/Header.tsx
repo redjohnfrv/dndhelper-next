@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** components
-import {HeaderMenu} from '..'
+import {HeaderMenu} from '.'
 
 export const Header = () => {
   return (
