@@ -5,12 +5,13 @@ import styled from 'styled-components'
 //** utils
 import {composeValidators, validators} from '../../../helpers'
 import {createModule} from '../../../api/modules'
+import {useSwitcher} from '../../../hooks/useSwitcher'
 import {ICreateModule} from '../../../dto/module'
-import {routes, size} from '../../../constants'
+import {color, routes, size} from '../../../constants'
 
 //** components
 import {Field, Form} from 'react-final-form'
-import {Button, Input, Textarea, TitleH2} from '../../ui'
+import {Button, Input, Textarea} from '../../ui'
 
 interface Props {
   advId: number
@@ -19,6 +20,7 @@ interface Props {
 export const CreateModule = ({advId}: Props) => {
   const router = useRouter()
   const {push} = router
+  const showForm = useSwitcher()
 
   const onSubmit = (values: ICreateModule) => {
     const {module, overview, preview, scenario} = values
@@ -37,8 +39,10 @@ export const CreateModule = ({advId}: Props) => {
 
   return (
     <Wrapper>
-      <TitleH2 text="Create a new one:" />
-      <Form
+      <FormTitle onClick={() => showForm.toggle()}>
+        CREATE MODULE
+      </FormTitle>
+      {showForm.isOn && <Form
         onSubmit={onSubmit}
         render={({handleSubmit, invalid}) => (
           <form onSubmit={handleSubmit}>
@@ -77,7 +81,7 @@ export const CreateModule = ({advId}: Props) => {
             />
           </form>
         )}
-      />
+      />}
     </Wrapper>
   )
 }
@@ -104,4 +108,9 @@ const Wrapper = styled.div`
   & button {
     margin: 0 0 0 169px;
   }
+`
+const FormTitle = styled.button`
+  font-size: ${size.normalText};
+  color: ${color.black};
+  margin: 0 0 24px 0 !important;
 `
