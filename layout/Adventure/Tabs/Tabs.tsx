@@ -1,38 +1,31 @@
-import React, {useState} from 'react'
-import {useSelector} from 'react-redux'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
 import {size, tabs} from '../../../constants'
-import {getTabList} from '../../../helpers'
+import {getModules} from '../../../api/modules'
 
 //** components
 import {TabList} from './TabList'
 import {CreateModule} from '../CreateModule/CreateModule'
-import {selectModulesByAdvId} from '../../../redux/module/selector'
+import { getTabList } from '../../../helpers'
 
 interface Props {
   advId: number
 }
 
 export const Tabs = ({advId}: Props) => {
-  const modules = useSelector(selectModulesByAdvId)
   const [activeTab, setActiveTab] = useState<string>(tabs[0])
+  const [modules, setModules] = useState([])
 
-  console.log('modules: ', modules)
+  useEffect(() => {
+    if (modules.length < 1)
+      getModules().then(res => setModules(res))
+  }, [])
 
-  // const [tabList, setTabList] = useState(getTabList(modules))
-
-  // useEffect(() => {
-  //   setTabList(getTabList(modules))
-  // }, [modules.length])
-  //
-  // useEffect(() => {
-  //   if (activeTab === tabs[0]) setTabList(getTabList(modules))
-  //   if (activeTab === tabs[1]) setTabList(getTabList(quests))
-  //   if (activeTab === tabs[2]) setTabList(getTabList(npc))
-  //   if (activeTab === tabs[3]) setTabList(getTabList(players))
-  // }, [activeTab])
+  useEffect(() => {
+    getModules().then(res => setModules(res))
+  }, [modules.length])
 
   return (
     <Wrapper>
@@ -49,10 +42,13 @@ export const Tabs = ({advId}: Props) => {
         )}
       </TabMenu>
 
-      {/** tabs content **/}
-      <TabList tabs={getTabList([]) || []} />
-
-      {activeTab === tabs[0] && <CreateModule advId={advId} />}
+      {/** modules tab **/}
+      {activeTab === tabs[0] &&
+        <>
+          <TabList tabs={getTabList(modules, advId)} />
+          <CreateModule advId={advId} />
+        </>
+      }
     </Wrapper>
   )
 }

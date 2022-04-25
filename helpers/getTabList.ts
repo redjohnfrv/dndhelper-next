@@ -1,25 +1,19 @@
-import {IModule} from '../dto/module'
 import {IContentTab} from '../dto/adventure'
+import {IModule} from '../dto/module'
 
 // FIXME add types for quests, npc, players
-export const getTabList = (adventureOptions: IModule[] | any[]) => {
+export const getTabList = (adventureOptions: IModule[] | any[], advId: number) => {
   const content: IContentTab[] = []
 
   if (adventureOptions.length > 0) {
-    adventureOptions.forEach((item: IModule | any) =>
-      content.push(
-        {id: item.id, name: item.name, link: item.link}
-      ))
-  }
+    adventureOptions.forEach((item: IModule | any) => {
+      if (item.advId === advId) {
+        content.push(
+          {id: item.id, name: item.name, link: item.link}
+        )
+      }
+    })
 
-  return content
+    return content
+  } else return []
 }
-
-// export const getTabLists = (adventureTabs: any[]) => {
-//   const tabs: any = []
-//   adventureTabs.forEach((item: any) => {
-//     tabs.push(getTabList(item))
-//   })
-//
-//   return tabs
-// }
