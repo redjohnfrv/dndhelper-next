@@ -10,6 +10,7 @@ import {TabList} from './TabList'
 import {CreateModule} from '../CreateModule/CreateModule'
 import { getTabList } from '../../../helpers'
 import {useSwitcher} from '../../../hooks/useSwitcher'
+import {Loader} from '../../ui'
 
 interface Props {
   advId: number
@@ -52,7 +53,7 @@ export const Tabs = ({advId}: Props) => {
         <>
           {modulesLoaded.isOn
             ? <TabList tabs={getTabList(modules, advId)} />
-            : <div>загружаем модули</div>
+            : <Loader />
           }
           <CreateModule advId={advId} />
         </>
