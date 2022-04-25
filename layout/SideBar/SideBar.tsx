@@ -9,7 +9,6 @@ import {useSwitcher} from '../../hooks/useSwitcher'
 import {Popup} from './index'
 
 export const SideBar = () => {
-
   const isCollectionShown = useSwitcher()
   const isAdventuresShown = useSwitcher()
 
@@ -31,7 +30,7 @@ export const SideBar = () => {
           <Popup
             items={[
             {name: 'All adventures', link: '/adventures'},
-            {name: 'New adventures', link: '/new'}
+            {name: 'New adventure', link: '/new'}
           ]}
             toggle={isAdventuresShown.isOn}
           />

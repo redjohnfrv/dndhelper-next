@@ -9,6 +9,7 @@ import {getModules} from '../../../api/modules'
 import {TabList} from './TabList'
 import {CreateModule} from '../CreateModule/CreateModule'
 import { getTabList } from '../../../helpers'
+import {useSwitcher} from '../../../hooks/useSwitcher'
 
 interface Props {
   advId: number
@@ -17,6 +18,7 @@ interface Props {
 export const Tabs = ({advId}: Props) => {
   const [activeTab, setActiveTab] = useState<string>(tabs[0])
   const [modules, setModules] = useState([])
+  const modulesLoaded = useSwitcher()
 
   useEffect(() => {
     if (modules.length < 1)
@@ -24,7 +26,10 @@ export const Tabs = ({advId}: Props) => {
   }, [])
 
   useEffect(() => {
-    getModules().then(res => setModules(res))
+    getModules().then(res => {
+      setModules(res)
+      modulesLoaded.on()
+    })
   }, [modules.length])
 
   return (
@@ -45,7 +50,10 @@ export const Tabs = ({advId}: Props) => {
       {/** modules tab **/}
       {activeTab === tabs[0] &&
         <>
-          <TabList tabs={getTabList(modules, advId)} />
+          {modulesLoaded.isOn
+            ? <TabList tabs={getTabList(modules, advId)} />
+            : <div>загружаем модули</div>
+          }
           <CreateModule advId={advId} />
         </>
       }

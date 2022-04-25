@@ -1,11 +1,8 @@
-import {useEffect} from 'react'
 import {GetStaticPropsContext} from 'next/types'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
 import {getAdventures} from '../../api/adventures'
-import {useAppDispatch} from '../../hooks/useAppDispatch'
-import {setAdventureInStore} from '../../redux/adventure/slice'
 
 //** components
 import {
@@ -20,12 +17,6 @@ interface Props {
 }
 
 const AdventureId = ({advId, adventure}: Props) => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (Array.isArray(adventure))
-      dispatch(setAdventureInStore({...adventure[0], id: advId,}))
-  }, [])
 
   return (
     <MainLayout title={`Adventure ${advId}`}>
