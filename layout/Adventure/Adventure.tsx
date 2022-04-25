@@ -17,7 +17,7 @@ export const Adventure = ({adventures: adventure}: Props) => {
   return (
     <Wrapper>
       <Preview props={{name, avatar, desc, id}} />
-      <Tabs />
+      <Tabs advId={id} />
     </Wrapper>
   )
 }

@@ -10,6 +10,5 @@ export const selectModulesByAdvId = createSelector(
     adventure: selectAdventure(state),
     modules: selectModules(state),
   }),
-  ({modules, adventure}) =>
-    modules.filter((module: IModule) => module.advId === adventure.id)
+  ({modules, adventure}) => modules.filter((module: IModule) => module.advId === adventure.id)
 )

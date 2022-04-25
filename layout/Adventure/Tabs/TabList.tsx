@@ -33,6 +33,7 @@ const Wrapper = styled.ul`
   flex-direction: column;
   gap: 24px;
   padding: 24px 0 0 0;
+  margin-bottom: 96px;
   list-style: none;
 `
 const ListItem = styled.li`

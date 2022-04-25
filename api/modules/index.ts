@@ -2,6 +2,17 @@ import axios from 'axios'
 import {API_URL} from '../index'
 import {IModule} from '../../dto/module'
 
+export const getModules = async () => {
+  let error = ''
+
+  const data = axios.get(API_URL + '/modules')
+    .then((res) => res.data)
+    .catch(err => error = err.message)
+
+  if (error) return error
+  return data
+}
+
 export const createModule = async (module: Partial<Omit<IModule, 'id'>>) => {
   let error = ''
 

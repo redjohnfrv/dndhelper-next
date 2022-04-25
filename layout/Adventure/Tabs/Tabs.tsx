@@ -1,19 +1,26 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 
 //** utils
 import {size, tabs} from '../../../constants'
-import {selectAdventure} from '../../../redux/adventure/selector'
 import {getTabList} from '../../../helpers'
 
 //** components
 import {TabList} from './TabList'
+import {CreateModule} from '../CreateModule/CreateModule'
+import {selectModulesByAdvId} from '../../../redux/module/selector'
 
-export const Tabs = () => {
-  const adventure = useSelector(selectAdventure)
+interface Props {
+  advId: number
+}
 
+export const Tabs = ({advId}: Props) => {
+  const modules = useSelector(selectModulesByAdvId)
   const [activeTab, setActiveTab] = useState<string>(tabs[0])
+
+  console.log('modules: ', modules)
+
   // const [tabList, setTabList] = useState(getTabList(modules))
 
   // useEffect(() => {
@@ -44,6 +51,8 @@ export const Tabs = () => {
 
       {/** tabs content **/}
       <TabList tabs={getTabList([]) || []} />
+
+      {activeTab === tabs[0] && <CreateModule advId={advId} />}
     </Wrapper>
   )
 }

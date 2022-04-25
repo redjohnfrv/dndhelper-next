@@ -6,5 +6,12 @@ export interface IModule {
   overview: string
   preview: string
   scenario: string
-  note: string
+  note?: string
+}
+
+export interface ICreateModule {
+  module: string
+  overview: string
+  preview: string
+  scenario: string
 }

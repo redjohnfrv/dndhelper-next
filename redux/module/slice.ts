@@ -8,16 +8,12 @@ const modulesSlice = createSlice({
   initialState,
   reducers: {
     setModuleInStore: (state, action) => {
-      return action.payload
+      const newState = []
+      newState.push(action.payload)
+      return [...state, ...newState]
     },
-    updateModulesInStore: (state, action) => {
-      return {
-        ...state,
-        modules: action.payload
-      }
-    }
   }
 })
 
 export default modulesSlice.reducer
-export const {setModuleInStore, updateModulesInStore} = modulesSlice.actions
+export const {setModuleInStore} = modulesSlice.actions
