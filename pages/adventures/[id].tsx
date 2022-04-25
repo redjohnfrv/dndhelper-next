@@ -8,7 +8,7 @@ import {getAdventures} from '../../api/adventures'
 import {
   MainContent,
   MainLayout,
-  Adventure
+  Adventure,
 } from '../../layout'
 
 interface Props {
@@ -19,16 +19,13 @@ interface Props {
 const AdventureId = ({advId, adventure}: Props) => {
 
   return (
-    <MainLayout title={`Adventure ${advId}`}>
-      <MainContent
-        content={
-          <Adventure adventures={
-            Array.isArray(adventure) /** 'adventures' can be implement as an error string instead of array **/
-              ? adventure[0]
-              : adventure
-          } />
-        }
-      />
+    <MainLayout title={`Adventure ${advId}`}><MainContent content={<Adventure adventures={
+      Array.isArray(adventure) /** 'adventures' can be implement as an error string instead of array **/
+        ? adventure[0]
+        : adventure
+    } />
+    }
+    />
     </MainLayout>
   )
 }
@@ -48,7 +45,7 @@ export async function getStaticPaths() {
 
   if (Array.isArray(adventures))
     adventures.forEach((item: IAdventure) =>
-      IdsArray.push({params: {id: String(item.id)}}))
+      IdsArray.push({ params: {id: String(item.id)} }))
 
   return {
     paths: IdsArray,

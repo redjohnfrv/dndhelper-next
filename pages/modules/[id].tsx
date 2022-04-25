@@ -7,12 +7,13 @@ import {getModules} from '../../api/modules'
 //** components
 import {
   MainContent,
-  MainLayout
+  MainLayout,
+  Module
 } from '../../layout'
 
 interface Props {
   moduleId: string
-  module: IModule
+  module: IModule[]
 }
 
 const ModuleId = ({moduleId, module}: Props) => {
@@ -21,7 +22,7 @@ const ModuleId = ({moduleId, module}: Props) => {
     <MainLayout title={`Module ${moduleId}`}>
       <MainContent
         content={
-          <div>moduleeee!</div>
+          <Module module={module[0]} />
         }
       />
     </MainLayout>
@@ -60,8 +61,8 @@ export async function getStaticProps({params}: GetStaticPropsContext) {
 
     return {
       props: {
-        advId: id,
-        module,
+        moduleId: id,
+        module: module,
       },
     }
   }
