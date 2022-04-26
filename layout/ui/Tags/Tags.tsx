@@ -2,27 +2,27 @@ import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 
+//** utils
+import {size} from '../../../constants'
+import {ITag} from '../../../dto/module'
+
 //** components
 import {AddSvg} from '../Svg'
-import {size} from '../../../constants'
 
 interface Props {
-  tags: [
-    {
-      id: number
-      name: string
-      link: string
-    }
-  ] | []
+  tags: ITag[] | []
 }
 
 export const Tags = ({tags}: Props) => {
+
   return (
     <Wrapper>
-      <AddSvg />
+      <AddButton>
+        <AddSvg />
+      </AddButton>
       {tags.map(tag => {
         return (
-          <Link key={tag.id} href={tag.link}><a>
+          <Link key={tag.id} href={tag.link || '#'}><a>
             {tag.name}
           </a></Link>
         )
@@ -41,3 +41,4 @@ const Wrapper = styled.nav`
     font-size: ${size.normalText};
   }
 `
+const AddButton = styled.div``

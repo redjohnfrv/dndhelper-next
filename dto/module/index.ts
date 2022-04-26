@@ -1,12 +1,12 @@
+export interface ITag {
+  id: number
+  name: string
+  link: string
+}
+
 export interface IOverview {
   text: string
-  tags: [
-    {
-      id: number
-      name: string
-      link: string
-    }
-  ] | []
+  tags: ITag[] | []
 }
 
 export interface IModule {

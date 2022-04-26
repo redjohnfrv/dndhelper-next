@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {API_URL} from '../index'
-import {IModule} from '../../dto/module'
+import {IModule, ITag} from '../../dto/module'
 
 export const getModules = async () => {
   let error = ''
@@ -42,6 +42,26 @@ export const deleteModule = async (id: string) => {
     },
   })
     .then(() => console.log('Removing success!'))
+    .catch(err => error = err.message)
+
+  if (error) return error
+  return request
+}
+
+export const updateOverviewTags = async (id: string, tags: ITag[]) => {
+  let error = ''
+
+  const request = axios.patch(API_URL + `/modules/${id}`,{
+      overview: {
+        tags,
+      },
+    },
+    {
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(() => console.log('Uploading success!'))
     .catch(err => error = err.message)
 
   if (error) return error

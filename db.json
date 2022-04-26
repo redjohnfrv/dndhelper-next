@@ -57,8 +57,23 @@
       "link": "/modules",
       "name": "MODULE",
       "overview": {
-        "text": "MODULE",
-        "tags": []
+        "tags": [
+          {
+            "id": 1,
+            "name": "module1",
+            "link": "/modules/1"
+          },
+          {
+            "id": 2,
+            "name": "module2",
+            "link": "/modules/2"
+          },
+          {
+            "id": 3,
+            "name": "module3",
+            "link": "/modules/3"
+          }
+        ]
       },
       "preview": "MODULE",
       "scenario": "MODULE",

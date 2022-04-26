@@ -7,12 +7,6 @@ import {IOverview} from '../../../dto/module'
 //** components
 import {Tags, Text, TitleH2} from '../../ui'
 
-interface Props {
-  title: string
-  text?: string
-  content?: IOverview
-}
-
 const initialContent: IOverview = {
   text: '',
   tags: [{
@@ -20,6 +14,12 @@ const initialContent: IOverview = {
     name: '',
     link: '',
   }]
+}
+
+interface Props {
+  title: string
+  text?: string
+  content?: IOverview
 }
 
 export const ModuleContentBlock = ({title, content = initialContent}: Props) => {
