@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {IOverview, IPreview, ITag} from '../../../dto/module'
 
 //** components
-import {Button, Input, Tags, Text, TitleH2} from '../../ui'
+import {Button, Tags, Text, TitleH2} from '../../ui'
 
 const initialContent: IOverview = {
   text: '',
@@ -39,7 +39,7 @@ export const ModuleContentBlock = ({
   }
 
   const moqOverview = {
-    text: 'updated overview',
+    text: stateContent,
     tags: stateTags,
   }
 
@@ -48,9 +48,14 @@ export const ModuleContentBlock = ({
       <TitleH2 text={title} />
       <TextWrapper>
         <Text>
-          {text || 'Enter your text ...'}
+          {stateContent || 'Enter your text ...'}
         </Text>
-        <Input input={} meta={}
+        <input
+          defaultValue={stateContent}
+          type="text"
+          onChange={(e) =>
+            setStateContent(e.target.value)}
+        />
       </TextWrapper>
       <Tags tags={stateTags} addTag={addTag} />
       <ButtonWrapper>

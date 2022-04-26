@@ -29,7 +29,6 @@ export const Module = ({module}: Props) => {
   return (
     <Wrapper>
       <TitleH1 text={name} align="right" />
-
       <ModuleContentBlock
         title="Module overview"
         content={overview}

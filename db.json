@@ -19,12 +19,17 @@
       "link": "/modules",
       "name": "123",
       "overview": {
-        "text": "some overview",
+        "text": "345232131",
         "tags": [
           {
             "id": 1,
             "name": "module 1",
             "link": "/modules/1"
+          },
+          {
+            "id": 999,
+            "name": "super tag",
+            "link": "/modules/999"
           }
         ]
       },
