@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Loader } from '..'
 
 //** utils
 import {size} from '../../../constants'
@@ -10,6 +11,7 @@ interface Props {
   onClick?: any
   disable?: boolean
   small?: boolean
+  loading?: boolean
 }
 
 export const Button = ({
@@ -17,7 +19,8 @@ export const Button = ({
   onClick,
   type,
   disable = false,
-  small = false
+  small = false,
+  loading = false,
 }: Props) => {
 
   return (
@@ -27,7 +30,10 @@ export const Button = ({
       disable={disable}
       small={small}
     >
-      {title}
+      {loading
+        ? <Loader btn={true} />
+        : title
+      }
     </Btn>
   )
 }

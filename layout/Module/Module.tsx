@@ -8,6 +8,7 @@ import {updateOverview, updatePreview} from '../../api/modules'
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
+import {useSwitcher} from '../../hooks/useSwitcher'
 
 interface Props {
   module: IModule
@@ -15,15 +16,25 @@ interface Props {
 
 export const Module = ({module}: Props) => {
   const {id, name, overview, preview, scenario, note = ''} = module
+  const overviewLoading = useSwitcher()
+  const previewLoading = useSwitcher()
 
   const updateOverviewHandler = (id: number, overview: IOverview) => {
+    overviewLoading.on()
     updateOverview(String(id), overview)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        overviewLoading.off()
+      })
   }
 
   const updatePreviewHandler = (id: number, preview: IPreview) => {
+    previewLoading.on()
     updatePreview(String(id), preview)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        previewLoading.off()
+      })
   }
 
   return (
@@ -34,12 +45,14 @@ export const Module = ({module}: Props) => {
         content={overview}
         updateHandler={updateOverviewHandler}
         moduleId={id}
+        loading={overviewLoading.isOn}
       />
       <ModuleContentBlock
         title="Master preview"
         content={preview}
         moduleId={id}
         updateHandler={updatePreviewHandler}
+        loading={previewLoading.isOn}
       />
       {/*<ModuleContentBlock*/}
       {/*  title="Scenario"*/}

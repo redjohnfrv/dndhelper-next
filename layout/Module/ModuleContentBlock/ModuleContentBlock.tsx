@@ -21,6 +21,7 @@ interface Props {
   content?: IOverview | IPreview
   updateHandler: (id: number, content: IOverview | IPreview) => void
   moduleId: number
+  loading?: boolean
 }
 
 export const ModuleContentBlock = ({
@@ -28,6 +29,7 @@ export const ModuleContentBlock = ({
   content = initialContent,
   updateHandler,
   moduleId,
+  loading,
 }: Props) => {
 
   const {text, tags} = content as IOverview
@@ -63,6 +65,8 @@ export const ModuleContentBlock = ({
           small={true}
           title='SAVE'
           onClick={() => updateHandler(moduleId, moqOverview)}
+          loading={loading}
+          disable={loading}
         />
       </ButtonWrapper>
     </Wrapper>

@@ -4,7 +4,20 @@ import styled, {keyframes} from 'styled-components'
 //** components
 import {LoaderSvg} from '../Svg'
 
-export const Loader = () => {
+interface Props {
+  btn?: boolean
+}
+
+export const Loader = ({btn}: Props) => {
+
+  if (btn) {
+    return (
+      <LoadingWrapper>
+        <LoaderSvg />
+      </LoadingWrapper>
+    )
+  }
+
   return (
     <Wrapper>
       <LoaderSvg />
@@ -28,6 +41,21 @@ const Wrapper = styled.div`
   & svg {
     width: 56px;
     height: 56px;
+    animation: 1s ${loaderAnimation} infinite linear;
+  }
+`
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 18px;
+  min-width: 18px;
+  width: 18px;
+  margin: 0 auto;
+  
+  & svg {
+    width: 18px;
+    height: 18px;
     animation: 1s ${loaderAnimation} infinite linear;
   }
 `
