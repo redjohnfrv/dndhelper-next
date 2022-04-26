@@ -1,9 +1,20 @@
+export interface IOverview {
+  text: string
+  tags: [
+    {
+      id: number
+      name: string
+      link: string
+    }
+  ] | []
+}
+
 export interface IModule {
   id: number
   advId: number
   link: string
   name: string
-  overview: string
+  overview: IOverview
   preview: string
   scenario: string
   note?: string

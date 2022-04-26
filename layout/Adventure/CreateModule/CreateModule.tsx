@@ -29,7 +29,10 @@ export const CreateModule = ({advId}: Props) => {
       advId,
       link: routes.modules,
       name: module,
-      overview,
+      overview: {
+        text: overview,
+        tags: [],
+      },
       preview,
       scenario,
       note: '',

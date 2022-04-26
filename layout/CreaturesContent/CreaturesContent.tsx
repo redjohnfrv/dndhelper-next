@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const CreaturesContent = ({creatures}: Props) => {
+
   return (
     <Wrapper>
       {Array.isArray(creatures) &&

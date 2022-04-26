@@ -19,7 +19,7 @@ export const Module = ({module}: Props) => {
     <Wrapper>
       <TitleH1 text={name} align="right" />
 
-      <ModuleContentBlock title="Module overview" text={overview} />
+      <ModuleContentBlock title="Module overview" content={overview} />
       <ModuleContentBlock title="Master preview" text={preview} />
       <ModuleContentBlock title="Scenario" text={scenario} />
       <ModuleContentBlock title="Module notes" text={note ? note : 'No notes ...'} />

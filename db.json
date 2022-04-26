@@ -18,7 +18,16 @@
       "advId": 2,
       "link": "/modules",
       "name": "123",
-      "overview": "1svfdgngffggfghmgfgjfgg ghmhmjhkh,kh ,,k,kj23",
+      "overview": {
+        "text": "some overview",
+        "tags": [
+          {
+            "id": 1,
+            "name": "123",
+            "link": "/modules/1"
+          }
+        ]
+      },
       "preview": "123",
       "scenario": "123",
       "note": "",
@@ -27,32 +36,34 @@
     {
       "advId": 1,
       "link": "/modules",
-      "name": "test 111",
-      "overview": "test 111",
-      "preview": "test 111",
-      "scenario": "test 111",
+      "name": "3142",
+      "overview": {
+        "text": "new overview",
+        "tags": [
+          {
+            "id": 1,
+            "name": "module 1",
+            "link": "/modules/1"
+          }
+        ]
+      },
+      "preview": "preview sdfcddfb",
+      "scenario": "the best scenario ever",
       "note": "",
       "id": 2
     },
     {
-      "advId": 1,
+      "advId": 3,
       "link": "/modules",
-      "name": "test4444",
-      "overview": "test4444",
-      "preview": "test4444",
-      "scenario": "test4444",
+      "name": "MODULE",
+      "overview": {
+        "text": "MODULE",
+        "tags": []
+      },
+      "preview": "MODULE",
+      "scenario": "MODULE",
       "note": "",
       "id": 3
-    },
-    {
-      "advId": 1,
-      "link": "/modules",
-      "name": "module 4",
-      "overview": "new module",
-      "preview": "new module",
-      "scenario": "new module",
-      "note": "",
-      "id": 4
     }
   ],
   "creatures": [
