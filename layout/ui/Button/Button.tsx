@@ -7,7 +7,7 @@ import {size} from '../../../constants'
 interface Props {
   title: string
   type?: 'button' | 'submit' | 'reset' | undefined
-  onClick?: () => void
+  onClick?: any
   disable?: boolean
   small?: boolean
 }

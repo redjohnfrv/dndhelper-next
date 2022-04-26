@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {IOverview, ITag} from '../../../dto/module'
 
 //** components
-import {Tags, Text, TitleH2} from '../../ui'
+import {Button, Tags, Text, TitleH2} from '../../ui'
 
 const initialContent: IOverview = {
   text: '',
@@ -52,7 +52,13 @@ export const ModuleContentBlock = ({
         </Text>
       </TextWrapper>
       <Tags tags={stateTags} addTag={addTag} />
-      <button onClick={() => updateOverviewHandler(moduleId, moqOverview)}>update</button>
+      <ButtonWrapper>
+        <Button
+          small={true}
+          title="SAVE"
+          onClick={() => updateOverviewHandler(moduleId, moqOverview)}
+        />
+      </ButtonWrapper>
     </Wrapper>
   )
 }
@@ -62,4 +68,7 @@ const Wrapper = styled.div`
 `
 const TextWrapper = styled.div`
   padding: 24px 0;
+`
+const ButtonWrapper = styled.div`
+  margin-top: 24px;
 `

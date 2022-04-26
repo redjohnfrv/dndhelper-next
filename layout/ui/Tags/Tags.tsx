@@ -37,11 +37,14 @@ export const Tags = ({tags, addTag}: Props) => {
 const Wrapper = styled.nav`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   
   & a {
     font-size: ${size.normalText};
   }
 `
-const AddButton = styled.div``
+const AddButton = styled.div`
+  position: relative;
+  top: 4px;
+`

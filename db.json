@@ -38,12 +38,17 @@
       "link": "/modules",
       "name": "3142",
       "overview": {
-        "text": "new overview",
+        "text": "updated overview",
         "tags": [
           {
             "id": 1,
             "name": "module 1",
             "link": "/modules/1"
+          },
+          {
+            "id": 999,
+            "name": "super tag",
+            "link": "/modules/999"
           }
         ]
       },
