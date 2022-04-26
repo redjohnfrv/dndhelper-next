@@ -20,7 +20,7 @@ export const SideBar = () => {
           <Popup
             items={[
               {name: 'NPC', link: '/npc'},
-              {name: 'Monsters', link: '/bestiary'}
+              {name: 'Creatures', link: '/creatures'}
             ]}
             toggle={isCollectionShown.isOn}
           />

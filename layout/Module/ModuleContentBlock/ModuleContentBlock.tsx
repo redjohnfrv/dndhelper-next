@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const ModuleContentBlock = ({title, text}: Props) => {
+
   return (
     <Wrapper>
       <TitleH2 text={title} />

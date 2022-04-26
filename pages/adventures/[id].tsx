@@ -19,12 +19,14 @@ interface Props {
 const AdventureId = ({advId, adventure}: Props) => {
 
   return (
-    <MainLayout title={`Adventure ${advId}`}><MainContent content={<Adventure adventures={
-      Array.isArray(adventure) /** 'adventures' can be implement as an error string instead of array **/
-        ? adventure[0]
-        : adventure
-    } />
-    }
+    <MainLayout title={`Adventure ${advId}`}>
+      <MainContent content={
+        <Adventure adventures={
+          Array.isArray(adventure) /** 'adventures' can be implement as an error string instead of array **/
+            ? adventure[0]
+            : adventure
+        } />
+      }
     />
     </MainLayout>
   )

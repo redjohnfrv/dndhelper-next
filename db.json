@@ -54,5 +54,15 @@
       "note": "",
       "id": 4
     }
+  ],
+  "creatures": [
+    {
+      "id": 1,
+      "name": "Beautiful lady"
+    },
+    {
+      "id": 2,
+      "name": "Lycosa"
+    }
   ]
 }
