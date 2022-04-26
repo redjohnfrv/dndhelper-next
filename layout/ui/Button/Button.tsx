@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Loader } from '..'
 
 //** utils
 import {size} from '../../../constants'
+
+//** components
+import {Loader} from '..'
 
 interface Props {
   title: string
@@ -50,14 +52,14 @@ const Btn = styled.button<{
   border: none;
   pointer-events: all;
   opacity: 1;
-  
+
   ${props => props.small && {
     width: '120px',
     fontSize: size.smallText,
     lineHeight: size.smallText,
     padding: '12px 0',
   }}
-  
+
   ${props => props.disable && {
     opacity: '.5',
     pointerEvents: 'none',

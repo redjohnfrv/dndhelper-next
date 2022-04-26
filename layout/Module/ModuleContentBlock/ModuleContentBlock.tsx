@@ -7,11 +7,11 @@ import {IOverview, IPreview, ITag} from '../../../dto/module'
 //** components
 import {Button, Tags, Text, TitleH2} from '../../ui'
 import {Textarea} from '../../ui/Textarea/Textarea'
+import {useSwitcher} from '../../../hooks/useSwitcher'
 
 const initialContent: IOverview = {
   text: '',
   tags: [{
-    id: 0,
     name: '',
     link: '',
   }],
@@ -36,14 +36,17 @@ export const ModuleContentBlock = ({
   const {text, tags} = content as IOverview
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
+  const showPopup = useSwitcher()
 
   const addTag = (tag: ITag) => {
+    showPopup.off()
     setStateTags([...stateTags, tag])
   }
 
   return (
     <Wrapper>
       <TitleH2 text={title} />
+
       <TextWrapper>
         <Text>
           {stateContent || 'Enter your text ...'}
@@ -53,7 +56,9 @@ export const ModuleContentBlock = ({
           onChangeHandler={setStateContent}
         />
       </TextWrapper>
-      <Tags tags={stateTags} addTag={addTag} />
+
+      <Tags tags={stateTags} addTag={addTag} showPopup={showPopup} />
+
       <ButtonWrapper>
         <Button
           small={true}

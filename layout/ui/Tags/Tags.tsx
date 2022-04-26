@@ -1,35 +1,52 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 //** utils
 import {size} from '../../../constants'
 import {ITag} from '../../../dto/module'
+import {UseSwitcherType} from '../../../hooks/useSwitcher'
 
 //** components
 import {AddSvg} from '../Svg'
+import {CreateTag} from '../../Module'
 
 interface Props {
   tags: ITag[] | []
   addTag: (tag: ITag) => void
+  showPopup: UseSwitcherType
 }
 
-export const Tags = ({tags, addTag}: Props) => {
+export const Tags = ({tags, addTag, showPopup}: Props) => {
+  const [link, setLink] = useState<string>('')
+  const [tagName, setTagName] = useState<string>('')
 
   return (
     <Wrapper>
-      <AddButton
-        onClick={() => addTag({id: 999, name: 'super tag', link: '/modules/999'})}
-      >
+      <AddButton onClick={() => showPopup.toggle()}>
         <AddSvg />
       </AddButton>
+
+      {/** tags **/}
       {tags.map(tag => {
         return (
-          <Link key={tag.id} href={tag.link || '#'}><a>
+          <Link key={tag.name} href={tag.link || '#'}><a>
             {tag.name}
           </a></Link>
         )
       })}
+
+      {showPopup.isOn &&
+        <CreateTag
+          name={tagName}
+          link={link}
+          handlers={{
+            linkHandler: setLink,
+            tagNameHandler: setTagName,
+            addTag
+          }}
+        />
+      }
     </Wrapper>
   )
 }

@@ -63,11 +63,26 @@
       "name": "New module",
       "overview": {
         "text": "overview changed",
-        "tags": []
+        "tags": [
+          {
+            "id": 999,
+            "name": "super tag",
+            "link": "/modules/999"
+          },
+          {
+            "name": "new tag",
+            "link": "/modules/33"
+          }
+        ]
       },
       "preview": {
         "text": "now preview changed",
-        "tags": []
+        "tags": [
+          {
+            "name": "123",
+            "link": "/adventures/1"
+          }
+        ]
       },
       "scenario": "no scenario",
       "note": "",
