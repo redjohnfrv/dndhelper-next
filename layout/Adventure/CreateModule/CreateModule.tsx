@@ -11,7 +11,7 @@ import {color, routes, size} from '../../../constants'
 
 //** components
 import {Field, Form} from 'react-final-form'
-import {Button, Input, Textarea} from '../../ui'
+import {Button, FormInput, FormTextarea} from '../../ui'
 
 interface Props {
   advId: number
@@ -55,28 +55,28 @@ export const CreateModule = ({advId}: Props) => {
             <Field
               name="module"
               placeholder="Module name"
-              component={Input}
+              component={FormInput}
               label="MODULE: "
               validate={composeValidators(validators.required)}
             />
             <Field
               name="overview"
               placeholder="Enter overview"
-              component={Textarea}
+              component={FormTextarea}
               label="OVERVIEW: "
               validate={composeValidators(validators.required)}
             />
             <Field
               name="preview"
               placeholder="Module preview"
-              component={Textarea}
+              component={FormTextarea}
               label="MASTER PREVIEW: "
               validate={composeValidators(validators.required)}
             />
             <Field
               name="scenario"
               placeholder="Write new scenario"
-              component={Textarea}
+              component={FormTextarea}
               label="SCENARIO: "
               validate={composeValidators(validators.required)}
             />

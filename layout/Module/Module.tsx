@@ -4,11 +4,11 @@ import styled from 'styled-components'
 //** utils
 import {IModule, IOverview, IPreview} from '../../dto/module'
 import {updateOverview, updatePreview} from '../../api/modules'
+import {useSwitcher} from '../../hooks/useSwitcher'
 
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
-import {useSwitcher} from '../../hooks/useSwitcher'
 
 interface Props {
   module: IModule
@@ -22,19 +22,13 @@ export const Module = ({module}: Props) => {
   const updateOverviewHandler = (id: number, overview: IOverview) => {
     overviewLoading.on()
     updateOverview(String(id), overview)
-      .then(res => {
-        console.log(res)
-        overviewLoading.off()
-      })
+      .then(() => overviewLoading.off())
   }
 
   const updatePreviewHandler = (id: number, preview: IPreview) => {
     previewLoading.on()
     updatePreview(String(id), preview)
-      .then(res => {
-        console.log(res)
-        previewLoading.off()
-      })
+      .then(() => previewLoading.off())
   }
 
   return (

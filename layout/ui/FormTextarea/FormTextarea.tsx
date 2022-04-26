@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {FieldRenderProps} from 'react-final-form'
 
 //** utils
-import {color, size} from '../../../constants'
+import {size} from '../../../constants'
 
 interface Props extends FieldRenderProps<string> {
   placeholder?: string
@@ -11,16 +11,15 @@ interface Props extends FieldRenderProps<string> {
   disabled?: boolean
 }
 
-export const Input = ({input, placeholder, label, disabled, meta}: Props) => {
+export const FormTextarea = ({input, placeholder, label, disabled}: Props) => {
   return (
     <Wrapper>
       {label && <label>{label}</label>}
-      <input
+      <textarea
         {...input}
         disabled={disabled}
         placeholder={placeholder}
       />
-      {meta.error && meta.touched && <span>{meta.error}</span>}
     </Wrapper>
   )
 }
@@ -29,14 +28,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 24px;
-  
-  & input {
+
+  & textarea {
+    width: 50%;
+    height: 300px;
     padding: 4px 8px;
     font-size: ${size.normalText};
     line-height: ${size.normalText};
-  }
-  
-  & span {
-    color: ${color.danger};
   }
 `

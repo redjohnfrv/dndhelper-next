@@ -6,6 +6,7 @@ import {IOverview, IPreview, ITag} from '../../../dto/module'
 
 //** components
 import {Button, Tags, Text, TitleH2} from '../../ui'
+import {Textarea} from '../../ui/Textarea/Textarea'
 
 const initialContent: IOverview = {
   text: '',
@@ -40,11 +41,6 @@ export const ModuleContentBlock = ({
     setStateTags([...stateTags, tag])
   }
 
-  const moqOverview = {
-    text: stateContent,
-    tags: stateTags,
-  }
-
   return (
     <Wrapper>
       <TitleH2 text={title} />
@@ -52,11 +48,9 @@ export const ModuleContentBlock = ({
         <Text>
           {stateContent || 'Enter your text ...'}
         </Text>
-        <input
-          defaultValue={stateContent}
-          type="text"
-          onChange={(e) =>
-            setStateContent(e.target.value)}
+        <Textarea
+          text={stateContent}
+          onChangeHandler={setStateContent}
         />
       </TextWrapper>
       <Tags tags={stateTags} addTag={addTag} />
@@ -64,7 +58,13 @@ export const ModuleContentBlock = ({
         <Button
           small={true}
           title='SAVE'
-          onClick={() => updateHandler(moduleId, moqOverview)}
+          onClick={() => updateHandler(
+            moduleId,
+            {
+              text: stateContent,
+              tags: stateTags,
+            }
+          )}
           loading={loading}
           disable={loading}
         />

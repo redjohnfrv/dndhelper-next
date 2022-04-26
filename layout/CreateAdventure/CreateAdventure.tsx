@@ -10,7 +10,7 @@ import {composeValidators, validators} from '../../helpers'
 
 //** components
 import {Field, Form } from 'react-final-form'
-import {Button, Input, Textarea, TitleH1} from '../ui'
+import {Button, FormInput, FormTextarea, TitleH1} from '../ui'
 
 export const CreateAdventure = () => {
   const router = useRouter()
@@ -43,14 +43,14 @@ export const CreateAdventure = () => {
               <Field
                 name="adventure"
                 placeholder="Name your Adventure"
-                component={Input}
+                component={FormInput}
                 label="ADVENTURE: "
                 validate={composeValidators(validators.required)}
               />
               <Field
                 name="description"
                 placeholder="Add description"
-                component={Textarea}
+                component={FormTextarea}
                 label="DESCRIPTION: "
               />
             </form>

@@ -56,6 +56,22 @@
       "scenario": "123",
       "note": "",
       "id": 1
+    },
+    {
+      "advId": 3,
+      "link": "/modules",
+      "name": "New module",
+      "overview": {
+        "text": "overview changed",
+        "tags": []
+      },
+      "preview": {
+        "text": "now preview changed",
+        "tags": []
+      },
+      "scenario": "no scenario",
+      "note": "",
+      "id": 2
     }
   ],
   "creatures": [

@@ -1,39 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import {FieldRenderProps} from 'react-final-form'
 
-//** utils
-import {size} from '../../../constants'
-
-interface Props extends FieldRenderProps<string> {
-  placeholder?: string
-  label?: string
-  disabled?: boolean
+interface Props {
+  text: string
+  onChangeHandler: (text: string) => void
 }
 
-export const Textarea = ({input, placeholder, label, disabled}: Props) => {
+export const Textarea = ({text = '', onChangeHandler}: Props) => {
+
   return (
     <Wrapper>
-      {label && <label>{label}</label>}
       <textarea
-        {...input}
-        disabled={disabled}
-        placeholder={placeholder}
+        defaultValue={text}
+        onChange={(e) =>
+          onChangeHandler(e.target.value)}
       />
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-
-  & textarea {
-    width: 50%;
-    height: 300px;
-    padding: 4px 8px;
-    font-size: ${size.normalText};
-    line-height: ${size.normalText};
-  }
-`
+const Wrapper = styled.div``
