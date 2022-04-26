@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IOverview} from '../../../dto/module'
+import {IOverview, ITag} from '../../../dto/module'
 
 //** components
 import {Tags, Text, TitleH2} from '../../ui'
@@ -20,10 +20,28 @@ interface Props {
   title: string
   text?: string
   content?: IOverview
+  updateOverviewHandler: (id: number, overview: IOverview) => void
+  moduleId: number
 }
 
-export const ModuleContentBlock = ({title, content = initialContent}: Props) => {
+export const ModuleContentBlock = ({
+  title,
+  content = initialContent,
+  updateOverviewHandler,
+  moduleId,
+}: Props) => {
+
   const {text, tags} = content as IOverview
+  const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
+
+  const addTag = (tag: ITag) => {
+    setStateTags([...stateTags, tag])
+  }
+
+  const moqOverview = {
+    text: 'updated overview',
+    tags: stateTags,
+  }
 
   return (
     <Wrapper>
@@ -33,7 +51,8 @@ export const ModuleContentBlock = ({title, content = initialContent}: Props) => 
           {text || 'Enter your text ...'}
         </Text>
       </TextWrapper>
-      <Tags tags={tags} />
+      <Tags tags={stateTags} addTag={addTag} />
+      <button onClick={() => updateOverviewHandler(moduleId, moqOverview)}>update</button>
     </Wrapper>
   )
 }

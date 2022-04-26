@@ -11,13 +11,16 @@ import {AddSvg} from '../Svg'
 
 interface Props {
   tags: ITag[] | []
+  addTag: (tag: ITag) => void
 }
 
-export const Tags = ({tags}: Props) => {
+export const Tags = ({tags, addTag}: Props) => {
 
   return (
     <Wrapper>
-      <AddButton>
+      <AddButton
+        onClick={() => addTag({id: 999, name: 'super tag', link: '/modules/999'})}
+      >
         <AddSvg />
       </AddButton>
       {tags.map(tag => {

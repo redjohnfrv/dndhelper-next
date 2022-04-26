@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IModule, ITag} from '../../dto/module'
+import {IModule, IOverview} from '../../dto/module'
 
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
-import {updateOverviewTags} from '../../api/modules'
+import {updateOverview} from '../../api/modules'
 
 interface Props {
   module: IModule
@@ -16,8 +16,8 @@ interface Props {
 export const Module = ({module}: Props) => {
   const {id, name, overview, preview, scenario, note = ''} = module
 
-  const updateTags = (id: number, tags: ITag[]) => {
-    updateOverviewTags(String(id), tags)
+  const updateOverviewHandler = (id: number, overview: IOverview) => {
+    updateOverview(String(id), overview)
       .then(res => console.log(res))
   }
 
@@ -28,19 +28,21 @@ export const Module = ({module}: Props) => {
       <ModuleContentBlock
         title="Module overview"
         content={overview}
+        updateOverviewHandler={updateOverviewHandler}
+        moduleId={id}
       />
-      <ModuleContentBlock
-        title="Master preview"
-        text={preview}
-      />
-      <ModuleContentBlock
-        title="Scenario"
-        text={scenario}
-      />
-      <ModuleContentBlock
-        title="Module notes"
-        text={note ? note : 'No notes ...'}
-      />
+      {/*<ModuleContentBlock*/}
+      {/*  title="Master preview"*/}
+      {/*  text={preview}*/}
+      {/*/>*/}
+      {/*<ModuleContentBlock*/}
+      {/*  title="Scenario"*/}
+      {/*  text={scenario}*/}
+      {/*/>*/}
+      {/*<ModuleContentBlock*/}
+      {/*  title="Module notes"*/}
+      {/*  text={note ? note : 'No notes ...'}*/}
+      {/*/>*/}
     </Wrapper>
   )
 }

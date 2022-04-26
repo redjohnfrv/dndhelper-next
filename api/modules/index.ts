@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {API_URL} from '../index'
-import {IModule, ITag} from '../../dto/module'
+import {IModule, IOverview} from '../../dto/module'
 
 export const getModules = async () => {
   let error = ''
@@ -48,13 +48,11 @@ export const deleteModule = async (id: string) => {
   return request
 }
 
-export const updateOverviewTags = async (id: string, tags: ITag[]) => {
+export const updateOverview = async (id: string, overview: IOverview) => {
   let error = ''
 
   const request = axios.patch(API_URL + `/modules/${id}`,{
-      overview: {
-        tags,
-      },
+      overview,
     },
     {
       headers: {
