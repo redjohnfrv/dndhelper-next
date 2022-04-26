@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IModule, IOverview} from '../../dto/module'
+import {IModule, IOverview, IPreview} from '../../dto/module'
+import {updateOverview, updatePreview} from '../../api/modules'
 
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
-import {updateOverview} from '../../api/modules'
 
 interface Props {
   module: IModule
@@ -21,6 +21,11 @@ export const Module = ({module}: Props) => {
       .then(res => console.log(res))
   }
 
+  const updatePreviewHandler = (id: number, preview: IPreview) => {
+    updatePreview(String(id), preview)
+      .then(res => console.log(res))
+  }
+
   return (
     <Wrapper>
       <TitleH1 text={name} align="right" />
@@ -28,13 +33,15 @@ export const Module = ({module}: Props) => {
       <ModuleContentBlock
         title="Module overview"
         content={overview}
-        updateOverviewHandler={updateOverviewHandler}
+        updateHandler={updateOverviewHandler}
         moduleId={id}
       />
-      {/*<ModuleContentBlock*/}
-      {/*  title="Master preview"*/}
-      {/*  text={preview}*/}
-      {/*/>*/}
+      <ModuleContentBlock
+        title="Master preview"
+        content={preview}
+        moduleId={id}
+        updateHandler={updatePreviewHandler}
+      />
       {/*<ModuleContentBlock*/}
       {/*  title="Scenario"*/}
       {/*  text={scenario}*/}
@@ -42,6 +49,7 @@ export const Module = ({module}: Props) => {
       {/*<ModuleContentBlock*/}
       {/*  title="Module notes"*/}
       {/*  text={note ? note : 'No notes ...'}*/}
+      {/*  moduleId={id}*/}
       {/*/>*/}
     </Wrapper>
   )

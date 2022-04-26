@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IOverview, ITag} from '../../../dto/module'
+import {IOverview, IPreview, ITag} from '../../../dto/module'
 
 //** components
-import {Button, Tags, Text, TitleH2} from '../../ui'
+import {Button, Input, Tags, Text, TitleH2} from '../../ui'
 
 const initialContent: IOverview = {
   text: '',
@@ -13,26 +13,26 @@ const initialContent: IOverview = {
     id: 0,
     name: '',
     link: '',
-  }]
+  }],
 }
 
 interface Props {
   title: string
-  text?: string
-  content?: IOverview
-  updateOverviewHandler: (id: number, overview: IOverview) => void
+  content?: IOverview | IPreview
+  updateHandler: (id: number, content: IOverview | IPreview) => void
   moduleId: number
 }
 
 export const ModuleContentBlock = ({
   title,
   content = initialContent,
-  updateOverviewHandler,
+  updateHandler,
   moduleId,
 }: Props) => {
 
   const {text, tags} = content as IOverview
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
+  const [stateContent, setStateContent] = useState<string>(text)
 
   const addTag = (tag: ITag) => {
     setStateTags([...stateTags, tag])
@@ -50,13 +50,14 @@ export const ModuleContentBlock = ({
         <Text>
           {text || 'Enter your text ...'}
         </Text>
+        <Input input={} meta={}
       </TextWrapper>
       <Tags tags={stateTags} addTag={addTag} />
       <ButtonWrapper>
         <Button
           small={true}
-          title="SAVE"
-          onClick={() => updateOverviewHandler(moduleId, moqOverview)}
+          title='SAVE'
+          onClick={() => updateHandler(moduleId, moqOverview)}
         />
       </ButtonWrapper>
     </Wrapper>

@@ -4,6 +4,11 @@ export interface ITag {
   link: string
 }
 
+export interface IPreview {
+  text: string
+  tags: ITag[] | []
+}
+
 export interface IOverview {
   text: string
   tags: ITag[] | []
@@ -15,7 +20,7 @@ export interface IModule {
   link: string
   name: string
   overview: IOverview
-  preview: string
+  preview: IPreview
   scenario: string
   note?: string
 }

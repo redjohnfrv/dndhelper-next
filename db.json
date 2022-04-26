@@ -23,27 +23,18 @@
         "tags": [
           {
             "id": 1,
-            "name": "123",
+            "name": "module 1",
             "link": "/modules/1"
           }
         ]
       },
-      "preview": "123",
-      "scenario": "123",
-      "note": "",
-      "id": 1
-    },
-    {
-      "advId": 1,
-      "link": "/modules",
-      "name": "3142",
-      "overview": {
+      "preview": {
         "text": "updated overview",
         "tags": [
           {
-            "id": 1,
-            "name": "module 1",
-            "link": "/modules/1"
+            "id": 0,
+            "name": "",
+            "link": ""
           },
           {
             "id": 999,
@@ -52,38 +43,9 @@
           }
         ]
       },
-      "preview": "preview sdfcddfb",
-      "scenario": "the best scenario ever",
+      "scenario": "123",
       "note": "",
-      "id": 2
-    },
-    {
-      "advId": 3,
-      "link": "/modules",
-      "name": "MODULE",
-      "overview": {
-        "tags": [
-          {
-            "id": 1,
-            "name": "module1",
-            "link": "/modules/1"
-          },
-          {
-            "id": 2,
-            "name": "module2",
-            "link": "/modules/2"
-          },
-          {
-            "id": 3,
-            "name": "module3",
-            "link": "/modules/3"
-          }
-        ]
-      },
-      "preview": "MODULE",
-      "scenario": "MODULE",
-      "note": "",
-      "id": 3
+      "id": 1
     }
   ],
   "creatures": [

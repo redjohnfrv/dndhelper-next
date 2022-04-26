@@ -33,7 +33,10 @@ export const CreateModule = ({advId}: Props) => {
         text: overview,
         tags: [],
       },
-      preview,
+      preview: {
+        text: preview,
+        tags: [],
+      },
       scenario,
       note: '',
     })

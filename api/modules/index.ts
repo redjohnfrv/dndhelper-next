@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {API_URL} from '../index'
-import {IModule, IOverview} from '../../dto/module'
+import {IModule, IOverview, IPreview} from '../../dto/module'
 
 export const getModules = async () => {
   let error = ''
@@ -53,6 +53,24 @@ export const updateOverview = async (id: string, overview: IOverview) => {
 
   const request = axios.patch(API_URL + `/modules/${id}`,{
       overview,
+    },
+    {
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(() => console.log('Uploading success!'))
+    .catch(err => error = err.message)
+
+  if (error) return error
+  return request
+}
+
+export const updatePreview = async (id: string, preview: IPreview) => {
+  let error = ''
+
+  const request = axios.patch(API_URL + `/modules/${id}`,{
+      preview,
     },
     {
       headers: {
