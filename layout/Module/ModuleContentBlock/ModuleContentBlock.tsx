@@ -5,8 +5,7 @@ import styled from 'styled-components'
 import {IOverview} from '../../../dto/module'
 
 //** components
-import {Text, TitleH2} from '../../ui'
-import Link from 'next/link'
+import {Tags, Text, TitleH2} from '../../ui'
 
 interface Props {
   title: string
@@ -24,18 +23,17 @@ const initialContent: IOverview = {
 }
 
 export const ModuleContentBlock = ({title, content = initialContent}: Props) => {
-
   const {text, tags} = content as IOverview
 
   return (
     <Wrapper>
       <TitleH2 text={title} />
-      <Text>
-        {text}
-      </Text>
-      <Tags>
-        {tags.map(item => <Link key={item.id} href={item.link}><a>{item.name}</a></Link>)}
-      </Tags>
+      <TextWrapper>
+        <Text>
+          {text || 'Enter your text ...'}
+        </Text>
+      </TextWrapper>
+      <Tags tags={tags} />
     </Wrapper>
   )
 }
@@ -43,8 +41,6 @@ export const ModuleContentBlock = ({title, content = initialContent}: Props) => 
 const Wrapper = styled.div`
   margin-bottom: 48px;
 `
-const Tags = styled.nav`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+const TextWrapper = styled.div`
+  padding: 24px 0;
 `
