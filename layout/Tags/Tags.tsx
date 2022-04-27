@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { CreateTag } from '..'
 
 //** utils
-import {size} from '../../../constants'
-import {ITag} from '../../../dto/module'
-import {UseSwitcherType} from '../../../hooks/useSwitcher'
+import {size} from '../../constants'
+import {ITag} from '../../dto/module'
+import {UseSwitcherType} from '../../hooks'
 
 //** components
-import {AddSvg} from '../Svg'
-import {CreateTag} from '../../Module'
+import {AddSvg} from '../ui/Svg'
 
 interface Props {
   tags: ITag[] | []
@@ -25,6 +25,7 @@ export const Tags = ({tags = [], addTag, showPopup}: Props) => {
     <Wrapper>
       <AddButton onClick={() => showPopup.toggle()}>
         <AddSvg />
+        <EditTip>Add tag</EditTip>
       </AddButton>
 
       {/** tags **/}
@@ -62,6 +63,12 @@ const Wrapper = styled.nav`
   }
 `
 const AddButton = styled.div`
-  position: relative;
-  top: 4px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  cursor: pointer;
+`
+const EditTip = styled.span`
+  font-size: ${size.smallText};
+  font-style: italic;
 `

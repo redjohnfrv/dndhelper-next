@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import {Tags, Units } from '../..'
+
 
 //** utils
 import {
@@ -9,11 +11,10 @@ import {
   IScenario,
   ITag, IUnit,
 } from '../../../dto/module'
+import {useSwitcher} from '../../../hooks'
 
 //** components
-import {Button, Tags, Text, TitleH2} from '../../ui'
-import {Textarea} from '../../ui/Textarea/Textarea'
-import {useSwitcher} from '../../../hooks/useSwitcher'
+import {Button, Text, TitleH2, Textarea} from '../../ui'
 
 const initialContent: IOverview | IPreview | IScenario | INote = {
   text: '',
@@ -33,7 +34,7 @@ interface Props {
       IOverview |
       IPreview |
       IScenario |
-      INote
+      INote,
   ) => void
   moduleId: number
   loading?: boolean
@@ -51,12 +52,18 @@ export const ModuleContentBlock = ({
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
   const [stateUnits, setStateUnits] = useState<IUnit[] | []>(units)
-  const showPopup = useSwitcher()
+  const showUnitsPopup = useSwitcher()
+  const showTagsPopup = useSwitcher()
   const showEdit = useSwitcher(false)
 
   const addTag = (tag: ITag) => {
-    showPopup.off()
+    showTagsPopup.off()
     setStateTags([...stateTags, tag])
+  }
+
+  const addUnit = (unit: IUnit) => {
+    showUnitsPopup.off()
+    setStateUnits([...stateUnits, unit])
   }
 
   return (
@@ -78,11 +85,12 @@ export const ModuleContentBlock = ({
         }
       </TextWrapper>
 
-      <Tags tags={stateTags} addTag={addTag} showPopup={showPopup} />
+      <Units units={stateUnits} showPopup={showUnitsPopup} addUnit={addUnit} />
+      <Tags tags={stateTags} addTag={addTag} showPopup={showTagsPopup} />
 
       <ButtonWrapper>
         <Button
-          title="EDIT"
+          title='EDIT'
           small={true}
           onClick={() => showEdit.toggle()}
         />
@@ -97,7 +105,7 @@ export const ModuleContentBlock = ({
                 text: stateContent,
                 units: stateUnits,
                 tags: stateTags,
-              }
+              },
             )
           }}
           loading={loading}

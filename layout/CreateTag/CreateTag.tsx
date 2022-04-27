@@ -2,11 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {ITag} from '../../../dto/module'
+import {ITag} from '../../dto/module'
 
 //** components
-import {Button} from '../../ui'
-import {Input} from '../../ui/Input/Input'
+import {Button, Input} from '../ui'
 
 interface Props {
   name: string
