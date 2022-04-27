@@ -1,16 +1,16 @@
-import Link from 'next/link'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
-import { CreateTag } from '..'
 
 //** utils
-import {color, size} from '../../constants'
+import {size} from '../../constants'
 import {ITag} from '../../dto/module'
 import {UseSwitcherType} from '../../hooks'
-import { Popup } from '../ui'
 
 //** components
+import Link from 'next/link'
 import {AddSvg} from '../ui/Svg'
+import {Close, Popup} from '../ui'
+import {CreateTag} from '..'
 
 interface Props {
   tags: ITag[] | []
@@ -47,10 +47,11 @@ export const Tags = ({
         {tags.map(tag => {
           return (
             <TagWrapper key={tag.name}>
-              <Delete onClick={() => {
-                unsaved.on()
-                removeTag(tag)
-              }}>+</Delete>
+              <Close onClick={() => {
+                  unsaved.on()
+                  removeTag(tag)
+                }}
+              />
               <Link href={tag.link || '#'}><a>
                 {tag.name}
               </a></Link>
@@ -67,7 +68,8 @@ export const Tags = ({
             handlers={{
               linkHandler: setLink,
               tagNameHandler: setTagName,
-              addTag
+              addTag,
+              closeHandler: showPopup,
             }}
           />
         </Popup>
@@ -111,11 +113,4 @@ const TagWrapper = styled.div`
   & a {
     text-decoration: none;
   }
-`
-const Delete = styled.div`
-  transform: rotate(45deg);
-  color: ${color.danger};
-  font-size: ${size.normalText};
-  font-weight: bold;
-  cursor: pointer;
 `

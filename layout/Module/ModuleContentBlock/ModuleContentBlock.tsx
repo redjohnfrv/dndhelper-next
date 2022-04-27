@@ -48,7 +48,7 @@ export const ModuleContentBlock = ({
   loading,
 }: Props) => {
 
-  const {text, tags, units} = content as IOverview | IPreview | IScenario | INote
+  const {text, tags = [], units = []} = content as IOverview | IPreview | IScenario | INote
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
   const [stateUnits, setStateUnits] = useState<IUnit[] | []>(units)

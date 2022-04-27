@@ -55,6 +55,12 @@
       "name": "Popups layout",
       "overview": {
         "text": "In this short module I have to make awesome layout for tag's/unit's popup.",
+        "units": [
+          {
+            "title": "Im READY!",
+            "content": "Okey, it looks like I'm ready to do edit function for the units!"
+          }
+        ],
         "tags": [
           {
             "name": "adventure 1",
@@ -68,6 +74,7 @@
       },
       "preview": {
         "text": "So, It looks pretty well. But I still have no layout for my popups. Let's do it before we start developing of unit edit possibility!",
+        "units": [],
         "tags": []
       },
       "scenario": "1. Make layout for the tag's popup\n2. Make layout for the unit's popup",

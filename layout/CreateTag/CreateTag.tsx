@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 //** utils
 import {ITag} from '../../dto/module'
+import {UseSwitcherType} from '../../hooks'
 
 //** components
-import {Button, Input} from '../ui'
+import {Button, Close, Input} from '../ui'
 
 interface Props {
   name: string
@@ -14,6 +15,7 @@ interface Props {
     linkHandler: (link: string) => void
     tagNameHandler: (text: string) => void
     addTag: (tag: ITag) => void
+    closeHandler: UseSwitcherType
   }
 }
 
@@ -21,6 +23,9 @@ export const CreateTag = ({name, link, handlers}: Props) => {
 
   return (
     <Wrapper>
+      <CloseWrapper>
+        <Close onClick={() => handlers.closeHandler.off()} />
+      </CloseWrapper>
       <Input
         value={name}
         onChangeHandler={handlers.tagNameHandler}
@@ -42,6 +47,7 @@ export const CreateTag = ({name, link, handlers}: Props) => {
 }
 
 const Wrapper = styled.div`
+  position: relative;
   gap: 12px;
   min-width: 200px;
   padding: 24px;
@@ -56,4 +62,9 @@ const Wrapper = styled.div`
     margin-bottom: 12px;
     line-height: 32px;
   }
+`
+const CloseWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 6px;
 `
