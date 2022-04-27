@@ -84,6 +84,22 @@
       "scenario": "1. Make layout for the tag's popup\n2. Make layout for the unit's popup",
       "note": "",
       "id": 2
+    },
+    {
+      "advId": 1,
+      "link": "/modules",
+      "name": "All app layout",
+      "overview": {
+        "text": "I want to make new layout for all app pages.",
+        "tags": []
+      },
+      "preview": {
+        "text": "It's a stiff task! In first I have to develop new design... But I have no any ideas.\nShould I try use Figma for this?\nSo many questions and so few answers :(",
+        "tags": []
+      },
+      "scenario": "1. Cry a little\n2. Figure out new design\n3. Apply it.\n4. Celebrate",
+      "note": "",
+      "id": 3
     }
   ],
   "creatures": [

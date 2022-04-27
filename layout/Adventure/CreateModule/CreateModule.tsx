@@ -5,7 +5,7 @@ import styled from 'styled-components'
 //** utils
 import {composeValidators, validators} from '../../../helpers'
 import {createModule} from '../../../api/modules'
-import {useSwitcher} from '../../../hooks/useSwitcher'
+import {useSwitcher} from '../../../hooks'
 import {ICreateModule} from '../../../dto/module'
 import {color, routes, size} from '../../../constants'
 
@@ -21,9 +21,12 @@ export const CreateModule = ({advId}: Props) => {
   const router = useRouter()
   const {push} = router
   const showForm = useSwitcher()
+  const isLoading = useSwitcher()
 
   const onSubmit = (values: ICreateModule) => {
     const {module, overview, preview, scenario} = values
+
+    isLoading.on()
 
     createModule({
       advId,
@@ -31,16 +34,29 @@ export const CreateModule = ({advId}: Props) => {
       name: module,
       overview: {
         text: overview,
+        units: [],
         tags: [],
       },
       preview: {
         text: preview,
+        units: [],
         tags: [],
       },
-      scenario,
-      note: '',
+      scenario: {
+        text: scenario,
+        units: [],
+        tags: [],
+      },
+      notes: {
+        text: '',
+        units: [],
+        tags: [],
+      },
     })
-      .then(moduleId =>  push(`${routes.modules}/${moduleId}`))
+      .then(moduleId =>  {
+        isLoading.off()
+        push(`${routes.modules}/${moduleId}`)
+      })
   }
 
   return (
@@ -84,6 +100,7 @@ export const CreateModule = ({advId}: Props) => {
               type="submit"
               title="Add module"
               disable={invalid}
+              loading={isLoading.isOn}
             />
           </form>
         )}
