@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "moq": "json-server -w db.json -p 4000 -d 1500",
+    "server": "json-server -w db.json -p 4000 -d 1500",
     "build": "next build",
     "start": "next start"
   },
