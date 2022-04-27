@@ -55,6 +55,7 @@ export const ModuleContentBlock = ({
   const showUnitsPopup = useSwitcher()
   const showTagsPopup = useSwitcher()
   const showEdit = useSwitcher()
+  const unsaved = useSwitcher()
 
   const addTag = (tag: ITag) => {
     showTagsPopup.off()
@@ -102,25 +103,31 @@ export const ModuleContentBlock = ({
         showPopup={showUnitsPopup}
         addUnit={addUnit}
         removeUnit={removeUnit}
+        unsaved={unsaved}
       />
       <Tags
         tags={stateTags}
         addTag={addTag}
         removeTag={removeTag}
         showPopup={showTagsPopup}
+        unsaved={unsaved}
       />
 
       <ButtonWrapper>
         <Button
           title='EDIT'
           small={true}
-          onClick={() => showEdit.toggle()}
+          onClick={() => {
+            showEdit.toggle()
+            unsaved.on()
+          }}
         />
         <Button
           small={true}
           title='SAVE'
           onClick={() => {
             showEdit.off()
+            unsaved.off()
             updateHandler(
               moduleId,
               {
@@ -131,7 +138,8 @@ export const ModuleContentBlock = ({
             )
           }}
           loading={loading}
-          disable={loading || !showEdit.isOn}
+          disable={(loading || !showEdit.isOn) && !unsaved.isOn}
+          theme={unsaved.isOn ? 'warning' : undefined}
         />
       </ButtonWrapper>
     </Wrapper>

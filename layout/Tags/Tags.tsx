@@ -17,15 +17,23 @@ interface Props {
   addTag: (tag: ITag) => void
   removeTag: (tag: ITag) => void
   showPopup: UseSwitcherType
+  unsaved: UseSwitcherType
 }
 
-export const Tags = ({tags = [], addTag, removeTag, showPopup}: Props) => {
+export const Tags = ({
+  tags = [],
+  addTag,
+  removeTag,
+  showPopup,
+  unsaved
+}: Props) => {
   const [link, setLink] = useState<string>('')
   const [tagName, setTagName] = useState<string>('')
 
   return (
     <Wrapper>
       <AddButton onClick={() => {
+        unsaved.on()
         showPopup.toggle()
         setLink('')
         setTagName('')
@@ -39,7 +47,10 @@ export const Tags = ({tags = [], addTag, removeTag, showPopup}: Props) => {
         {tags.map(tag => {
           return (
             <TagWrapper key={tag.name}>
-              <Delete onClick={() => removeTag(tag)}>+</Delete>
+              <Delete onClick={() => {
+                unsaved.on()
+                removeTag(tag)
+              }}>+</Delete>
               <Link href={tag.link || '#'}><a>
                 {tag.name}
               </a></Link>

@@ -13,9 +13,19 @@
       "link": "/modules",
       "name": "The Beginning",
       "overview": {
-        "text": "The first task of this module is make some tabs: Quests/NPC/Players. So let's do it! ",
-        "units": [],
-        "tags": []
+        "text": "The first task of this module is make some tabs: Quests/NPC/Players. So let's do it! It!",
+        "units": [
+          {
+            "title": "Button repaired!",
+            "content": "I just forgot add () .."
+          }
+        ],
+        "tags": [
+          {
+            "name": "adventure 1",
+            "link": "/adventures/1"
+          }
+        ]
       },
       "preview": {
         "text": "Semi-dark room. Several muted voices. And lonely JS-warrior is sitting in front of a magic mirror...",
@@ -23,16 +33,46 @@
         "tags": []
       },
       "scenario": {
-        "text": "PRE: finish a function that making blocks to the overview, preview, scenario and notes.... -_-\" \n\n1. Do Quest tab\n2. Do NPC tab\n3. Do Players tab\n4. Check this ...",
+        "text": "PRE: finish a function that making blocks to the overview, preview, scenario and notes.... -_-\" \n\n1. Do Quest tab\n2. Do NPC tab\n3. Do Players tab\n4. Check this ...\n5. All functions are working well!\n6. I think about adding the unit edit possibility.",
         "units": [],
-        "tags": []
+        "tags": [
+          {
+            "name": "Go to module 2",
+            "link": "/modules/2"
+          }
+        ]
       },
       "notes": {
-        "text": "Is it works?",
+        "text": "Is it works?\n\nYes it is!",
         "units": [],
         "tags": []
       },
       "id": 1
+    },
+    {
+      "advId": 1,
+      "link": "/modules",
+      "name": "Popups layout",
+      "overview": {
+        "text": "In this short module I have to make awesome layout for tag's/unit's popup.",
+        "tags": [
+          {
+            "name": "adventure 1",
+            "link": "/adventures/1"
+          },
+          {
+            "name": "module 1",
+            "link": "/modules/1"
+          }
+        ]
+      },
+      "preview": {
+        "text": "So, It looks pretty well. But I still have no layout for my popups. Let's do it before we start developing of unit edit possibility!",
+        "tags": []
+      },
+      "scenario": "1. Make layout for the tag's popup\n2. Make layout for the unit's popup",
+      "note": "",
+      "id": 2
     }
   ],
   "creatures": [

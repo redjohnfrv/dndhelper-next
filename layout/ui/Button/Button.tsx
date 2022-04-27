@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {size} from '../../../constants'
+import {color, size} from '../../../constants'
 
 //** components
 import {Loader} from '..'
@@ -14,6 +14,7 @@ interface Props {
   disable?: boolean
   small?: boolean
   loading?: boolean
+  theme?: 'warning' | 'success' | undefined
 }
 
 export const Button = ({
@@ -23,6 +24,7 @@ export const Button = ({
   disable = false,
   small = false,
   loading = false,
+  theme = undefined,
 }: Props) => {
 
   return (
@@ -31,6 +33,7 @@ export const Button = ({
       type={type}
       disable={disable}
       small={small}
+      theme={theme}
     >
       {loading
         ? <Loader btn={true} />
@@ -41,14 +44,17 @@ export const Button = ({
 }
 
 const Btn = styled.button<{
-  type: 'button' | 'submit' | 'reset' | undefined, disable: boolean,
+  type: 'button' | 'submit' | 'reset' | undefined,
+  disable?: boolean,
   small?: boolean
+  theme?: 'warning' | 'success' | undefined,
 }>`
   width: 240px;
   font-size: ${size.normalText};
   line-height: ${size.normalText};
   padding: 16px 0;
   text-align: center;
+  background: ${props => props.theme === 'warning' ? color.danger : '#d2d2d2'};
   border: none;
   pointer-events: all;
   opacity: 1;

@@ -16,9 +16,16 @@ interface Props {
   showPopup: UseSwitcherType
   addUnit: (unit: IUnit) => void
   removeUnit: (unit: IUnit) => void
+  unsaved: UseSwitcherType
 }
 
-export const Units = ({units, showPopup, addUnit, removeUnit}: Props) => {
+export const Units = ({
+  units = [],
+  showPopup,
+  addUnit,
+  removeUnit,
+  unsaved
+}: Props) => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
 
@@ -32,7 +39,10 @@ export const Units = ({units, showPopup, addUnit, removeUnit}: Props) => {
             <UnitWrapper>
               <UnitTitleWrapper>
                 <TitleH3 text={unit.title} />
-                <Delete onClick={() => removeUnit(unit)}>+</Delete>
+                <Delete onClick={() => {
+                  unsaved.on()
+                  removeUnit(unit)
+                }}>+</Delete>
               </UnitTitleWrapper>
               <pre>{unit.content}</pre>
             </UnitWrapper>
@@ -41,6 +51,7 @@ export const Units = ({units, showPopup, addUnit, removeUnit}: Props) => {
       </UnitsWrapper>
 
       <AddUnitButton onClick={() => {
+        unsaved.on()
         showPopup.toggle()
         setContent('')
         setTitle('')
