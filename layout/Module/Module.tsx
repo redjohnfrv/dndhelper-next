@@ -2,8 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IModule, IOverview, IPreview} from '../../dto/module'
-import {updateOverview, updatePreview} from '../../api/modules'
+import {
+  IModule,
+  IOverview,
+  IPreview,
+  IScenario
+} from '../../dto/module'
+import {
+  updateOverview,
+  updatePreview,
+  updateScenario
+} from '../../api/modules'
 import {useSwitcher} from '../../hooks/useSwitcher'
 
 //** components
@@ -18,6 +27,7 @@ export const Module = ({module}: Props) => {
   const {id, name, overview, preview, scenario, note = ''} = module
   const overviewLoading = useSwitcher()
   const previewLoading = useSwitcher()
+  const scenarioLoading = useSwitcher()
 
   const updateOverviewHandler = (id: number, overview: IOverview) => {
     overviewLoading.on()
@@ -29,6 +39,12 @@ export const Module = ({module}: Props) => {
     previewLoading.on()
     updatePreview(String(id), preview)
       .then(() => previewLoading.off())
+  }
+
+  const updateScenarioHandler = (id: number, scenario: IScenario) => {
+    scenarioLoading.on()
+    updateScenario(String(id), scenario)
+      .then(() => scenarioLoading.off())
   }
 
   return (
@@ -48,10 +64,13 @@ export const Module = ({module}: Props) => {
         updateHandler={updatePreviewHandler}
         loading={previewLoading.isOn}
       />
-      {/*<ModuleContentBlock*/}
-      {/*  title="Scenario"*/}
-      {/*  text={scenario}*/}
-      {/*/>*/}
+      <ModuleContentBlock
+        title="Scenario"
+        content={scenario}
+        moduleId={id}
+        updateHandler={updateScenarioHandler}
+        loading={scenarioLoading.isOn}
+      />
       {/*<ModuleContentBlock*/}
       {/*  title="Module notes"*/}
       {/*  text={note ? note : 'No notes ...'}*/}

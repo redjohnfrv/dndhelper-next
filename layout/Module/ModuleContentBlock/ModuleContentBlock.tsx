@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IOverview, IPreview, ITag} from '../../../dto/module'
+import {IOverview, IPreview, IScenario, ITag} from '../../../dto/module'
 
 //** components
 import {Button, Tags, Text, TitleH2} from '../../ui'
@@ -19,8 +19,14 @@ const initialContent: IOverview = {
 
 interface Props {
   title: string
-  content?: IOverview | IPreview
-  updateHandler: (id: number, content: IOverview | IPreview) => void
+  content?: IOverview | IPreview | IScenario
+  updateHandler: (
+    id: number,
+    content:
+      IOverview |
+      IPreview |
+      IScenario
+  ) => void
   moduleId: number
   loading?: boolean
 }
@@ -33,7 +39,7 @@ export const ModuleContentBlock = ({
   loading,
 }: Props) => {
 
-  const {text, tags} = content as IOverview
+  const {text, tags} = content as IOverview | IPreview | IScenario
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
   const showPopup = useSwitcher()

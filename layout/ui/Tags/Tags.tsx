@@ -17,7 +17,7 @@ interface Props {
   showPopup: UseSwitcherType
 }
 
-export const Tags = ({tags, addTag, showPopup}: Props) => {
+export const Tags = ({tags = [], addTag, showPopup}: Props) => {
   const [link, setLink] = useState<string>('')
   const [tagName, setTagName] = useState<string>('')
 

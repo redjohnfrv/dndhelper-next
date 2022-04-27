@@ -3,6 +3,16 @@ export interface ITag {
   link: string
 }
 
+export interface INote {
+  text: string
+  tags: ITag[] | []
+}
+
+export interface IScenario {
+  text: string
+  tags: ITag[] | []
+}
+
 export interface IPreview {
   text: string
   tags: ITag[] | []
@@ -20,8 +30,8 @@ export interface IModule {
   name: string
   overview: IOverview
   preview: IPreview
-  scenario: string
-  note?: string
+  scenario: IScenario
+  note?: INote
 }
 
 export interface ICreateModule {

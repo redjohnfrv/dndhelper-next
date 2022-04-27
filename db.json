@@ -11,7 +11,7 @@
     {
       "advId": 1,
       "link": "/modules",
-      "name": "The Begining",
+      "name": "The Beginning",
       "overview": {
         "text": "The first task of this module is make some tabs: Quests/NPC/Players. So let's do it! ",
         "tags": []
@@ -20,8 +20,11 @@
         "text": "Semi-dark room. Several muted voices. And lonely JS-warrior is sitting in front of a magic mirror...",
         "tags": []
       },
-      "scenario": "PRE: finish a function that making blocks to the overview, preview, scenario and notes.... -_-\" \n\n1. Do Quest tab\n2. Do NPC tab\n3. Do Players tab",
-      "note": "",
+      "scenario": {
+        "text": "PRE: finish a function that making blocks to the overview, preview, scenario and notes.... -_-\" \n\n1. Do Quest tab\n2. Do NPC tab\n3. Do Players tab\n4. Check this ...",
+        "tags": []
+      },
+      "note": [],
       "id": 1
     }
   ],

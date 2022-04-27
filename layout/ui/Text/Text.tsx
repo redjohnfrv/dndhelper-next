@@ -34,7 +34,7 @@ export const Text = ({
   )
 }
 
-const Wrapper = styled.span<{styles: IStyles}>`
+const Wrapper = styled.pre<{styles: IStyles}>`
   ${props => props.styles &&
     {
       fontSize: `${props.styles.size};`, 
@@ -42,4 +42,5 @@ const Wrapper = styled.span<{styles: IStyles}>`
       display: `${props.styles.display};`
     }
   }
+  white-space: pre-wrap;
 `
