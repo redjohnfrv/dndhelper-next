@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { CreateTag } from '..'
 
 //** utils
-import {size} from '../../constants'
+import {color, size} from '../../constants'
 import {ITag} from '../../dto/module'
 import {UseSwitcherType} from '../../hooks'
 import { Popup } from '../ui'
@@ -15,28 +15,38 @@ import {AddSvg} from '../ui/Svg'
 interface Props {
   tags: ITag[] | []
   addTag: (tag: ITag) => void
+  removeTag: (tag: ITag) => void
   showPopup: UseSwitcherType
 }
 
-export const Tags = ({tags = [], addTag, showPopup}: Props) => {
+export const Tags = ({tags = [], addTag, removeTag, showPopup}: Props) => {
   const [link, setLink] = useState<string>('')
   const [tagName, setTagName] = useState<string>('')
 
   return (
     <Wrapper>
-      <AddButton onClick={() => showPopup.toggle()}>
+      <AddButton onClick={() => {
+        showPopup.toggle()
+        setLink('')
+        setTagName('')
+      }}>
         <AddSvg />
         <EditTip>Add tag</EditTip>
       </AddButton>
 
       {/** tags **/}
-      {tags.map(tag => {
-        return (
-          <Link key={tag.name} href={tag.link || '#'}><a>
-            {tag.name}
-          </a></Link>
-        )
-      })}
+      <TagsWrapper>
+        {tags.map(tag => {
+          return (
+            <TagWrapper key={tag.name}>
+              <Delete onClick={() => removeTag(tag)}>+</Delete>
+              <Link href={tag.link || '#'}><a>
+                {tag.name}
+              </a></Link>
+            </TagWrapper>
+          )
+        })}
+      </TagsWrapper>
 
       {showPopup.isOn &&
         <Popup>
@@ -57,6 +67,7 @@ export const Tags = ({tags = [], addTag, showPopup}: Props) => {
 
 const Wrapper = styled.nav`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 12px;
@@ -74,4 +85,26 @@ const AddButton = styled.div`
 const EditTip = styled.span`
   font-size: ${size.smallText};
   font-style: italic;
+`
+const TagsWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+`
+const TagWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 4px;
+
+  & a {
+    text-decoration: none;
+  }
+`
+const Delete = styled.div`
+  transform: rotate(45deg);
+  color: ${color.danger};
+  font-size: ${size.normalText};
+  font-weight: bold;
+  cursor: pointer;
 `

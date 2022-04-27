@@ -5,33 +5,46 @@ import { CreateUnit } from '..'
 //** utils
 import {IUnit} from '../../dto/module'
 import {UseSwitcherType} from '../../hooks'
+import {color, size} from '../../constants'
 
 //** components
 import {EditSvg} from '../ui/Svg'
-import {size} from '../../constants'
-import { Popup } from '../ui'
+import {Popup, TitleH3} from '../ui'
 
 interface Props {
   units: IUnit[] | []
   showPopup: UseSwitcherType
   addUnit: (unit: IUnit) => void
+  removeUnit: (unit: IUnit) => void
 }
 
-export const Units = ({units, showPopup, addUnit}: Props) => {
+export const Units = ({units, showPopup, addUnit, removeUnit}: Props) => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
 
   return (
     <Wrapper>
-      {units.map((unit: IUnit) => {
-        return (
-          <>
-            <h3>{unit.title}</h3>
-            <pre>{unit.content}</pre>
-          </>
-        )
-      })}
-      <AddUnitButton onClick={() => showPopup.toggle()}>
+
+      {/** units **/}
+      <UnitsWrapper>
+        {units.map((unit: IUnit) => {
+          return (
+            <UnitWrapper>
+              <UnitTitleWrapper>
+                <TitleH3 text={unit.title} />
+                <Delete onClick={() => removeUnit(unit)}>+</Delete>
+              </UnitTitleWrapper>
+              <pre>{unit.content}</pre>
+            </UnitWrapper>
+          )
+        })}
+      </UnitsWrapper>
+
+      <AddUnitButton onClick={() => {
+        showPopup.toggle()
+        setContent('')
+        setTitle('')
+      }}>
         <EditSvg />
         <EditTip>Add unit</EditTip>
       </AddUnitButton>
@@ -64,4 +77,31 @@ const AddUnitButton = styled.div`
 const EditTip = styled.span`
   font-size: ${size.smallText};
   font-style: italic;
+`
+const UnitsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+`
+const UnitWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`
+const UnitTitleWrapper = styled.div`
+  position: relative;
+  width: max-content;
+`
+const Delete = styled.div`
+  position: absolute;
+  top: 0;
+  right: -32px;
+  width: 16px;
+  height: 16px;
+  font-size: ${size.normalText};
+  font-weight: bold;
+  transform: rotate(45deg);
+  color: ${color.danger};
+  cursor: pointer;
 `

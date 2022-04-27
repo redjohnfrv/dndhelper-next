@@ -54,16 +54,28 @@ export const ModuleContentBlock = ({
   const [stateUnits, setStateUnits] = useState<IUnit[] | []>(units)
   const showUnitsPopup = useSwitcher()
   const showTagsPopup = useSwitcher()
-  const showEdit = useSwitcher(false)
+  const showEdit = useSwitcher()
 
   const addTag = (tag: ITag) => {
     showTagsPopup.off()
     setStateTags([...stateTags, tag])
   }
 
+  const removeTag = (tag: ITag) => {
+    const cloneTags = [...stateTags]
+    setStateTags([...cloneTags.filter(item => item.name !== tag.name)])
+  }
+
   const addUnit = (unit: IUnit) => {
     showUnitsPopup.off()
     setStateUnits([...stateUnits, unit])
+  }
+
+  const removeUnit = (unit: IUnit) => {
+    const cloneUnits= [...stateUnits]
+    setStateUnits(
+      [...cloneUnits.filter(item => item.title !== unit.title)]
+    )
   }
 
   return (
@@ -85,8 +97,18 @@ export const ModuleContentBlock = ({
         }
       </TextWrapper>
 
-      <Units units={stateUnits} showPopup={showUnitsPopup} addUnit={addUnit} />
-      <Tags tags={stateTags} addTag={addTag} showPopup={showTagsPopup} />
+      <Units
+        units={stateUnits}
+        showPopup={showUnitsPopup}
+        addUnit={addUnit}
+        removeUnit={removeUnit}
+      />
+      <Tags
+        tags={stateTags}
+        addTag={addTag}
+        removeTag={removeTag}
+        showPopup={showTagsPopup}
+      />
 
       <ButtonWrapper>
         <Button
