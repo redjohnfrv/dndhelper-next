@@ -37,4 +37,9 @@ export const CreateUnit = ({title, content, handlers}: Props) => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  padding: 24px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 12px;
+`

@@ -9,6 +9,7 @@ import {UseSwitcherType} from '../../hooks'
 //** components
 import {EditSvg} from '../ui/Svg'
 import {size} from '../../constants'
+import { Popup } from '../ui'
 
 interface Props {
   units: IUnit[] | []
@@ -35,15 +36,17 @@ export const Units = ({units, showPopup, addUnit}: Props) => {
         <EditTip>Add unit</EditTip>
       </AddUnitButton>
       {showPopup.isOn &&
-        <CreateUnit
-          title={title}
-          content={content}
-          handlers={{
-            titleHandler: setTitle,
-            contentHandler: setContent,
-            addUnit
-          }}
-        />
+        <Popup>
+          <CreateUnit
+            title={title}
+            content={content}
+            handlers={{
+              titleHandler: setTitle,
+              contentHandler: setContent,
+              addUnit
+            }}
+          />
+        </Popup>
       }
     </Wrapper>
   )

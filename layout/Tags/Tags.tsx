@@ -7,6 +7,7 @@ import { CreateTag } from '..'
 import {size} from '../../constants'
 import {ITag} from '../../dto/module'
 import {UseSwitcherType} from '../../hooks'
+import { Popup } from '../ui'
 
 //** components
 import {AddSvg} from '../ui/Svg'
@@ -38,15 +39,17 @@ export const Tags = ({tags = [], addTag, showPopup}: Props) => {
       })}
 
       {showPopup.isOn &&
-        <CreateTag
-          name={tagName}
-          link={link}
-          handlers={{
-            linkHandler: setLink,
-            tagNameHandler: setTagName,
-            addTag
-          }}
-        />
+        <Popup>
+          <CreateTag
+            name={tagName}
+            link={link}
+            handlers={{
+              linkHandler: setLink,
+              tagNameHandler: setTagName,
+              addTag
+            }}
+          />
+        </Popup>
       }
     </Wrapper>
   )
