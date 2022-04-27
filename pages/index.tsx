@@ -27,7 +27,7 @@ const Home = ({title}: Props) => {
                 <Text size={size.normalText}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  exercitation ...
                 </Text>
               </HelloText>
             </ImageBlock>
@@ -78,7 +78,7 @@ const HelloText = styled.div`
   right: 48px;
   top: 72px;
   height: max-content;
-  max-width: 50%;
+  max-width: 65%;
   padding: 24px;
   background: rgba(224, 224, 224, 0.52);
 `

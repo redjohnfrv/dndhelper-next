@@ -60,7 +60,8 @@ export async function getStaticProps({params}: GetStaticPropsContext) {
 
   if (params) {
     const id = params.id
-    const adventure: IAdventure[] = adventures.filter(item => String(item.id) === id)
+    const adventure: IAdventure[] =
+      adventures.filter(item => String(item.id) === id)
 
     return {
       props: {

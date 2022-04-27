@@ -40,7 +40,10 @@ const Adventures = ({title, adventures}: Props) => {
     <MainLayout title={title} >
       <MainContent
         content={
-          <AdvsContent adventures={advs} onDelete={removeAdventureHandler} />
+          <AdvsContent
+            adventures={advs}
+            onDelete={removeAdventureHandler}
+          />
         }
       />
     </MainLayout>

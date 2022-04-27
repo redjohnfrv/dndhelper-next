@@ -91,6 +91,6 @@ const Adding = styled.div`
   & button {
     position: absolute;
     top: 48px;
-    right: 27.5%;
+    right: 29%;
   }
 `
