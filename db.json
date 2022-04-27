@@ -14,22 +14,25 @@
       "name": "The Beginning",
       "overview": {
         "text": "The first task of this module is make some tabs: Quests/NPC/Players. So let's do it! ",
+        "units": [],
         "tags": []
       },
       "preview": {
         "text": "Semi-dark room. Several muted voices. And lonely JS-warrior is sitting in front of a magic mirror...",
+        "units": [],
         "tags": []
       },
       "scenario": {
         "text": "PRE: finish a function that making blocks to the overview, preview, scenario and notes.... -_-\" \n\n1. Do Quest tab\n2. Do NPC tab\n3. Do Players tab\n4. Check this ...",
+        "units": [],
         "tags": []
       },
-      "note": [],
-      "id": 1,
       "notes": {
         "text": "Is it works?",
+        "units": [],
         "tags": []
-      }
+      },
+      "id": 1
     }
   ],
   "creatures": [

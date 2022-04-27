@@ -57,8 +57,8 @@ const EditSvg = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    width={48}
-    height={48}
+    width={24}
+    height={24}
     {...props}
   >
     <path
@@ -70,8 +70,8 @@ const EditSvg = (props: SVGProps<SVGSVGElement>) => (
 
 export const AddSvg = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    height={24}
     viewBox="0 0 24 24"
+    height={24}
     width={24}
     xmlns="http://www.w3.org/2000/svg"
     data-name="Layer 1"

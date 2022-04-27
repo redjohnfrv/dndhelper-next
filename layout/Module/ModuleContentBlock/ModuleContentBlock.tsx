@@ -7,7 +7,7 @@ import {
   IOverview,
   IPreview,
   IScenario,
-  ITag
+  ITag, IUnit,
 } from '../../../dto/module'
 
 //** components
@@ -17,6 +17,7 @@ import {useSwitcher} from '../../../hooks/useSwitcher'
 
 const initialContent: IOverview | IPreview | IScenario | INote = {
   text: '',
+  units: [],
   tags: [{
     name: '',
     link: '',
@@ -46,9 +47,10 @@ export const ModuleContentBlock = ({
   loading,
 }: Props) => {
 
-  const {text, tags} = content as IOverview | IPreview | IScenario
+  const {text, tags, units} = content as IOverview | IPreview | IScenario | INote
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
+  const [stateUnits, setStateUnits] = useState<IUnit[] | []>(units)
   const showPopup = useSwitcher()
   const showEdit = useSwitcher(false)
 
@@ -93,6 +95,7 @@ export const ModuleContentBlock = ({
               moduleId,
               {
                 text: stateContent,
+                units: stateUnits,
                 tags: stateTags,
               }
             )

@@ -3,23 +3,32 @@ export interface ITag {
   link: string
 }
 
+export interface IUnit {
+  title: string
+  content: string
+}
+
 export interface INote {
   text: string
+  units: IUnit[] | []
   tags: ITag[] | []
 }
 
 export interface IScenario {
   text: string
+  units: IUnit[] | []
   tags: ITag[] | []
 }
 
 export interface IPreview {
   text: string
+  units: IUnit[] | []
   tags: ITag[] | []
 }
 
 export interface IOverview {
   text: string
+  units: IUnit[] | []
   tags: ITag[] | []
 }
 
