@@ -49,7 +49,7 @@ const Btn = styled.button<{
   small?: boolean
   theme?: 'warning' | 'success' | undefined,
 }>`
-  width: 240px;
+  width: 200px;
   font-size: ${size.normalText};
   line-height: ${size.normalText};
   padding: 16px 0;

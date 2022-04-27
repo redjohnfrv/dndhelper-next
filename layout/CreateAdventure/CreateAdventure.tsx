@@ -7,6 +7,7 @@ import {createAdventure} from '../../api/adventures'
 import {INewAdventure} from '../../dto/adventure'
 import {routes, size} from '../../constants'
 import {composeValidators, validators} from '../../helpers'
+import {useSwitcher} from '../../hooks'
 
 //** components
 import {Field, Form } from 'react-final-form'
@@ -15,16 +16,22 @@ import {Button, FormInput, FormTextarea, TitleH1} from '../ui'
 export const CreateAdventure = () => {
   const router = useRouter()
   const {push} = router
+  const isLoading = useSwitcher()
 
   const onSubmit = (values: INewAdventure) => {
     const {adventure, description} = values
+
+    isLoading.on()
 
     createAdventure({
       name: adventure,
       desc: description,
       avatar: null,
     })
-      .then(advId => push(routes.adventures + `/${advId}`))
+      .then(advId => {
+        isLoading.off()
+        push(routes.adventures + `/${advId}`)
+      })
   }
 
   return (
@@ -37,8 +44,10 @@ export const CreateAdventure = () => {
             <form onSubmit={handleSubmit}>
               <Button
                 type="submit"
-                title="Start Adventure"
+                title="Start"
                 disable={invalid}
+                small={true}
+                loading={isLoading.isOn}
               />
               <Field
                 name="adventure"
@@ -69,6 +78,7 @@ const Adding = styled.div`
   padding: 48px 0 0 0;
   
   & label {
+    width: 180px;
     display: inline-block;
     font-size: ${size.normalText};
     text-align: right;
@@ -81,6 +91,6 @@ const Adding = styled.div`
   & button {
     position: absolute;
     top: 48px;
-    left: 47.5%;
+    right: 27.5%;
   }
 `
