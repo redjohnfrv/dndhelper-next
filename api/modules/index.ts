@@ -1,11 +1,6 @@
 import axios from 'axios'
 import {API_URL} from '../index'
-import {
-  IModule,
-  IOverview,
-  IPreview,
-  IScenario
-} from '../../dto/module'
+import {IModule, INote, IOverview, IPreview, IScenario} from '../../dto/module'
 
 export const getModules = async () => {
   let error = ''
@@ -94,6 +89,24 @@ export const updateScenario = async (id: string, scenario: IScenario) => {
 
   const request = axios.patch(API_URL + `/modules/${id}`,{
       scenario,
+    },
+    {
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(() => console.log('Uploading success!'))
+    .catch(err => error = err.message)
+
+  if (error) return error
+  return request
+}
+
+export const updateNotes = async (id: string, notes: INote) => {
+  let error = ''
+
+  const request = axios.patch(API_URL + `/modules/${id}`,{
+      notes,
     },
     {
       headers: {

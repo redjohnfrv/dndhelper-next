@@ -31,7 +31,7 @@ export interface IModule {
   overview: IOverview
   preview: IPreview
   scenario: IScenario
-  note?: INote
+  notes?: INote
 }
 
 export interface ICreateModule {

@@ -25,7 +25,11 @@
         "tags": []
       },
       "note": [],
-      "id": 1
+      "id": 1,
+      "notes": {
+        "text": "Is it works?",
+        "tags": []
+      }
     }
   ],
   "creatures": [

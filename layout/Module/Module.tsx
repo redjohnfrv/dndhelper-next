@@ -6,12 +6,14 @@ import {
   IModule,
   IOverview,
   IPreview,
-  IScenario
+  IScenario,
+  INote
 } from '../../dto/module'
 import {
   updateOverview,
   updatePreview,
-  updateScenario
+  updateScenario,
+  updateNotes
 } from '../../api/modules'
 import {useSwitcher} from '../../hooks/useSwitcher'
 
@@ -24,10 +26,11 @@ interface Props {
 }
 
 export const Module = ({module}: Props) => {
-  const {id, name, overview, preview, scenario, note = ''} = module
+  const {id, name, overview, preview, scenario, notes} = module
   const overviewLoading = useSwitcher()
   const previewLoading = useSwitcher()
   const scenarioLoading = useSwitcher()
+  const notesLoading = useSwitcher()
 
   const updateOverviewHandler = (id: number, overview: IOverview) => {
     overviewLoading.on()
@@ -45,6 +48,12 @@ export const Module = ({module}: Props) => {
     scenarioLoading.on()
     updateScenario(String(id), scenario)
       .then(() => scenarioLoading.off())
+  }
+
+  const updateNotesHandler = (id: number, note: INote) => {
+    notesLoading.on()
+    updateNotes(String(id), note)
+      .then(() => notesLoading.off())
   }
 
   return (
@@ -71,11 +80,13 @@ export const Module = ({module}: Props) => {
         updateHandler={updateScenarioHandler}
         loading={scenarioLoading.isOn}
       />
-      {/*<ModuleContentBlock*/}
-      {/*  title="Module notes"*/}
-      {/*  text={note ? note : 'No notes ...'}*/}
-      {/*  moduleId={id}*/}
-      {/*/>*/}
+      <ModuleContentBlock
+        title="Module notes"
+        content={notes}
+        moduleId={id}
+        updateHandler={updateNotesHandler}
+        loading={notesLoading.isOn}
+      />
     </Wrapper>
   )
 }

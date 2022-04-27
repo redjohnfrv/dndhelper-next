@@ -2,14 +2,20 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IOverview, IPreview, IScenario, ITag} from '../../../dto/module'
+import {
+  INote,
+  IOverview,
+  IPreview,
+  IScenario,
+  ITag
+} from '../../../dto/module'
 
 //** components
 import {Button, Tags, Text, TitleH2} from '../../ui'
 import {Textarea} from '../../ui/Textarea/Textarea'
 import {useSwitcher} from '../../../hooks/useSwitcher'
 
-const initialContent: IOverview = {
+const initialContent: IOverview | IPreview | IScenario | INote = {
   text: '',
   tags: [{
     name: '',
@@ -19,13 +25,14 @@ const initialContent: IOverview = {
 
 interface Props {
   title: string
-  content?: IOverview | IPreview | IScenario
+  content?: IOverview | IPreview | IScenario | INote
   updateHandler: (
     id: number,
     content:
       IOverview |
       IPreview |
-      IScenario
+      IScenario |
+      INote
   ) => void
   moduleId: number
   loading?: boolean
