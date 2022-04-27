@@ -6,5 +6,6 @@ export const size = {
 
 export const color = {
   black: '#0c0c0c',
-  danger: '#B43232'
+  danger: '#B43232',
+  edit: '#fff0db',
 }

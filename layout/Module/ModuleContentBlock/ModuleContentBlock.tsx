@@ -50,6 +50,7 @@ export const ModuleContentBlock = ({
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
   const showPopup = useSwitcher()
+  const showEdit = useSwitcher(false)
 
   const addTag = (tag: ITag) => {
     showPopup.off()
@@ -61,30 +62,43 @@ export const ModuleContentBlock = ({
       <TitleH2 text={title} />
 
       <TextWrapper>
-        <Text>
-          {stateContent || 'Enter your text ...'}
-        </Text>
-        <Textarea
-          text={stateContent}
-          onChangeHandler={setStateContent}
-        />
+        {showEdit.isOn
+          ? (
+            <Textarea
+              text={stateContent}
+              onChangeHandler={setStateContent}
+            />
+          ) : (
+            <Text>
+              {stateContent || 'Enter your text ...'}
+            </Text>
+          )
+        }
       </TextWrapper>
 
       <Tags tags={stateTags} addTag={addTag} showPopup={showPopup} />
 
       <ButtonWrapper>
         <Button
+          title="EDIT"
+          small={true}
+          onClick={() => showEdit.toggle()}
+        />
+        <Button
           small={true}
           title='SAVE'
-          onClick={() => updateHandler(
-            moduleId,
-            {
-              text: stateContent,
-              tags: stateTags,
-            }
-          )}
+          onClick={() => {
+            showEdit.off()
+            updateHandler(
+              moduleId,
+              {
+                text: stateContent,
+                tags: stateTags,
+              }
+            )
+          }}
           loading={loading}
-          disable={loading}
+          disable={loading || !showEdit.isOn}
         />
       </ButtonWrapper>
     </Wrapper>
@@ -98,5 +112,7 @@ const TextWrapper = styled.div`
   padding: 24px 0;
 `
 const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 12px;
   margin-top: 24px;
 `

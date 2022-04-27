@@ -42,5 +42,6 @@ const Wrapper = styled.pre<{styles: IStyles}>`
       display: `${props.styles.display};`
     }
   }
+  padding: 0 0 4px 0;
   white-space: pre-wrap;
 `
