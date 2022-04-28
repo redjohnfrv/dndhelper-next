@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useSelector} from 'react-redux'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
 import {routes, size} from '../../constants'
+import {adventuresSelector} from '../../redux/adventures'
 
 //** components
 import {Avatar, Button, Text, TitleH2} from '../ui'
@@ -16,6 +18,8 @@ interface Props {
 
 export const AdventuresList = ({adventure, onDelete}: Props) => {
   const {name, avatar, desc, id} = adventure
+
+  const isDeleting = useSelector(adventuresSelector.selectAdventures).loading
 
   return (
     <Wrapper>
@@ -34,6 +38,8 @@ export const AdventuresList = ({adventure, onDelete}: Props) => {
               onClick={() => onDelete(String(id))}
               title="Delete"
               small={true}
+              loading={isDeleting}
+              disable={isDeleting}
             />
           </AdvNavigation>
         </Description>

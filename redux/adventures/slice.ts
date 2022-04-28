@@ -1,11 +1,11 @@
 import {AnyAction, createSlice} from '@reduxjs/toolkit'
 import {
-  ADVENTURES,
+  ADVENTURES, ADVENTURES_DELETE,
   ADVENTURES_GET,
   IAdventuresState,
 } from '../../dto/adventure'
 import {FULFILLED, PENDING, REJECTED} from '../../constants'
-import {getAdventures} from './thunks'
+import {deleteAdventure, getAdventures} from './thunks'
 
 const initialState: IAdventuresState = {
   adventures: [],
@@ -21,8 +21,12 @@ function isFulfilledAction(action: AnyAction) {
   return action.type.startsWith(ADVENTURES) && action.type.endsWith(FULFILLED)
 }
 
-function isFulfilledGetCardsAction(action: AnyAction) {
+function isFulfilledGetAdventuresAction(action: AnyAction) {
   return action.type.startsWith(ADVENTURES_GET) && action.type.endsWith(FULFILLED)
+}
+
+function isFulfilledDeleteAdventureAction(action: AnyAction) {
+  return action.type.startsWith(ADVENTURES_DELETE) && action.type.endsWith(FULFILLED)
 }
 
 function isRejectedAction(action: AnyAction) {
@@ -34,9 +38,6 @@ const adventuresSlice = createSlice({
   name: 'adventures',
   initialState,
   reducers: {
-    setAdventuresStore: (state, action) => {
-      return action.payload
-    },
     clearAdventuresStore: () => {
       return initialState
     }
@@ -45,8 +46,12 @@ const adventuresSlice = createSlice({
     mapBuilder.addMatcher(isPendingAction, (state) => {
       state.loading = true
     })
-    mapBuilder.addMatcher(isFulfilledGetCardsAction, (state, action) => {
+    mapBuilder.addMatcher(isFulfilledGetAdventuresAction, (state, action) => {
       state.adventures = [...action.payload]
+    })
+    mapBuilder.addMatcher(isFulfilledDeleteAdventureAction, (state, action) => {
+      const newState = state.adventures.filter(item => item.id !== action.payload)
+      state.adventures = [...newState]
     })
     mapBuilder.addMatcher(isFulfilledAction, (state) => {
       state.loading = false
@@ -58,5 +63,5 @@ const adventuresSlice = createSlice({
 })
 
 const {actions, reducer} = adventuresSlice
-export const adventuresActions = {...actions, getAdventures}
+export const adventuresActions = {...actions, getAdventures, deleteAdventure}
 export default reducer

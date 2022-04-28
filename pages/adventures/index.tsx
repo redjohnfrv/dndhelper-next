@@ -4,6 +4,8 @@ import {useSelector} from 'react-redux'
 //** utils
 import {IAdventure, IAdventuresState} from '../../dto/adventure'
 import {useAppDispatch} from '../../hooks'
+import {adventuresActions, adventuresSelector} from '../../redux/adventures'
+import {adventuresApi} from '../../redux/adventures/api'
 
 //** components
 import {
@@ -11,9 +13,6 @@ import {
   MainContent,
   MainLayout
 } from '../../layout'
-import {adventuresSelector} from '../../redux/adventures'
-import {selectAdventures} from '../../redux/adventures/selector'
-import {adventuresApi} from '../../redux/adventures/api'
 
 interface Props {
   title: string
@@ -23,20 +22,19 @@ interface Props {
 
 const Adventures = ({title, adventures, error}: Props) => {
   const adventuresState = useSelector(adventuresSelector.selectAdventures)
+  const dispatch = useAppDispatch()
 
-  /** if getStaticProps request failed **/
+  /** if getStaticProps request failed
+   * (actually no, just getting adventures to store) **/
   useEffect(() => {
+    dispatch(adventuresActions.getAdventures())
     if (error) console.log('Error: ', error)
   }, [])
 
   /** removing the adventure by id **/
   const removeAdventureHandler = (id: string) => {
-    // adventuresApi.deleteAdventure(id)
-    //   .then(() => {
-    //     adventuresApi.getAdventures()
-    //       .then(res => dispatch(setAdventuresStore(res.data as IAdventure[] | [])))
-    //       .catch(err => dispatch(setAdventuresStore([])))
-    // })
+    dispatch(adventuresActions.deleteAdventure(id))
+      .then(() => dispatch(adventuresActions.getAdventures()))
   }
 
   return (
@@ -44,7 +42,7 @@ const Adventures = ({title, adventures, error}: Props) => {
       <MainContent
         content={
           <AdvsContent
-            adventures={adventuresState}
+            adventures={adventuresState.adventures}
             onDelete={removeAdventureHandler}
           />
         }
@@ -56,18 +54,6 @@ const Adventures = ({title, adventures, error}: Props) => {
 export default Adventures
 
 export async function getStaticProps() {
-  // let error = ''
-  //
-  // const request = await adventuresApi.getAdventures()
-  //   .then((res) => res.data as IAdventure[] | [])
-  //   .catch(err => error = err.message)
-  //
-  // return {
-  //   props: {
-  //     title: 'All the Adventures',
-  //     adventures: error || request,
-  //   },
-  // }
   try {
     const response = await adventuresApi.getAdventures()
     let initProducts: IAdventuresState = await response.data

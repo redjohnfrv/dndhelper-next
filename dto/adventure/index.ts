@@ -24,3 +24,4 @@ export interface IContentTab {
 
 export const ADVENTURES = 'adventures/'
 export const ADVENTURES_GET = 'adventures/get'
+export const ADVENTURES_DELETE = 'adventures/delete'

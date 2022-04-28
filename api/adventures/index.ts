@@ -33,7 +33,7 @@ export const createAdventure = async (adv: Partial<Omit<IAdventure, 'id'>>) => {
   return request
 }
 
-export const deleteAdventure = async (id: string) => {
+export const deleteAdventures = async (id: string) => {
   let error = ''
 
   const request = axios.delete(API_URL + `/adventures/${id}`,{
