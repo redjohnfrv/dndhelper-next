@@ -33,8 +33,20 @@ const createAdventure = (adventure: Partial<Omit<IAdventure, 'id'>>) => {
   })
 }
 
+const setAdventureAvatar = (id: string, avatar: string) => {
+  return axios({
+    method: 'PATCH',
+    data: {avatar},
+    url: `${API_URL}/adventures/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+}
+
 export const adventuresApi = {
   getAdventures,
   deleteAdventure,
   createAdventure,
+  setAdventureAvatar,
 }

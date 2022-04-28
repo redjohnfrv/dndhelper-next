@@ -1,8 +1,9 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {setAdventureAvatar} from '../../../api/adventures'
+import {useAppDispatch} from '../../../hooks'
+import {adventuresActions} from '../../../redux/adventures'
 
 //** components
 import {Avatar, TitleH1, UploadInput} from '../../ui'
@@ -19,8 +20,7 @@ interface Props {
 
 export const Preview = ({props}: Props) => {
   const {name, avatar, desc, id} = props
-
-  const [stateAvatar, setStateAvatar] = useState<string | null>(avatar)
+  const dispatch = useAppDispatch()
 
   /** set adventure avatar **/
   const uploadImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,31 +28,18 @@ export const Preview = ({props}: Props) => {
 
     if (loadedFiles) {
       for (let i = 0; i < loadedFiles.length; i++) {
-        console.log(loadedFiles[i])
-        setStateAvatar(`/images/${loadedFiles[i].name}`)
-        setAdventureAvatar(String(id), `/images/${loadedFiles[i].name}`)
+        dispatch(adventuresActions.setAdventureAvatar({
+          id: String(id),
+          avatar: `/images/${loadedFiles[i].name}`,
+        }))
       }
-
-      /** if you need read image as a urlData **/
-      // for (let i = 0; i < loadedFiles.length; i++) {
-      //   fileList.push(fileReaderResolver(loadedFiles[i]))
-      // }
-      //
-      // Promise.all(fileList)
-      //   .then((files) => {
-      //     files.forEach((item: string) => {
-      //       setStateAvatar(item)
-      //       setAdventureAvatar(String(id), item)
-      //     })
-      //   })
-      /** ----------------------------------- **/
     }
   }
 
   return (
     <Wrapper>
       <AvatarWrapper>
-        <Avatar image={stateAvatar} alt="adventure avatar" size="large" />
+        <Avatar image={avatar} alt="adventure avatar" size="large" />
         <UploadInput uploadImageHandler={uploadImage} />
       </AvatarWrapper>
       <TitleH1 text={name} />
