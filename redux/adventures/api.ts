@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {API_URL} from '../../api'
+import {IAdventure} from '../../dto/adventure'
 
 const getAdventures = () => {
   return axios({
@@ -21,8 +22,19 @@ const deleteAdventure = (id: string) => {
   })
 }
 
+const createAdventure = (adventure: Partial<Omit<IAdventure, 'id'>>) => {
+  return axios({
+    method: 'POST',
+    data: {...adventure},
+    url: `${API_URL}/adventures`,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+}
 
 export const adventuresApi = {
   getAdventures,
   deleteAdventure,
+  createAdventure,
 }

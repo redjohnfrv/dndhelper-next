@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useSelector} from 'react-redux'
 
 //** utils
 import {useRouter} from 'next/router'
-import {createAdventure} from '../../api/adventures'
 import {INewAdventure} from '../../dto/adventure'
 import {routes, size} from '../../constants'
 import {composeValidators, validators} from '../../helpers'
-import {useSwitcher} from '../../hooks'
+import {useAppDispatch} from '../../hooks'
+import {adventuresActions, adventuresSelector} from '../../redux/adventures'
 
 //** components
 import {Field, Form } from 'react-final-form'
@@ -16,22 +17,18 @@ import {Button, FormInput, FormTextarea, TitleH1} from '../ui'
 export const CreateAdventure = () => {
   const router = useRouter()
   const {push} = router
-  const isLoading = useSwitcher()
+  const dispatch = useAppDispatch()
+  const isCreating = useSelector(adventuresSelector.selectAdventures).loading
 
   const onSubmit = (values: INewAdventure) => {
     const {adventure, description} = values
 
-    isLoading.on()
-
-    createAdventure({
-      name: adventure,
-      desc: description,
-      avatar: null,
-    })
-      .then(advId => {
-        isLoading.off()
-        push(routes.adventures + `/${advId}`)
-      })
+    dispatch(adventuresActions.createAdventure({
+        name: adventure,
+        desc: description,
+        avatar: null,
+    })).then(adv =>
+      push(`${routes.adventures}/${adv.payload.id}`))
   }
 
   return (
@@ -45,9 +42,9 @@ export const CreateAdventure = () => {
               <Button
                 type="submit"
                 title="Start"
-                disable={invalid}
+                disable={invalid || isCreating}
                 small={true}
-                loading={isLoading.isOn}
+                loading={isCreating}
               />
               <Field
                 name="adventure"

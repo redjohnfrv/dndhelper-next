@@ -1,11 +1,11 @@
 import {AnyAction, createSlice} from '@reduxjs/toolkit'
 import {
-  ADVENTURES, ADVENTURES_DELETE,
+  ADVENTURES, ADVENTURES_CREATE, ADVENTURES_DELETE,
   ADVENTURES_GET,
   IAdventuresState,
 } from '../../dto/adventure'
 import {FULFILLED, PENDING, REJECTED} from '../../constants'
-import {deleteAdventure, getAdventures} from './thunks'
+import {createAdventure, deleteAdventure, getAdventures} from './thunks'
 
 const initialState: IAdventuresState = {
   adventures: [],
@@ -27,6 +27,10 @@ function isFulfilledGetAdventuresAction(action: AnyAction) {
 
 function isFulfilledDeleteAdventureAction(action: AnyAction) {
   return action.type.startsWith(ADVENTURES_DELETE) && action.type.endsWith(FULFILLED)
+}
+
+function isFulfilledCreateAdventureAction(action: AnyAction) {
+  return action.type.startsWith(ADVENTURES_CREATE) && action.type.endsWith(FULFILLED)
 }
 
 function isRejectedAction(action: AnyAction) {
@@ -53,6 +57,10 @@ const adventuresSlice = createSlice({
       const newState = state.adventures.filter(item => item.id !== action.payload)
       state.adventures = [...newState]
     })
+    mapBuilder.addMatcher(isFulfilledCreateAdventureAction, (state, action) => {
+      const cloneState = [...state.adventures]
+      state.adventures = [...cloneState, action.payload]
+    })
     mapBuilder.addMatcher(isFulfilledAction, (state) => {
       state.loading = false
     })
@@ -63,5 +71,10 @@ const adventuresSlice = createSlice({
 })
 
 const {actions, reducer} = adventuresSlice
-export const adventuresActions = {...actions, getAdventures, deleteAdventure}
+export const adventuresActions = {
+  ...actions,
+  getAdventures,
+  deleteAdventure,
+  createAdventure
+}
 export default reducer
