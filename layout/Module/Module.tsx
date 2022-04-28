@@ -15,18 +15,18 @@ import {
   updateScenario,
   updateNotes
 } from '../../api/modules'
-import {useSwitcher} from '../../hooks/useSwitcher'
+import {useSwitcher} from '../../hooks'
 
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
 
 interface Props {
-  module: IModule
+  module: IModule | []
 }
 
-export const Module = ({module}: Props) => {
-  const {id, name, overview, preview, scenario, notes} = module
+export const Module = ({module = []}: Props) => {
+  const {id, name, overview, preview, scenario, notes} = module as IModule
   const overviewLoading = useSwitcher()
   const previewLoading = useSwitcher()
   const scenarioLoading = useSwitcher()

@@ -2,7 +2,6 @@ import {GetStaticPropsContext} from 'next/types'
 
 //** utils
 import {IModule} from '../../dto/module'
-import {getModules} from '../../api/modules'
 
 //** components
 import {
@@ -10,19 +9,31 @@ import {
   MainLayout,
   Module
 } from '../../layout'
+import {modulesApi} from '../../redux/modules/api'
+import {useEffect} from 'react'
+import {useAppDispatch} from '../../hooks'
+import {modulesActions, modulesSelector} from '../../redux/modules'
+import {useSelector} from 'react-redux'
 
 interface Props {
   moduleId: string
   module: IModule[]
 }
 
-const ModuleId = ({moduleId, module}: Props) => {
+const ModuleId = ({moduleId}: Props) => {
+  const dispatch = useAppDispatch()
+  const module = useSelector(modulesSelector.selectModuleById(moduleId))
+
+  /** just getting modules **/
+  useEffect(() => {
+    dispatch(modulesActions.getModules())
+  }, [])
 
   return (
     <MainLayout title={`Module ${moduleId}`}>
       <MainContent
         content={
-          <Module module={module[0]} />
+          <Module module={module} />
         }
       />
     </MainLayout>
@@ -40,7 +51,8 @@ interface Ids {
 export async function getStaticPaths() {
   const IdsArray: Ids[] = []
 
-  const modules: IModule[] | string = await getModules()
+  const modules: IModule[] | string = await modulesApi.getModules()
+    .then(res => res.data)
 
   if (Array.isArray(modules))
     modules.forEach((item: IModule) =>
@@ -53,16 +65,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}: GetStaticPropsContext) {
-  const modules: IModule[] = await getModules()
 
   if (params) {
     const id = params.id
-    const module: IModule[] = modules.filter(item => String(item.id) === id)
 
     return {
       props: {
         moduleId: id,
-        module: module,
       },
     }
   }

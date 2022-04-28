@@ -8,10 +8,10 @@ import {IAdventure} from '../../dto/adventure'
 import {Preview, Tabs} from '.'
 
 interface Props {
-  adventure: IAdventure
+  adventure: IAdventure | []
 }
 
-export const Adventure = ({adventure}: Props) => {
+export const Adventure = ({adventure = []}: Props) => {
   const {name, avatar, desc, id} = adventure as IAdventure
 
   return (

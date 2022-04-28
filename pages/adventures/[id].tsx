@@ -3,8 +3,8 @@ import {useSelector} from 'react-redux'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
-import {getAdventures} from '../../api/adventures'
 import {selectAdventureById} from '../../redux/adventures/selector'
+import {adventuresApi} from '../../redux/adventures/api'
 
 //** components
 import {
@@ -42,7 +42,8 @@ interface Ids {
 export async function getStaticPaths() {
   const IdsArray: Ids[] = []
 
-  const adventures: IAdventure[] | string = await getAdventures()
+  const adventures: IAdventure[] | string = await adventuresApi.getAdventures()
+    .then(res => res.data)
 
   if (Array.isArray(adventures))
     adventures.forEach((item: IAdventure) =>

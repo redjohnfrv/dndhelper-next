@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {API_URL} from '..'
-import {IAdventure} from '../../dto/adventure'
 
 export const getAdventures = async () => {
   let error = ''
@@ -11,57 +10,4 @@ export const getAdventures = async () => {
 
   if (error) return error
   return data
-}
-
-export const createAdventure = async (adv: Partial<Omit<IAdventure, 'id'>>) => {
-  let error = ''
-
-  const request = axios.post(API_URL + '/adventures',
-    {...adv},
-    {
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-      .then(res => {
-        console.log('Creating success!')
-        return res.data.id
-      })
-      .catch(err => error = err.message)
-
-  if (error) return error
-  return request
-}
-
-export const deleteAdventures = async (id: string) => {
-  let error = ''
-
-  const request = axios.delete(API_URL + `/adventures/${id}`,{
-    headers: {
-      'Content-type': 'application/json'
-    },
-  })
-    .then(() => console.log('Removing success!'))
-    .catch(err => error = err.message)
-
-  if (error) return error
-  return request
-}
-
-export const setAdventureAvatar = async (id: string, avatar: string) => {
-  let error = ''
-
-  const request = axios.patch(API_URL + `/adventures/${id}`,{
-    avatar,
-  },
-    {
-      headers: {
-        'Content-type': 'application/json'
-      },
-    })
-      .then(() => console.log('Uploading success!'))
-      .catch(err => error = err.message)
-
-  if (error) return error
-  return request
 }

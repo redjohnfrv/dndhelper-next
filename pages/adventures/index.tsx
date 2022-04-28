@@ -21,11 +21,10 @@ interface Props {
 }
 
 const Adventures = ({title, adventures, error}: Props) => {
-  const adventuresState = useSelector(adventuresSelector.selectAdventures)
   const dispatch = useAppDispatch()
+  const adventuresState = useSelector(adventuresSelector.selectAdventures)
 
-  /** if getStaticProps request failed
-   * (actually no, just getting adventures to store) **/
+  /** just getting adventures to store **/
   useEffect(() => {
     dispatch(adventuresActions.getAdventures())
     if (error) console.log('Error: ', error)

@@ -17,7 +17,7 @@ function isFulfilledAction(action: AnyAction) {
   return action.type.startsWith(MODULES) && action.type.endsWith(FULFILLED)
 }
 
-function isFulfilledGetAdventuresAction(action: AnyAction) {
+function isFulfilledGetModulesAction(action: AnyAction) {
   return action.type.startsWith(MODULES_GET) && action.type.endsWith(FULFILLED)
 }
 
@@ -34,7 +34,7 @@ const modulesSlice = createSlice({
     mapBuilder.addMatcher(isPendingAction, (state) => {
       state.loading = true
     })
-    mapBuilder.addMatcher(isFulfilledGetAdventuresAction, (state, action) => {
+    mapBuilder.addMatcher(isFulfilledGetModulesAction, (state, action) => {
       state.modules = [...action.payload]
     })
     mapBuilder.addMatcher(isFulfilledAction, (state) => {
