@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 //** utils
 import {IAdventure} from '../../dto/adventure'
 import {deleteAdventure, getAdventures} from '../../api/adventures'
+import {adventuresApi} from '../../redux/adventure/api'
 
 //** components
 import {
@@ -19,12 +20,15 @@ interface Props {
 const Adventures = ({title, adventures}: Props) => {
   const [advs, setAdvs] = useState<IAdventure[] | string>(adventures)
 
-  /** if getStaticProps request hadn't executed **/
+  /** if getStaticProps request failed **/
   useEffect(() => {
-    if (Array.isArray(advs) && advs.length < 1) {
-      getAdventures()
-        .then((res: IAdventure[] | string) => setAdvs(res))
-    }
+    if (typeof advs === 'string')
+      adventuresApi.getAdventures()
+        .then(res => setAdvs(res.data as IAdventure[] | []))
+        .catch(err => {
+          setAdvs([])
+          console.log(err)
+        })
   }, [advs])
 
   /** removing the adventure by id **/
@@ -53,19 +57,16 @@ const Adventures = ({title, adventures}: Props) => {
 export default Adventures
 
 export async function getStaticProps() {
-  const advs: IAdventure[] | string = []
-  let error = ''
+  let error = 'error'
 
-  await getAdventures().then(res => {
-    typeof res !== 'string'
-      ? (res as IAdventure[]).map((item: IAdventure) => advs.push(item))
-      : error = res
-  })
+  const request = await adventuresApi.getAdventures()
+    .then((res) => res.data as IAdventure[] | [])
+    .catch(err => error = err.message)
 
   return {
     props: {
       title: 'All the Adventures',
-      adventures: error || advs,
+      adventures: error || request,
     },
   }
 }
