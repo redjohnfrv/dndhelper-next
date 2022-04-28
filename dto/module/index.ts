@@ -49,3 +49,11 @@ export interface ICreateModule {
   preview: string
   scenario: string
 }
+
+export interface IModuleState {
+  modules: IModule[]
+  loading: boolean
+}
+
+export const MODULES = 'modules/'
+export const MODULES_GET = 'modules/get'

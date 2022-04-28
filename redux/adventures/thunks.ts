@@ -1,6 +1,12 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import {AxiosError, AxiosResponse} from 'axios'
-import {ADVENTURES_AVATAR, ADVENTURES_CREATE, ADVENTURES_DELETE, ADVENTURES_GET, IAdventure} from '../../dto/adventure'
+import {
+  ADVENTURES_AVATAR,
+  ADVENTURES_CREATE,
+  ADVENTURES_DELETE,
+  ADVENTURES_GET,
+  IAdventure
+} from '../../dto/adventure'
 import {adventuresApi} from './api'
 
 export const getAdventures = createAsyncThunk(
