@@ -1,8 +1,10 @@
 import {GetStaticPropsContext} from 'next/types'
+import {useSelector} from 'react-redux'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
 import {getAdventures} from '../../api/adventures'
+import {selectAdventureById} from '../../redux/adventures/selector'
 
 //** components
 import {
@@ -13,19 +15,16 @@ import {
 
 interface Props {
   advId: string
-  adventure: IAdventure[] | string
+  error: string
 }
 
-const AdventureId = ({advId, adventure}: Props) => {
+const AdventureId = ({advId, error}: Props) => {
+  const adventure = useSelector(selectAdventureById(advId))
 
   return (
     <MainLayout title={`Adventure ${advId}`}>
       <MainContent content={
-        <Adventure adventures={
-          Array.isArray(adventure) /** 'adventures' can be implement as an error string instead of array **/
-            ? adventure[0]
-            : adventure
-        } />
+        <Adventure adventure={adventure} />
       }
     />
     </MainLayout>
@@ -56,18 +55,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}: GetStaticPropsContext) {
-  const adventures: IAdventure[] = await getAdventures()
-
   if (params) {
-    const id = params.id
-    const adventure: IAdventure[] =
-      adventures.filter(item => String(item.id) === id)
+      const id = params.id
 
-    return {
-      props: {
-        advId: id,
-        adventure,
-      },
+      return {
+        props: {
+          advId: id,
+        }
     }
   }
 

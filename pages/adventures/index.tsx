@@ -42,7 +42,7 @@ const Adventures = ({title, adventures, error}: Props) => {
       <MainContent
         content={
           <AdvsContent
-            adventures={adventuresState.adventures}
+            adventures={adventuresState}
             onDelete={removeAdventureHandler}
           />
         }
@@ -56,17 +56,17 @@ export default Adventures
 export async function getStaticProps() {
   try {
     const response = await adventuresApi.getAdventures()
-    let initProducts: IAdventuresState = await response.data
+    let adventures: IAdventuresState = await response.data
     return {
       props: {
-        initProducts,
+        adventures,
       }
     }
   }
   catch (err: any) {
     return {
       props: {
-        initProducts: [],
+        adventures: [],
         error: 'Connection error ...',
       }
     }
