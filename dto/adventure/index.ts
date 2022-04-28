@@ -1,3 +1,8 @@
+export interface IAdventuresState {
+  adventures: IAdventure[]
+  loading: boolean
+}
+
 export interface IAdventure {
   id: number
   name: string
@@ -16,3 +21,6 @@ export interface IContentTab {
   name: string
   link: string
 }
+
+export const ADVENTURES = 'adventures/'
+export const ADVENTURES_GET = 'adventures/get'

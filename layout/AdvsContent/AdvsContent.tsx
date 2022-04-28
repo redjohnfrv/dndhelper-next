@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {IAdventure} from '../../dto/adventure'
+import {IAdventure, IAdventuresState} from '../../dto/adventure'
 
 //** components
 import {TitleH1} from '../ui'
 import {AdventuresList, ErrorLoad} from '..'
 
 interface Props {
-  adventures: IAdventure[] | string
+  adventures: IAdventuresState | string
   id?: string
   onDelete: (id: string) => void
 }
@@ -33,7 +33,7 @@ export const AdvsContent = ({adventures, id = '', onDelete}: Props) => {
              onDelete={onDelete}
            />
           )
-        : <ErrorLoad>{adventures}</ErrorLoad>
+        : <ErrorLoad>{adventures as string}</ErrorLoad>
       }
     </Wrapper>
   )
