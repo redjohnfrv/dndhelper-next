@@ -1,6 +1,6 @@
 import {RootState} from '..'
 import {createSelector} from 'reselect'
-import {selectAdventure} from '../adventure/selector'
+import {selectAdventure} from '../adventures/selector'
 import {IModule} from '../../dto/module'
 
 export const selectModules = (state: RootState) => state.modules

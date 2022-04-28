@@ -11,7 +11,18 @@ const getAdventures = () => {
   })
 }
 
+const deleteAdventure = (id: string) => {
+  return axios({
+    method: 'DELETE',
+    url: `${API_URL}/adventures/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+}
+
 
 export const adventuresApi = {
   getAdventures,
+  deleteAdventure,
 }

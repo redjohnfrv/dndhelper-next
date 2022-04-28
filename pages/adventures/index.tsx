@@ -1,9 +1,12 @@
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
+import {useSelector} from 'react-redux'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
-import {deleteAdventure, getAdventures} from '../../api/adventures'
-import {adventuresApi} from '../../redux/adventure/api'
+import {adventuresApi} from '../../redux/adventures/api'
+import {setAdventuresStore} from '../../redux/adventures/slice'
+import {selectAdventures} from '../../redux/adventures/selector'
+import {useAppDispatch, useSwitcher} from '../../hooks'
 
 //** components
 import {
@@ -18,25 +21,24 @@ interface Props {
 }
 
 const Adventures = ({title, adventures}: Props) => {
-  const [advs, setAdvs] = useState<IAdventure[] | string>(adventures)
+  const dispatch = useAppDispatch()
+  const adventuresState = useSelector(selectAdventures)
+  const isDeleting = useSwitcher()
 
   /** if getStaticProps request failed **/
   useEffect(() => {
-    if (typeof advs === 'string')
-      adventuresApi.getAdventures()
-        .then(res => setAdvs(res.data as IAdventure[] | []))
-        .catch(err => {
-          setAdvs([])
-          console.log(err)
-        })
-  }, [advs])
+    adventuresApi.getAdventures()
+      .then(res => dispatch(setAdventuresStore(res.data as IAdventure[] | [])))
+      .catch(err => dispatch(setAdventuresStore([])))
+  }, [])
 
   /** removing the adventure by id **/
   const removeAdventureHandler = (id: string) => {
-    deleteAdventure(id)
+    adventuresApi.deleteAdventure(id)
       .then(() => {
-        getAdventures()
-          .then((res: IAdventure[] | string) => setAdvs(res))
+        adventuresApi.getAdventures()
+          .then(res => dispatch(setAdventuresStore(res.data as IAdventure[] | [])))
+          .catch(err => dispatch(setAdventuresStore([])))
     })
   }
 
@@ -45,7 +47,7 @@ const Adventures = ({title, adventures}: Props) => {
       <MainContent
         content={
           <AdvsContent
-            adventures={advs}
+            adventures={adventuresState}
             onDelete={removeAdventureHandler}
           />
         }
@@ -57,7 +59,7 @@ const Adventures = ({title, adventures}: Props) => {
 export default Adventures
 
 export async function getStaticProps() {
-  let error = 'error'
+  let error = ''
 
   const request = await adventuresApi.getAdventures()
     .then((res) => res.data as IAdventure[] | [])

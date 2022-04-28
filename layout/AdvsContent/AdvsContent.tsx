@@ -26,12 +26,14 @@ export const AdvsContent = ({adventures, id = '', onDelete}: Props) => {
         align="right"
       />
       {Array.isArray(adventures)
-        ? adventures.map((item: IAdventure) => {
-          return <AdventuresList key={item.id} adventure={item} onDelete={onDelete} />
-        })
-        : (
-          <ErrorLoad>{adventures}</ErrorLoad>
-        )
+        ? adventures.map((item: IAdventure) =>
+           <AdventuresList
+             key={item.id}
+             adventure={item}
+             onDelete={onDelete}
+           />
+          )
+        : <ErrorLoad>{adventures}</ErrorLoad>
       }
     </Wrapper>
   )

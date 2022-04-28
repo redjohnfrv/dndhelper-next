@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
-import adventureSlice from './adventure/slice'
+import adventuresSlice from './adventures/slice'
 import modulesSlice from './module/slice'
 
 const rootReducer = combineReducers({
-  adventure: adventureSlice,
+  adventures: adventuresSlice,
   modules: modulesSlice,
 })
 
