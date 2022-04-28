@@ -5,6 +5,8 @@ import {IAdventure} from '../../dto/adventure'
 export const selectAdventures = (state: RootState) =>
   state.adventures.adventures
 
+export const isAdventureLoading = (state: RootState) => state.adventures.loading
+
 export const selectAdventureById = (adventureId: string) => createSelector(
   (state: RootState) => ({
     adventures: selectAdventures(state),

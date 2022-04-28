@@ -18,7 +18,7 @@ export const CreateAdventure = () => {
   const router = useRouter()
   const {push} = router
   const dispatch = useAppDispatch()
-  const isCreating = useSelector(adventuresSelector.selectAdventures).loading
+  const isCreating = useSelector(adventuresSelector.isAdventureLoading)
 
   const onSubmit = (values: INewAdventure) => {
     const {adventure, description} = values

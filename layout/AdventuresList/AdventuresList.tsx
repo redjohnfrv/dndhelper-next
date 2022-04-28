@@ -19,7 +19,7 @@ interface Props {
 export const AdventuresList = ({adventure, onDelete}: Props) => {
   const {name, avatar, desc, id} = adventure
 
-  const isDeleting = useSelector(adventuresSelector.selectAdventures).loading
+  const isDeleting = useSelector(adventuresSelector.isAdventureLoading)
 
   return (
     <Wrapper>
