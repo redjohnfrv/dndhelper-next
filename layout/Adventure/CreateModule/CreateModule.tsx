@@ -4,14 +4,15 @@ import styled from 'styled-components'
 
 //** utils
 import {composeValidators, validators} from '../../../helpers'
-import {createModule} from '../../../api/modules'
-import {useSwitcher} from '../../../hooks'
+import {useAppDispatch, useSwitcher} from '../../../hooks'
 import {ICreateModule} from '../../../dto/module'
 import {color, routes, size} from '../../../constants'
+import {modulesActions, modulesSelector} from '../../../redux/modules'
 
 //** components
 import {Field, Form} from 'react-final-form'
 import {Button, FormInput, FormTextarea} from '../../ui'
+import {useSelector} from 'react-redux'
 
 interface Props {
   advId: number
@@ -21,14 +22,14 @@ export const CreateModule = ({advId}: Props) => {
   const router = useRouter()
   const {push} = router
   const showForm = useSwitcher()
-  const isLoading = useSwitcher()
+  const isCreating = useSelector(modulesSelector.isModulesLoading)
+
+  const dispatch = useAppDispatch()
 
   const onSubmit = (values: ICreateModule) => {
     const {module, overview, preview, scenario} = values
 
-    isLoading.on()
-
-    createModule({
+    dispatch(modulesActions.createModule({
       advId,
       link: routes.modules,
       name: module,
@@ -52,10 +53,9 @@ export const CreateModule = ({advId}: Props) => {
         units: [],
         tags: [],
       },
-    })
-      .then(moduleId =>  {
-        isLoading.off()
-        push(`${routes.modules}/${moduleId}`)
+    }))
+      .then(module =>  {
+        push(`${routes.modules}/${module.payload.id}`)
       })
   }
 
@@ -100,7 +100,7 @@ export const CreateModule = ({advId}: Props) => {
               type="submit"
               title="Add module"
               disable={invalid}
-              loading={isLoading.isOn}
+              loading={isCreating}
             />
           </form>
         )}

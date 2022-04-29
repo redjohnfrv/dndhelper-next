@@ -57,3 +57,4 @@ export interface IModuleState {
 
 export const MODULES = 'modules/'
 export const MODULES_GET = 'modules/get'
+export const MODULES_CREATE = 'modules/create'
