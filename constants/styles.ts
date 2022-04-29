@@ -9,3 +9,8 @@ export const color = {
   danger: '#B43232',
   edit: '#fff0db',
 }
+
+export const theme = {
+  common: '#254134',
+  text: '#8f762c'
+}

@@ -77,8 +77,8 @@ const HelloText = styled.div`
   position: absolute;
   right: 48px;
   top: 72px;
-  height: max-content;
+  height: 50%;
   max-width: 65%;
   padding: 24px;
-  background: rgba(224, 224, 224, 0.52);
+  background: linear-gradient(to top right, rgba(255, 255, 255, 0.04), rgba(224, 224, 224, 0.64));
 `
