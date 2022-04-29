@@ -2,6 +2,11 @@ import {GetStaticPropsContext} from 'next/types'
 
 //** utils
 import {IModule} from '../../dto/module'
+import {modulesApi} from '../../redux/modules/api'
+import {useEffect} from 'react'
+import {useAppDispatch} from '../../hooks'
+import {modulesActions, modulesSelector} from '../../redux/modules'
+import {useSelector} from 'react-redux'
 
 //** components
 import {
@@ -9,11 +14,6 @@ import {
   MainLayout,
   Module
 } from '../../layout'
-import {modulesApi} from '../../redux/modules/api'
-import {useEffect} from 'react'
-import {useAppDispatch} from '../../hooks'
-import {modulesActions, modulesSelector} from '../../redux/modules'
-import {useSelector} from 'react-redux'
 
 interface Props {
   moduleId: string

@@ -15,11 +15,12 @@ import {
   updateScenario,
   updateNotes
 } from '../../api/modules'
-import {useSwitcher} from '../../hooks'
+import {useAppDispatch, useSwitcher} from '../../hooks'
 
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
+import {modulesActions} from '../../redux/modules'
 
 interface Props {
   module: IModule | []
@@ -31,30 +32,32 @@ export const Module = ({module = []}: Props) => {
   const previewLoading = useSwitcher()
   const scenarioLoading = useSwitcher()
   const notesLoading = useSwitcher()
+  const dispatch = useAppDispatch()
 
-  const updateOverviewHandler = (id: number, overview: IOverview) => {
-    overviewLoading.on()
-    updateOverview(String(id), overview)
-      .then(() => overviewLoading.off())
+  const moduleUpdateHandler = (id: number, payload: { overview?: IOverview, preview?: IPreview }) => {
+      dispatch(modulesActions.moduleUpdate({
+        id: String(id),
+        ...payload,
+      }))
   }
 
-  const updatePreviewHandler = (id: number, preview: IPreview) => {
-    previewLoading.on()
-    updatePreview(String(id), preview)
-      .then(() => previewLoading.off())
-  }
-
-  const updateScenarioHandler = (id: number, scenario: IScenario) => {
-    scenarioLoading.on()
-    updateScenario(String(id), scenario)
-      .then(() => scenarioLoading.off())
-  }
-
-  const updateNotesHandler = (id: number, note: INote) => {
-    notesLoading.on()
-    updateNotes(String(id), note)
-      .then(() => notesLoading.off())
-  }
+  // const updatePreviewHandler = (id: number, preview: IPreview) => {
+  //   previewLoading.on()
+  //   updatePreview(String(id), preview)
+  //     .then(() => previewLoading.off())
+  // }
+  //
+  // const updateScenarioHandler = (id: number, scenario: IScenario) => {
+  //   scenarioLoading.on()
+  //   updateScenario(String(id), scenario)
+  //     .then(() => scenarioLoading.off())
+  // }
+  //
+  // const updateNotesHandler = (id: number, note: INote) => {
+  //   notesLoading.on()
+  //   updateNotes(String(id), note)
+  //     .then(() => notesLoading.off())
+  // }
 
   return (
     <Wrapper>
@@ -62,31 +65,33 @@ export const Module = ({module = []}: Props) => {
       <ModuleContentBlock
         title="Module overview"
         content={overview}
-        updateHandler={updateOverviewHandler}
+        updateHandler={moduleUpdateHandler}
         moduleId={id}
         loading={overviewLoading.isOn}
+        entityName="overview"
       />
       <ModuleContentBlock
         title="Master preview"
         content={preview}
         moduleId={id}
-        updateHandler={updatePreviewHandler}
+        updateHandler={moduleUpdateHandler}
         loading={previewLoading.isOn}
+        entityName="preview"
       />
-      <ModuleContentBlock
-        title="Scenario"
-        content={scenario}
-        moduleId={id}
-        updateHandler={updateScenarioHandler}
-        loading={scenarioLoading.isOn}
-      />
-      <ModuleContentBlock
-        title="Module notes"
-        content={notes}
-        moduleId={id}
-        updateHandler={updateNotesHandler}
-        loading={notesLoading.isOn}
-      />
+      {/*<ModuleContentBlock*/}
+      {/*  title="Scenario"*/}
+      {/*  content={scenario}*/}
+      {/*  moduleId={id}*/}
+      {/*  updateHandler={updateScenarioHandler}*/}
+      {/*  loading={scenarioLoading.isOn}*/}
+      {/*/>*/}
+      {/*<ModuleContentBlock*/}
+      {/*  title="Module notes"*/}
+      {/*  content={notes}*/}
+      {/*  moduleId={id}*/}
+      {/*  updateHandler={updateNotesHandler}*/}
+      {/*  loading={notesLoading.isOn}*/}
+      {/*/>*/}
     </Wrapper>
   )
 }

@@ -30,14 +30,14 @@ interface Props {
   content?: IOverview | IPreview | IScenario | INote
   updateHandler: (
     id: number,
-    content:
-      IOverview |
-      IPreview |
-      IScenario |
-      INote,
+    payload: {
+      overview?: IOverview,
+      preview?: IPreview,
+    }
   ) => void
   moduleId: number
   loading?: boolean
+  entityName: string
 }
 
 export const ModuleContentBlock = ({
@@ -46,6 +46,7 @@ export const ModuleContentBlock = ({
   updateHandler,
   moduleId,
   loading,
+  entityName,
 }: Props) => {
 
   const {text, tags = [], units = []} = content as IOverview | IPreview | IScenario | INote
@@ -131,12 +132,15 @@ export const ModuleContentBlock = ({
             updateHandler(
               moduleId,
               {
-                text: stateContent,
-                units: stateUnits,
-                tags: stateTags,
-              },
+                [entityName]: {
+                  text: stateContent,
+                  units: stateUnits,
+                  tags: stateTags,
+                }
+              }
             )
-          }}
+            }
+          }
           loading={loading}
           disable={(loading || !showEdit.isOn) && !unsaved.isOn}
           theme={unsaved.isOn ? 'warning' : undefined}

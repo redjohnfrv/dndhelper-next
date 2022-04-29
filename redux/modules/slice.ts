@@ -1,7 +1,11 @@
 import {AnyAction, createSlice} from '@reduxjs/toolkit'
-import {IModuleState, MODULES, MODULES_CREATE, MODULES_GET} from '../../dto/module'
+import {IModuleState, MODULES, MODULES_CREATE, MODULES_GET, MODULES_UPDATE} from '../../dto/module'
 import {FULFILLED, PENDING, REJECTED} from '../../constants'
-import {createModule, getModules} from './thunks'
+import {
+  createModule,
+  getModules,
+  moduleUpdate,
+} from './thunks'
 
 const initialState: IModuleState = {
   modules: [],
@@ -25,6 +29,10 @@ function isFulfilledCreateModuleAction(action: AnyAction) {
   return action.type.startsWith(MODULES_CREATE) && action.type.endsWith(FULFILLED)
 }
 
+function isFulfilledModuleUpdateAction(action: AnyAction) {
+  return action.type.startsWith(MODULES_UPDATE) && action.type.endsWith(FULFILLED)
+}
+
 function isRejectedAction(action: AnyAction) {
   return action.type.startsWith(MODULES) && action.type.endsWith(REJECTED)
 }
@@ -45,6 +53,9 @@ const modulesSlice = createSlice({
       const newState = [...state.modules]
       state.modules = [...newState, action.payload]
     })
+    mapBuilder.addMatcher(isFulfilledModuleUpdateAction, (state, action) => {
+      state.modules = [action.payload]
+    })
     mapBuilder.addMatcher(isFulfilledAction, (state) => {
       state.loading = false
     })
@@ -59,5 +70,6 @@ export const modulesActions = {
   ...actions,
   getModules,
   createModule,
+  moduleUpdate,
 }
 export default reducer
