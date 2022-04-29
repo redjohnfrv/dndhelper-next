@@ -1,5 +1,11 @@
 import {AnyAction, createSlice} from '@reduxjs/toolkit'
-import {IModuleState, MODULES, MODULES_CREATE, MODULES_GET, MODULES_UPDATE} from '../../dto/module'
+import {
+  IModuleState,
+  MODULES,
+  MODULES_CREATE,
+  MODULES_GET,
+  MODULES_UPDATE
+} from '../../dto/module'
 import {FULFILLED, PENDING, REJECTED} from '../../constants'
 import {
   createModule,

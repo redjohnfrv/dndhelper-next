@@ -9,18 +9,13 @@ import {
   IScenario,
   INote
 } from '../../dto/module'
-import {
-  updateOverview,
-  updatePreview,
-  updateScenario,
-  updateNotes
-} from '../../api/modules'
-import {useAppDispatch, useSwitcher} from '../../hooks'
+import {useAppDispatch} from '../../hooks'
+import {modulesActions, modulesSelector} from '../../redux/modules'
+import {useSelector} from 'react-redux'
 
 //** components
 import {TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
-import {modulesActions} from '../../redux/modules'
 
 interface Props {
   module: IModule | []
@@ -28,36 +23,23 @@ interface Props {
 
 export const Module = ({module = []}: Props) => {
   const {id, name, overview, preview, scenario, notes} = module as IModule
-  const overviewLoading = useSwitcher()
-  const previewLoading = useSwitcher()
-  const scenarioLoading = useSwitcher()
-  const notesLoading = useSwitcher()
   const dispatch = useAppDispatch()
+  const isSaving = useSelector(modulesSelector.isModulesLoading)
 
-  const moduleUpdateHandler = (id: number, payload: { overview?: IOverview, preview?: IPreview }) => {
+  const moduleUpdateHandler = (
+    id: number,
+    payload: {
+      overview?: IOverview,
+      preview?: IPreview,
+      scenario?: IScenario,
+      notes?: INote,
+    }
+    ) => {
       dispatch(modulesActions.moduleUpdate({
         id: String(id),
         ...payload,
       }))
   }
-
-  // const updatePreviewHandler = (id: number, preview: IPreview) => {
-  //   previewLoading.on()
-  //   updatePreview(String(id), preview)
-  //     .then(() => previewLoading.off())
-  // }
-  //
-  // const updateScenarioHandler = (id: number, scenario: IScenario) => {
-  //   scenarioLoading.on()
-  //   updateScenario(String(id), scenario)
-  //     .then(() => scenarioLoading.off())
-  // }
-  //
-  // const updateNotesHandler = (id: number, note: INote) => {
-  //   notesLoading.on()
-  //   updateNotes(String(id), note)
-  //     .then(() => notesLoading.off())
-  // }
 
   return (
     <Wrapper>
@@ -67,7 +49,7 @@ export const Module = ({module = []}: Props) => {
         content={overview}
         updateHandler={moduleUpdateHandler}
         moduleId={id}
-        loading={overviewLoading.isOn}
+        loading={isSaving}
         entityName="overview"
       />
       <ModuleContentBlock
@@ -75,23 +57,25 @@ export const Module = ({module = []}: Props) => {
         content={preview}
         moduleId={id}
         updateHandler={moduleUpdateHandler}
-        loading={previewLoading.isOn}
+        loading={isSaving}
         entityName="preview"
       />
-      {/*<ModuleContentBlock*/}
-      {/*  title="Scenario"*/}
-      {/*  content={scenario}*/}
-      {/*  moduleId={id}*/}
-      {/*  updateHandler={updateScenarioHandler}*/}
-      {/*  loading={scenarioLoading.isOn}*/}
-      {/*/>*/}
-      {/*<ModuleContentBlock*/}
-      {/*  title="Module notes"*/}
-      {/*  content={notes}*/}
-      {/*  moduleId={id}*/}
-      {/*  updateHandler={updateNotesHandler}*/}
-      {/*  loading={notesLoading.isOn}*/}
-      {/*/>*/}
+      <ModuleContentBlock
+        title="Scenario"
+        content={scenario}
+        moduleId={id}
+        updateHandler={moduleUpdateHandler}
+        loading={isSaving}
+        entityName="scenario"
+      />
+      <ModuleContentBlock
+        title="Module notes"
+        content={notes}
+        moduleId={id}
+        updateHandler={moduleUpdateHandler}
+        loading={isSaving}
+        entityName="notes"
+      />
     </Wrapper>
   )
 }

@@ -1,6 +1,12 @@
 import axios from 'axios'
 import {API_URL} from '../../api'
-import {IModule, IOverview} from '../../dto/module'
+import {
+  IModule,
+  INote,
+  IOverview,
+  IPreview,
+  IScenario
+} from '../../dto/module'
 
 const getModules = () => {
   return axios({
@@ -23,7 +29,15 @@ const createModule = (module: Partial<Omit<IModule, 'id'>>) => {
   })
 }
 
-const moduleUpdate = (id: string, payload: any) => {
+const moduleUpdate = (
+  id: string,
+  payload: {
+    overview?: IOverview,
+    preview?: IPreview,
+    scenario?: IScenario,
+    notes?: INote,
+  }
+) => {
   return axios({
     method: 'PATCH',
     data: payload,

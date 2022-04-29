@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Tags, Units } from '../..'
 
 
 //** utils
@@ -15,10 +14,14 @@ import {useSwitcher} from '../../../hooks'
 
 //** components
 import {Button, Text, TitleH2, Textarea} from '../../ui'
+import {Tags, Units } from '../..'
 
 const initialContent: IOverview | IPreview | IScenario | INote = {
   text: '',
-  units: [],
+  units: [{
+    title: '',
+    content: '',
+  }],
   tags: [{
     name: '',
     link: '',
@@ -33,6 +36,8 @@ interface Props {
     payload: {
       overview?: IOverview,
       preview?: IPreview,
+      scenario?: IScenario,
+      notes?: INote,
     }
   ) => void
   moduleId: number
@@ -49,7 +54,8 @@ export const ModuleContentBlock = ({
   entityName,
 }: Props) => {
 
-  const {text, tags = [], units = []} = content as IOverview | IPreview | IScenario | INote
+  const {text, tags = [], units = []} =
+    content as IOverview | IPreview | IScenario | INote
   const [stateTags, setStateTags] = useState<ITag[] | []>(tags)
   const [stateContent, setStateContent] = useState<string>(text)
   const [stateUnits, setStateUnits] = useState<IUnit[] | []>(units)
@@ -77,6 +83,21 @@ export const ModuleContentBlock = ({
     const cloneUnits= [...stateUnits]
     setStateUnits(
       [...cloneUnits.filter(item => item.title !== unit.title)]
+    )
+  }
+
+  const saveHandler = () => {
+    showEdit.off()
+    unsaved.off()
+    updateHandler(
+      moduleId,
+      {
+        [entityName]: {
+          text: stateContent,
+          units: stateUnits,
+          tags: stateTags,
+        }
+      }
     )
   }
 
@@ -126,21 +147,7 @@ export const ModuleContentBlock = ({
         <Button
           small={true}
           title='SAVE'
-          onClick={() => {
-            showEdit.off()
-            unsaved.off()
-            updateHandler(
-              moduleId,
-              {
-                [entityName]: {
-                  text: stateContent,
-                  units: stateUnits,
-                  tags: stateTags,
-                }
-              }
-            )
-            }
-          }
+          onClick={saveHandler}
           loading={loading}
           disable={(loading || !showEdit.isOn) && !unsaved.isOn}
           theme={unsaved.isOn ? 'warning' : undefined}

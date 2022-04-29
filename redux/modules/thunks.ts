@@ -1,7 +1,16 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import {AxiosError, AxiosResponse} from 'axios'
 import _ from 'lodash'
-import {IModule, MODULES_CREATE, MODULES_GET, MODULES_UPDATE} from '../../dto/module'
+import {
+  IModule,
+  INote,
+  IOverview,
+  IPreview,
+  IScenario,
+  MODULES_CREATE,
+  MODULES_GET,
+  MODULES_UPDATE,
+} from '../../dto/module'
 import {modulesApi} from './api'
 
 export const getModules = createAsyncThunk(
@@ -30,7 +39,13 @@ export const createModule = createAsyncThunk(
 
 export const moduleUpdate = createAsyncThunk(
   MODULES_UPDATE,
-  async (payload: {id: string, overview?: any, preview?: any}) => {
+  async (payload: {
+    id: string,
+    overview?: IOverview,
+    preview?: IPreview,
+    scenario?: IScenario,
+    notes?: INote,
+  }) => {
     try {
       const {id} = payload
       const response: AxiosResponse =
