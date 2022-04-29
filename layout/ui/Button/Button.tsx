@@ -69,6 +69,10 @@ const Btn = styled.button<{
   &:active {
     box-shadow: -1px -1px 1px 0 black, 1px 1px 1px 0 black;
   }
+  
+  & svg {
+    fill: ${color.lightGold};
+  }
 
   ${props => props.small && {
     width: '120px',

@@ -46,5 +46,9 @@ const Icons = styled.div`
     width: 36px;
     height: 36px;
     fill: ${color.gold};
+    
+    &:hover {
+      fill: ${color.lightGold};
+    }
   }
 `
