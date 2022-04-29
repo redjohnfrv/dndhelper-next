@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
+//** utils
+import {color, routes} from '../../../constants'
+
 //** components
 import Link from 'next/link'
-
-//** utils
-import {routes} from '../../../constants'
 
 export const HeaderMenu = () => {
 
@@ -22,4 +22,12 @@ const Wrapper = styled.nav`
   display: flex;
   justify-content: flex-start;
   gap: 24px;
+  
+  & a:hover {
+    color: ${color.lightGold};
+    
+    &:after {
+      background: ${color.lightGold};
+    }
+  }
 `

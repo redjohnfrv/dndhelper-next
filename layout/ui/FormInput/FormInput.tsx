@@ -34,9 +34,12 @@ const Wrapper = styled.div`
     padding: 4px 8px;
     font-size: ${size.normalText};
     line-height: ${size.normalText};
+    background: ${color.white};
+    border-radius: 6px;
+    border: 2px solid ${color.lightGold};
   }
   
   & span {
-    color: ${color.danger};
+    color: ${color.lightGold};
   }
 `

@@ -39,20 +39,22 @@ export const CreateAdventure = () => {
           onSubmit={onSubmit}
           render={({handleSubmit, invalid}) => (
             <form onSubmit={handleSubmit}>
-              <Button
-                type="submit"
-                title="Start"
-                disable={invalid || isCreating}
-                small={true}
-                loading={isCreating}
-              />
-              <Field
-                name="adventure"
-                placeholder="Name your Adventure"
-                component={FormInput}
-                label="ADVENTURE: "
-                validate={composeValidators(validators.required)}
-              />
+              <LineWrapper>
+                <Field
+                  name="adventure"
+                  placeholder="Name your Adventure"
+                  component={FormInput}
+                  label="ADVENTURE: "
+                  validate={composeValidators(validators.required)}
+                />
+                <Button
+                  type="submit"
+                  title="Start"
+                  disable={invalid || isCreating}
+                  small={true}
+                  loading={isCreating}
+                />
+              </LineWrapper>
               <Field
                 name="description"
                 placeholder="Add description"
@@ -84,10 +86,12 @@ const Adding = styled.div`
   & input {
     margin-bottom: 48px;
   }
+`
+const LineWrapper = styled.div`
+  display: flex;
+  gap: 48px;
   
   & button {
-    position: absolute;
-    top: 48px;
-    right: 29%;
+    height: 100%;
   }
 `

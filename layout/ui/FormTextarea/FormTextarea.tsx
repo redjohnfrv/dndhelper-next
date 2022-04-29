@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {FieldRenderProps} from 'react-final-form'
 
 //** utils
-import {size} from '../../../constants'
+import {color, size} from '../../../constants'
 
 interface Props extends FieldRenderProps<string> {
   placeholder?: string
@@ -35,5 +35,8 @@ const Wrapper = styled.div`
     padding: 4px 8px;
     font-size: ${size.normalText};
     line-height: ${size.normalText};
+    background: ${color.white};
+    border-radius: 6px;
+    border: 2px solid ${color.lightGold};
   }
 `

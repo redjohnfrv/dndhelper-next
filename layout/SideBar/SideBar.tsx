@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {size} from '../../constants'
-import {useSwitcher} from '../../hooks/useSwitcher'
+import {color, size} from '../../constants'
+import {useSwitcher} from '../../hooks'
 
 //** components
 import {Popup} from './index'
@@ -49,6 +49,8 @@ const Wrapper = styled.aside`
   width: 20%;
   min-width: 180px;
   padding: 24px 0 0 24px;
+  background: linear-gradient(.25turn, rgba(255, 255, 255, 0.04), 25%, rgba(255, 255, 255, 0));
+  border-radius: 12px;
 `
 const List = styled.nav`
   display: flex;
@@ -58,4 +60,8 @@ const List = styled.nav`
 const Item = styled.div`
   font-size: ${size.normalText};
   cursor: pointer;
+  
+  &:hover {
+    color: ${color.lightGold};
+  }
 `
