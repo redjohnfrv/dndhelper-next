@@ -3,32 +3,35 @@ import styled from 'styled-components'
 
 //** utils
 import {size, tabs} from '../../../constants'
-import {getModules} from '../../../api/modules'
+import {modulesActions} from '../../../redux/modules'
+import {getTabList} from '../../../helpers'
+import {useAppDispatch, useSwitcher} from '../../../hooks'
 
 //** components
 import {TabList} from './TabList'
-import {CreateModule} from '../CreateModule/CreateModule'
-import { getTabList } from '../../../helpers'
-import {useSwitcher} from '../../../hooks/useSwitcher'
 import {Loader} from '../../ui'
+import {CreateModule} from '..'
 
 interface Props {
-  advId: number
+  advId: number;
 }
 
 export const Tabs = ({advId}: Props) => {
   const [activeTab, setActiveTab] = useState<string>(tabs[0])
   const [modules, setModules] = useState([])
   const modulesLoaded = useSwitcher()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (modules.length < 1)
-      getModules().then(res => setModules(res))
+      dispatch(modulesActions.getModules())
+        .then(res => res.payload)
   }, [])
 
   useEffect(() => {
-    getModules().then(res => {
-      setModules(res)
+    dispatch(modulesActions.getModules())
+      .then(res => {
+      setModules(res.payload)
       modulesLoaded.on()
     })
   }, [modules.length])
@@ -37,7 +40,7 @@ export const Tabs = ({advId}: Props) => {
     <Wrapper>
       {/** tabs menu **/}
       <TabMenu>
-        {tabs.map((tab: string) =>
+        {tabs.map((tab: string) => (
           <Tab
             key={tab[0]}
             onClick={() => setActiveTab(tab)}
@@ -45,19 +48,20 @@ export const Tabs = ({advId}: Props) => {
           >
             {tab}
           </Tab>
-        )}
+        ))}
       </TabMenu>
 
       {/** modules tab **/}
-      {activeTab === tabs[0] &&
+      {activeTab === tabs[0] && (
         <>
-          {modulesLoaded.isOn
-            ? <TabList tabs={getTabList(modules, advId)} />
-            : <Loader />
-          }
+          {modulesLoaded.isOn ? (
+            <TabList tabs={getTabList(modules, advId)} />
+          ) : (
+            <Loader />
+          )}
           <CreateModule advId={advId} />
         </>
-      }
+      )}
     </Wrapper>
   )
 }
@@ -70,14 +74,18 @@ const TabMenu = styled.nav`
   display: flex;
   gap: 48px;
 `
-const Tab = styled.span<{active: boolean}>`
+const Tab =
+  styled.span <
+  {active: boolean} >
+  `
   font-size: ${size.largeText};
   text-decoration: none;
   opacity: .6;
   cursor: pointer;
-  
-  ${props => props.active && {
-    textDecoration: 'underline',
-    opacity: '1',
-  }}
+
+  ${(props) =>
+    props.active && {
+      textDecoration: 'underline',
+      opacity: '1',
+    }}
 `

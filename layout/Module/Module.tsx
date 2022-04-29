@@ -14,7 +14,7 @@ import {modulesActions, modulesSelector} from '../../redux/modules'
 import {useSelector} from 'react-redux'
 
 //** components
-import {TitleH1} from '../ui'
+import {Button, TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 export const Module = ({module = []}: Props) => {
   const {id, name, overview, preview, scenario, notes} = module as IModule
   const dispatch = useAppDispatch()
-  const isSaving = useSelector(modulesSelector.isModulesLoading)
+  const isRequesting = useSelector(modulesSelector.isModulesLoading)
 
   const moduleUpdateHandler = (
     id: number,
@@ -44,12 +44,21 @@ export const Module = ({module = []}: Props) => {
   return (
     <Wrapper>
       <TitleH1 text={name} align="right" />
+      <DeleteWrapper>
+        <Button
+          title="Delete"
+          theme="warning"
+          small={true}
+          onClick={() => console.log('clicked')}
+          disable={isRequesting}
+        />
+      </DeleteWrapper>
       <ModuleContentBlock
         title="Module overview"
         content={overview}
         updateHandler={moduleUpdateHandler}
         moduleId={id}
-        loading={isSaving}
+        loading={isRequesting}
         entityName="overview"
       />
       <ModuleContentBlock
@@ -57,7 +66,7 @@ export const Module = ({module = []}: Props) => {
         content={preview}
         moduleId={id}
         updateHandler={moduleUpdateHandler}
-        loading={isSaving}
+        loading={isRequesting}
         entityName="preview"
       />
       <ModuleContentBlock
@@ -65,7 +74,7 @@ export const Module = ({module = []}: Props) => {
         content={scenario}
         moduleId={id}
         updateHandler={moduleUpdateHandler}
-        loading={isSaving}
+        loading={isRequesting}
         entityName="scenario"
       />
       <ModuleContentBlock
@@ -73,7 +82,7 @@ export const Module = ({module = []}: Props) => {
         content={notes}
         moduleId={id}
         updateHandler={moduleUpdateHandler}
-        loading={isSaving}
+        loading={isRequesting}
         entityName="notes"
       />
     </Wrapper>
@@ -85,5 +94,15 @@ const Wrapper = styled.div`
   
   & h1 {
     margin-bottom: 96px;
+  }
+`
+const DeleteWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  
+  & button {
+    position: relative;
+    top: -60px;
   }
 `
