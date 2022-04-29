@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {size} from '../../../constants'
+import {color, size} from '../../../constants'
 
 interface Props {
   text: string
@@ -32,6 +32,7 @@ export const TitleH2 = ({text, align}: Props) => {
 const WrapperH2 = styled.h2<{align: 'center' | 'right' | undefined}>`
   width: 100%;
   font-size: 32px;
+  color: ${color.lightGold};
   text-align: ${props => props.align || 'left'};
 `
 

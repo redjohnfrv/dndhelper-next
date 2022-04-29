@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 
 //** utils
 import {IAdventure} from '../../dto/adventure'
-import {routes, size} from '../../constants'
+import {color, routes, size} from '../../constants'
 import {adventuresSelector} from '../../redux/adventures'
 
 //** components
@@ -27,7 +27,7 @@ export const AdventuresList = ({adventure, onDelete}: Props) => {
       <Content>
         <Avatar image={avatar} alt="Adventure avatar" />
         <Description>
-          <Text size={size.normalText}>
+          <Text size={size.normalText} color={color.white}>
             {desc}
           </Text>
           <AdvNavigation>
@@ -54,6 +54,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  padding: 24px 48px;
+  background: ${color.transparent};
+  border-radius: 12px;
 `
 const Content = styled.div`
   display: flex;
@@ -71,4 +74,13 @@ const AdvNavigation = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  
+  & a {
+    height: ${size.normalText};
+    color: ${color.lightGold};
+    
+    &:after {
+      background: ${color.lightGold};
+    }
+  }
 `

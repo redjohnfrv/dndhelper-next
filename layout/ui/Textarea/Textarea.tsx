@@ -32,7 +32,7 @@ const Wrapper = styled.div`
     margin: 0;
     padding: 0 0 0 2px;
     font-size: ${size.normalText};
-    background: ${color.edit};
+    background: ${color.white};
     border: none;
   }
 `

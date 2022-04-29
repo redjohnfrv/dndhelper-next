@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {size, theme} from '../../constants'
+import {color, size} from '../../constants'
 import {Telegram, Vkontakte} from '../ui/Svg'
 
 export const Footer = () => {
@@ -45,6 +45,6 @@ const Icons = styled.div`
   & svg {
     width: 36px;
     height: 36px;
-    fill: ${theme.text};
+    fill: ${color.gold};
   }
 `

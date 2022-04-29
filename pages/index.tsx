@@ -64,6 +64,7 @@ const ImageBlock = styled.div`
   & span {
     width: 100% !important;
     height: 100% !important;
+    border-radius: 12px;
   }
   
   & img {
@@ -81,4 +82,5 @@ const HelloText = styled.div`
   max-width: 65%;
   padding: 24px;
   background: linear-gradient(to top right, rgba(255, 255, 255, 0.04), rgba(224, 224, 224, 0.64));
+  border-radius: 12px;
 `

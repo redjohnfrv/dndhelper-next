@@ -54,10 +54,16 @@ const Btn = styled.button<{
   line-height: ${size.normalText};
   padding: 16px 0;
   text-align: center;
+  color: ${color.lightGold};
   background: ${props => props.theme === 'warning' ? color.danger : '#d2d2d2'};
   border: none;
+  border-radius: 6px;
   pointer-events: all;
   opacity: 1;
+  
+  &:active {
+    box-shadow: -1px -1px 1px 0 black, 1px 1px 1px 0 black;
+  }
 
   ${props => props.small && {
     width: '120px',
