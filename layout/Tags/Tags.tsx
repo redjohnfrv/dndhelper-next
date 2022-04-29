@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {size} from '../../constants'
+import {color, size} from '../../constants'
 import {ITag} from '../../dto/module'
 import {UseSwitcherType} from '../../hooks'
 
@@ -84,16 +84,25 @@ const Wrapper = styled.nav`
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 12px;
-  
-  & a {
-    font-size: ${size.normalText};
-  }
 `
 const AddButton = styled.div`
   display: flex;
   gap: 12px;
   align-items: flex-end;
   cursor: pointer;
+
+  & svg {
+    fill: ${color.gold};
+  }
+
+  &:hover {
+    & svg {
+      fill: ${color.lightGold};
+    }
+    & span {
+      color: ${color.lightGold};
+    }
+  }
 `
 const EditTip = styled.span`
   font-size: ${size.smallText};
@@ -102,6 +111,17 @@ const EditTip = styled.span`
 const TagsWrapper = styled.div`
   display: flex;
   gap: 12px;
+
+  & a {
+    font-size: ${size.normalText};
+    color: ${color.blue};
+    
+    &:hover {
+      &:after {
+        background: ${color.blue};
+      }
+    }
+  }
 `
 const TagWrapper = styled.div`
   position: relative;

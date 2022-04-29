@@ -11,6 +11,7 @@ import {
   ITag, IUnit,
 } from '../../../dto/module'
 import {useSwitcher} from '../../../hooks'
+import {color} from '../../../constants'
 
 //** components
 import {Button, Text, TitleH2, Textarea} from '../../ui'
@@ -113,7 +114,7 @@ export const ModuleContentBlock = ({
               onChangeHandler={setStateContent}
             />
           ) : (
-            <Text>
+            <Text color={color.white}>
               {stateContent || 'Enter your text ...'}
             </Text>
           )
@@ -159,6 +160,9 @@ export const ModuleContentBlock = ({
 
 const Wrapper = styled.div`
   margin-bottom: 48px;
+  padding: 24px;
+  border: 1px solid ${color.gold};
+  border-radius: 12px;
 `
 const TextWrapper = styled.div`
   padding: 24px 0;
