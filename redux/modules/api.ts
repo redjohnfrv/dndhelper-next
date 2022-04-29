@@ -29,7 +29,7 @@ const createModule = (module: Partial<Omit<IModule, 'id'>>) => {
   })
 }
 
-const moduleUpdate = (
+const updateModule = (
   id: string,
   payload: {
     overview?: IOverview,
@@ -48,8 +48,19 @@ const moduleUpdate = (
   })
 }
 
+const deleteModule = (id: string) => {
+  return axios({
+    method: 'DELETE',
+    url: `${API_URL}/modules/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+}
+
 export const modulesApi = {
   getModules,
   createModule,
-  moduleUpdate,
+  updateModule,
+  deleteModule,
 }

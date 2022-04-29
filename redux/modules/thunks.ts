@@ -7,7 +7,7 @@ import {
   IOverview,
   IPreview,
   IScenario,
-  MODULES_CREATE,
+  MODULES_CREATE, MODULES_DELETE,
   MODULES_GET,
   MODULES_UPDATE,
 } from '../../dto/module'
@@ -37,7 +37,7 @@ export const createModule = createAsyncThunk(
     }
   })
 
-export const moduleUpdate = createAsyncThunk(
+export const updateModule = createAsyncThunk(
   MODULES_UPDATE,
   async (payload: {
     id: string,
@@ -49,7 +49,19 @@ export const moduleUpdate = createAsyncThunk(
     try {
       const {id} = payload
       const response: AxiosResponse =
-        await modulesApi.moduleUpdate(id, _.omit(payload, ['id']))
+        await modulesApi.updateModule(id, _.omit(payload, ['id']))
+      return response.data
+    } catch (error) {
+      const {response, message} = error as AxiosError
+      return response ? response.data.message : message
+    }
+  })
+
+export const deleteModule = createAsyncThunk(
+  MODULES_DELETE,
+  async (id: string) => {
+    try {
+      const response: AxiosResponse = await modulesApi.deleteModule(id)
       return response.data
     } catch (error) {
       const {response, message} = error as AxiosError

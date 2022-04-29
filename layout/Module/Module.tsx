@@ -16,14 +16,26 @@ import {useSelector} from 'react-redux'
 //** components
 import {Button, TitleH1} from '../ui'
 import {ModuleContentBlock} from '.'
+import {routes} from '../../constants'
+import {useRouter} from 'next/router'
 
 interface Props {
   module: IModule | []
 }
 
 export const Module = ({module = []}: Props) => {
-  const {id, name, overview, preview, scenario, notes} = module as IModule
+  const {
+    id,
+    name,
+    overview,
+    preview,
+    scenario,
+    notes,
+    advId
+  } = module as IModule
   const dispatch = useAppDispatch()
+  const router = useRouter()
+  const {push} = router
   const isRequesting = useSelector(modulesSelector.isModulesLoading)
 
   const moduleUpdateHandler = (
@@ -35,10 +47,15 @@ export const Module = ({module = []}: Props) => {
       notes?: INote,
     }
     ) => {
-      dispatch(modulesActions.moduleUpdate({
+      dispatch(modulesActions.updateModule({
         id: String(id),
         ...payload,
       }))
+  }
+
+  const deleteModuleHandler = () => {
+    dispatch(modulesActions.deleteModule(String(id)))
+      .then(() => push(`${routes.adventures}/${advId}`))
   }
 
   return (
@@ -49,7 +66,7 @@ export const Module = ({module = []}: Props) => {
           title="Delete"
           theme="warning"
           small={true}
-          onClick={() => console.log('clicked')}
+          onClick={deleteModuleHandler}
           disable={isRequesting}
         />
       </DeleteWrapper>

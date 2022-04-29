@@ -5,12 +5,6 @@
       "desc": "This adventure tells us about a hard way of a man who once decided to make the D&D Master Helper ...",
       "avatar": "/images/P5UuK5SQ8vM.jpg",
       "id": 1
-    },
-    {
-      "name": "123",
-      "desc": "123",
-      "avatar": null,
-      "id": 2
     }
   ],
   "modules": [
@@ -110,32 +104,6 @@
     {
       "advId": 2,
       "link": "/modules",
-      "name": "test",
-      "overview": {
-        "text": "test",
-        "units": [],
-        "tags": []
-      },
-      "preview": {
-        "text": "asdffv",
-        "units": [],
-        "tags": []
-      },
-      "scenario": {
-        "text": "sdfsdfsdf",
-        "units": [],
-        "tags": []
-      },
-      "notes": {
-        "text": "",
-        "units": [],
-        "tags": []
-      },
-      "id": 4
-    },
-    {
-      "advId": 2,
-      "link": "/modules",
       "name": "redux",
       "overview": {
         "text": "redux",
@@ -184,56 +152,6 @@
         "tags": []
       },
       "id": 6
-    },
-    {
-      "advId": 2,
-      "link": "/modules",
-      "name": "module loading",
-      "overview": {
-        "text": "It works?",
-        "units": [
-          {
-            "title": "test unit",
-            "content": "testing ..."
-          }
-        ],
-        "tags": [
-          {
-            "name": "123123",
-            "link": "123"
-          },
-          {
-            "name": "123123",
-            "link": "123111"
-          }
-        ]
-      },
-      "preview": {
-        "text": "module loading1231231231",
-        "units": [
-          {
-            "title": "123",
-            "content": "123"
-          }
-        ],
-        "tags": []
-      },
-      "scenario": {
-        "text": "module loading",
-        "units": [],
-        "tags": []
-      },
-      "notes": {
-        "text": "editing notes ...",
-        "units": [],
-        "tags": [
-          {
-            "name": "notes",
-            "link": "123"
-          }
-        ]
-      },
-      "id": 7
     }
   ],
   "creatures": [

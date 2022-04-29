@@ -37,6 +37,7 @@ export const AdventuresList = ({adventure, onDelete}: Props) => {
             <Button
               onClick={() => onDelete(String(id))}
               title="Delete"
+              theme="warning"
               small={true}
               loading={isDeleting}
               disable={isDeleting}
