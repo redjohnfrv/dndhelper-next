@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {size} from '../../../constants'
+import {color, size} from '../../../constants'
 import {IContentTab} from '../../../dto/adventure'
 
 interface Props {
@@ -39,5 +39,12 @@ const Wrapper = styled.ul`
 const ListItem = styled.li`
   padding-left: 12px;
   font-size: ${size.normalText};
-  text-decoration: underline;
+  
+  & a:hover {
+    color: ${color.lightGold};
+
+    &:after {
+      background: ${color.lightGold};
+    }
+  }
 `

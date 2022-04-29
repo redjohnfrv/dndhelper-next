@@ -1,6 +1,9 @@
 import React from 'react'
 import styled, {keyframes} from 'styled-components'
 
+//** utils
+import {color} from '../../../constants'
+
 //** components
 import {LoaderSvg} from '../Svg'
 
@@ -42,6 +45,7 @@ const Wrapper = styled.div`
     width: 56px;
     height: 56px;
     animation: 1s ${loaderAnimation} infinite linear;
+    fill: ${color.lightGold};
   }
 `
 const LoadingWrapper = styled.div`

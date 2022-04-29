@@ -46,9 +46,10 @@ export const SideBar = () => {
 const Wrapper = styled.aside`
   box-sizing: border-box;
   display: flex;
+  height: max-content;
   width: 20%;
   min-width: 180px;
-  padding: 24px 0 0 24px;
+  padding: 24px 0 24px 24px;
   background: linear-gradient(.25turn, rgba(255, 255, 255, 0.04), 25%, rgba(255, 255, 255, 0));
   border-radius: 12px;
 `

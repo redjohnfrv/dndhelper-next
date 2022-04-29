@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react'
 import styled from 'styled-components'
+import { color } from '../../../constants'
 
 //** utils
 import {useAppDispatch} from '../../../hooks'
@@ -43,7 +44,7 @@ export const Preview = ({props}: Props) => {
         <UploadInput uploadImageHandler={uploadImage} />
       </AvatarWrapper>
       <TitleH1 text={name} />
-      <Text display="inline">
+      <Text display="inline" color={color.white}>
         {desc}
       </Text>
     </Wrapper>

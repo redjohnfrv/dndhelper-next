@@ -1,18 +1,18 @@
 import React from 'react'
 import {useRouter} from 'next/router'
+import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 
 //** utils
 import {composeValidators, validators} from '../../../helpers'
 import {useAppDispatch, useSwitcher} from '../../../hooks'
 import {ICreateModule} from '../../../dto/module'
-import {color, routes, size} from '../../../constants'
+import {routes, size} from '../../../constants'
 import {modulesActions, modulesSelector} from '../../../redux/modules'
 
 //** components
 import {Field, Form} from 'react-final-form'
 import {Button, FormInput, FormTextarea} from '../../ui'
-import {useSelector} from 'react-redux'
 
 interface Props {
   advId: number
@@ -61,9 +61,12 @@ export const CreateModule = ({advId}: Props) => {
 
   return (
     <Wrapper>
-      <FormTitle onClick={() => showForm.toggle()}>
-        CREATE MODULE
-      </FormTitle>
+      <CreateButtonWrapper>
+        <Button
+          title="CREATE MODULE"
+          onClick={() => showForm.toggle()}
+        />
+      </CreateButtonWrapper>
       {showForm.isOn && <Form
         onSubmit={onSubmit}
         render={({handleSubmit, invalid}) => (
@@ -96,12 +99,14 @@ export const CreateModule = ({advId}: Props) => {
               label="SCENARIO: "
               validate={composeValidators(validators.required)}
             />
-            <Button
-              type="submit"
-              title="Add module"
-              disable={invalid}
-              loading={isCreating}
-            />
+            <SubmitButtonWrapper>
+              <Button
+                type="submit"
+                title="Add module"
+                disable={invalid}
+                loading={isCreating}
+              />
+            </SubmitButtonWrapper>
           </form>
         )}
       />}
@@ -127,13 +132,14 @@ const Wrapper = styled.div`
     font-weight: bold;
     white-space: pre-wrap;
   }
-  
+`
+const CreateButtonWrapper = styled.div`
   & button {
-    margin: 0 0 0 169px;
+    width: max-content;
+    padding: 12px 24px;
+    margin-bottom: 48px;
   }
 `
-const FormTitle = styled.button`
-  font-size: ${size.normalText};
-  color: ${color.black};
-  margin: 0 0 24px 0 !important;
+const SubmitButtonWrapper = styled.div`
+  padding-left: 164px;
 `

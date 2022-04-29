@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 
 //** utils
-import {size, tabs} from '../../../constants'
+import {color, size, tabs} from '../../../constants'
 import {modulesActions} from '../../../redux/modules'
 import {getTabList} from '../../../helpers'
 import {useAppDispatch, useSwitcher} from '../../../hooks'
@@ -85,7 +85,7 @@ const Tab =
 
   ${(props) =>
     props.active && {
-      textDecoration: 'underline',
+      color: color.lightGold,
       opacity: '1',
     }}
 `

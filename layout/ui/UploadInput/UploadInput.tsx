@@ -1,6 +1,9 @@
 import React, {ChangeEvent} from 'react'
 import styled from 'styled-components'
 
+//** utils
+import {color} from '../../../constants'
+
 interface Props {
   uploadImageHandler: (e: ChangeEvent<HTMLInputElement>) => void
 }
@@ -35,12 +38,16 @@ const Wrapper = styled.div`
   & label {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 4px;
     width: 100%;
     height: 100%;
     line-height: 36px;
-    text-align: center;
+    text-align: left;
     border-radius: 4px;
     cursor: pointer;
+    
+    &:hover {
+      color: ${color.lightGold};
+    }
   }
 `
